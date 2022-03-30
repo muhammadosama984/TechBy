@@ -1,4 +1,10 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:project/Login_Page.dart';
+
+import 'Login_Page.dart';
+import 'Signup_Page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -102,11 +109,12 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {Navigator.of(context).push(MaterialPageRoute(builder: (context) => Signup_screen()));},
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
