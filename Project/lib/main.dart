@@ -1,6 +1,7 @@
 import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:project/Admin_Page.dart';
 import 'package:project/Login_Page.dart';
 
 import 'Login_Page.dart';
@@ -114,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {Navigator.of(context).push(MaterialPageRoute(builder: (context) => Signup_screen()));},
+        onPressed: () {Navigator.of(context).push(MaterialPageRoute(builder: (context) => Admin_screen()));},
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.

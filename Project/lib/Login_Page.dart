@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project/ForgetPassword_Page.dart';
 
 class Login_screen extends StatefulWidget {
   const Login_screen({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class _Login_screenState extends State<Login_screen> {
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       body: Center(
-        child: SingleChildScrollView(
+        // child: SingleChildScrollView(
           child: ListView(
             padding: EdgeInsets.symmetric(horizontal: 18),
             children: <Widget>[
@@ -50,7 +51,7 @@ class _Login_screenState extends State<Login_screen> {
                               hintText: 'Enter Your Username'),
                         ),
                         SizedBox(
-                          height: 60,
+                          height: 50,
                         ),
                         TextField(
                           obscureText: true,
@@ -75,7 +76,9 @@ class _Login_screenState extends State<Login_screen> {
                                 decoration: TextDecoration.underline,
                               ),
                             ),
-                            onTap: (){},
+                            onTap: (){
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ForgetPassword_screen()));
+                            },
                           ),
                         ),
                         SizedBox(height: 35,),
@@ -131,7 +134,7 @@ class _Login_screenState extends State<Login_screen> {
               )
             ],
           ),
-        ),
+
 
         // child: Column(
         //   mainAxisAlignment: MainAxisAlignment.center,
