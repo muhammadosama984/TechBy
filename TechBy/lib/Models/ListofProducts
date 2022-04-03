@@ -1,0 +1,12 @@
+import 'package:provider/provider.dart';
+
+class ListofProduct with ChangeNotifier {
+  List<Product> productList = [];
+  List<Product> get returnProductList => productList;
+
+  set productListSet(Product product) {
+    productList.add(product);
+    notifyListeners();
+  }
+}
+
