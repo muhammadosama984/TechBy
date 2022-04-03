@@ -39,15 +39,15 @@ class _Complaint_screenState extends State<Complaint_screen> {
                         trailing: PopupMenuButton(
                             icon: Icon(Icons.more_vert_rounded),
                             itemBuilder: (context) => [
-                              PopupMenuItem(
-                                child: Text("Resolved"),
-                                value: 1,
-                              ),
-                              PopupMenuItem(
-                                child: Text("Not Resolved"),
-                                value: 2,
-                              )
-                            ]),
+                                  PopupMenuItem(
+                                    child: Text("Resolved"),
+                                    value: 1,
+                                  ),
+                                  PopupMenuItem(
+                                    child: Text("Not Resolved"),
+                                    value: 2,
+                                  )
+                                ]),
                       ),
                     );
                   }),
