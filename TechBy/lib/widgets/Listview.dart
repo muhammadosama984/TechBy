@@ -1,5 +1,6 @@
 import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
+import 'package:techby/screens/ProductDetail.dart';
 
 class List extends StatefulWidget {
   const List({Key? key}) : super(key: key);
@@ -18,7 +19,8 @@ class _ListState extends State<List> {
             return Card(
               child: GestureDetector(
                 onTap: () {
-                  print("Tapped");
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => ProductDetail()));
                 },
                 child: Container(
                   height: 130,
