@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:techby/screens/Login_Page.dart';
+import 'package:techby/screens/Signup_Page.dart';
 
 class OpeningPage extends StatefulWidget {
   const OpeningPage({Key? key}) : super(key: key);
@@ -29,7 +31,10 @@ class _OpeningPageState extends State<OpeningPage> {
                 children: [
                   RaisedButton(
                       color: Colors.white,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Login_screen()));
+                      },
                       child: Text(
                         'LogIn',
                         style: TextStyle(color: Colors.black),
@@ -41,7 +46,10 @@ class _OpeningPageState extends State<OpeningPage> {
                       color: Colors.black,
                       child:
                           Text('SignUp', style: TextStyle(color: Colors.white)),
-                      onPressed: () {}),
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Signup_screen()));
+                      }),
                 ],
               ),
             )
