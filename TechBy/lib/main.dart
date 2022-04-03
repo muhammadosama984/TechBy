@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:techby/screens/Admin_Page.dart';
+import 'package:techby/screens/More_Page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -58,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => Admin_screen()));
+              .push(MaterialPageRoute(builder: (context) => More_screen()));
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),

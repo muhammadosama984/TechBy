@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:techby/screens/ContactUs_Page.dart';
 import 'package:techby/screens/FAQs_Page.dart';
+import 'package:techby/screens/Profile_Page.dart';
 
 import 'ForgetPassword_Page.dart';
 
@@ -53,7 +54,7 @@ class _More_screenState extends State<More_screen> {
                         ),
                       ),
                       onTap: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => ForgetPassword_screen()));
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => Profile_screen()));
                       },
                     ),
                   ),
