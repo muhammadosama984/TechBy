@@ -14,6 +14,9 @@ class _bottomNavBarState extends State<bottomNavBar> {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
+      //backgroundColor: ,
+      //selectedItemColor: ,
+      //unselectedItemColor: ,
       currentIndex: index,
       onTap: (curIndex) => setState(() => index = curIndex),
       items: [
@@ -22,8 +25,12 @@ class _bottomNavBarState extends State<bottomNavBar> {
             label: "home",
             backgroundColor: Colors.blue),
         BottomNavigationBarItem(
-            icon: Icon(Icons.add_alert),
+            icon: Icon(Icons.my_library_books),
             label: "My Ads",
+            backgroundColor: Colors.blue),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.my_library_add),
+            label: "Sell Now",
             backgroundColor: Colors.blue),
         BottomNavigationBarItem(
             icon: Icon(Icons.chat),
