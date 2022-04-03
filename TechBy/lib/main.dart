@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:techby/screens/Admin_Page.dart';
 import 'package:techby/screens/More_Page.dart';
+import 'package:techby/screens/OpeningPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -34,7 +34,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Column(
-
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
@@ -59,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => More_screen()));
+              .push(MaterialPageRoute(builder: (context) => OpeningPage()));
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
