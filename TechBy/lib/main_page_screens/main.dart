@@ -68,13 +68,15 @@ class browseProduct extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        SizedBox(height: 20),
+
         Text(
-          " Tagline",
+          "   Tagline",
           style: TextStyle(fontSize: 24),
         ),
-        SizedBox(height: 80),
+        SizedBox(height: 60),
         Text(
-          " Browse Products",
+          "   Browse Products",
           style: TextStyle(fontSize: 24),
         ),
         SizedBox(height: 20),
@@ -99,39 +101,58 @@ class _categoriesState extends State<categories> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Card(
-            child: Container(
-              height: 100.0,
-              width: 100.0,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/pc.png'),
-                  fit: BoxFit.contain,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Card(
+              child: Container(
+                height: 100.0,
+                width: 100.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/pc.png'),
+                    fit: BoxFit.contain,
+                  ),
+                  shape: BoxShape.rectangle,
                 ),
-                shape: BoxShape.rectangle,
+                //child: Text("Desktop"),
               ),
-              child: Text("Desktop"),
             ),
-          ),
-          Card(
-            child: Container(
-              height: 100.0,
-              width: 100.0,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/smartphone.png'),
-                  fit: BoxFit.contain,
+            Card(
+              child: Container(
+                height: 100.0,
+                width: 100.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/smartphone.png'),
+                    fit: BoxFit.contain,
+
+                  ),
+                  shape: BoxShape.rectangle,
+                ),
+                //child: Text("Desktop"),
+              ),
+            ),
+            Card(
+              child: Container(
+                height: 100.0,
+                width: 100.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/laptop.png'),
+                    fit: BoxFit.contain,
+
+                  ),
+                  shape: BoxShape.rectangle,
 
                 ),
-                shape: BoxShape.rectangle,
+                //child: Text("Desktop"),
               ),
-              child: Text("Desktop"),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
