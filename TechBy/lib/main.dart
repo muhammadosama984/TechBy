@@ -3,6 +3,7 @@ import 'package:techby/screens/Admin_Page.dart';
 import 'package:techby/screens/More_Page.dart';
 import 'package:techby/screens/MyFav.dart';
 import 'package:techby/screens/OpeningPage.dart';
+import 'package:techby/screens/SearchResult.dart';
 import 'package:techby/widgets/Listview.dart';
 
 void main() {
@@ -42,11 +43,11 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: List(), //Center(child: Text("Nothing")),
+      body: Center(child: Text("Nothing")),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => MyFav()));
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => ParticularProduct()));
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
