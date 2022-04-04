@@ -4,6 +4,7 @@ import 'package:techby/screens/More_Page.dart';
 import 'package:techby/screens/MyFav.dart';
 import 'package:techby/screens/OpeningPage.dart';
 import 'package:techby/screens/SearchResult.dart';
+import 'package:techby/screens/ViewMyAds.dart';
 import 'package:techby/widgets/Listview.dart';
 
 void main() {
@@ -46,8 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(child: Text("Nothing")),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => ParticularProduct()));
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => ViewMyAds()));
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
