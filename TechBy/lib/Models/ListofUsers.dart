@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:techby/Models/Users.dart';
+import 'package:provider/provider.dart';
 
 class ListofUser with ChangeNotifier {
-  List<User> productList = [];
-  List<User> get returnProductList => productList;
+  List<User> userList = [];
+  List<User> get returnUserList => userList;
 
-  set productListSet(User product) {
-    productList.add(product);
+  set userListSet(User user) {
+    userList.add(user);
     notifyListeners();
   }
 }

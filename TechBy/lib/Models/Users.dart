@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-class User{
-  String firstname,lastname, password, ImageUrl,email,location ;
+class User {
+  String firstname, lastname, email, location, ImageUrl, password;
 
-  User(this.firstname,this.lastname,this.password,this.ImageUrl,this.email,this.location);
-
-
+  User(this.firstname, this.lastname, this.email, this.location, this.ImageUrl,
+      this.password);
 }
-

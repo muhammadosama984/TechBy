@@ -6,6 +6,7 @@ import 'package:techby/screens/More_Page.dart';
 import 'package:techby/screens/PostAds.dart';
 import 'package:techby/screens/SearchResult.dart';
 import 'package:techby/screens/ViewMyAds.dart';
+import 'package:techby/widgets/Search.dart';
 import 'package:techby/widgets/bottomBar.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -25,8 +26,8 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => ParticularProduct()));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => SearchPage()));
               setState(() {});
               //new screen navigate
             },

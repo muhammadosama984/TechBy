@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:techby/Models/ListOfProducts.dart';
+import 'package:techby/Models/ListofUsers.dart';
 import 'package:techby/screens/Admin_Page.dart';
 import 'package:techby/screens/More_Page.dart';
 import 'package:techby/screens/MyFav.dart';
@@ -17,7 +18,9 @@ void main() {
         ChangeNotifierProvider(
           create: (_) => ListofProduct(),
         ),
-
+        ChangeNotifierProvider(
+          create: (_) => ListofUser(),
+        ),
       ],
       child: const MyApp(),
     ),

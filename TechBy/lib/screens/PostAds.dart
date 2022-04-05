@@ -14,8 +14,24 @@ class _PostAdsState extends State<PostAds> {
   List<String> items = ['Mobile', 'Laptop', 'Speakers', 'Keyboard'];
   String? value1;
   File? _image;
+  TextEditingController location = TextEditingController();
+  TextEditingController category = TextEditingController();
+  TextEditingController title = TextEditingController();
+  TextEditingController description = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
 
   final _picker = ImagePicker();
+
+  bool validate() {
+    if (location == null ||
+        category == null ||
+        title == null ||
+        description == null) {
+      return true;
+    }
+    return false;
+  }
 
   // Implementing the image picker
   Future<void> _openImagePicker() async {
@@ -36,58 +52,70 @@ class _PostAdsState extends State<PostAds> {
         automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 100),
-            Container(
-                margin: EdgeInsets.symmetric(horizontal: 60),
-                child: TextFormField(
-                  decoration: InputDecoration(hintText: "Location"),
-                )),
-            SizedBox(
-              height: 20,
-            ),
-            DropdownButton(
-              // Initial Value
-              value: value1,
-
-              // Down Arrow Icon
-              icon: const Icon(Icons.keyboard_arrow_down),
-
-              // Array list of items
-              items: items.map((String items) {
-                return DropdownMenuItem(
-                  value: items,
-                  child: Text(items),
-                );
-              }).toList(),
-              // After selecting the desired option,it will
-              // change button value to selected value
-              onChanged: (value) {
-                setState(() {
-                  value1 = value.toString();
-                });
-              },
-            ),
-            _titleField(),
-            SizedBox(height: 20),
-            _description(),
-            RaisedButton(
-              onPressed: () {
-                _openImagePicker();
-              },
-              child: const Text('Pick Images', style: TextStyle(fontSize: 20)),
-              color: Colors.lightBlue[200],
-              textColor: Colors.white,
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
-                side: BorderSide(color: Colors.black),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              SizedBox(height: 100),
+              Container(
+                  margin: EdgeInsets.symmetric(horizontal: 60),
+                  child: TextFormField(
+                    controller: location,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter some text';
+                      } else {
+                        return null;
+                      }
+                    },
+                    decoration: InputDecoration(hintText: "Location"),
+                  )),
+              SizedBox(
+                height: 20,
               ),
-            ),
-            SizedBox(height: 20),
-            _postButton(),
-          ],
+              DropdownButton(
+                // Initial Value
+                value: value1,
+
+                // Down Arrow Icon
+                icon: const Icon(Icons.keyboard_arrow_down),
+
+                // Array list of items
+                items: items.map((String items) {
+                  return DropdownMenuItem(
+                    value: items,
+                    child: Text(items),
+                  );
+                }).toList(),
+                // After selecting the desired option,it will
+                // change button value to selected value
+                onChanged: (value) {
+                  setState(() {
+                    value1 = value.toString();
+                  });
+                },
+              ),
+              _titleField(),
+              SizedBox(height: 20),
+              _description(),
+              RaisedButton(
+                onPressed: () {
+                  _openImagePicker();
+                },
+                child:
+                    const Text('Pick Images', style: TextStyle(fontSize: 20)),
+                color: Colors.lightBlue[200],
+                textColor: Colors.white,
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                  side: BorderSide(color: Colors.black),
+                ),
+              ),
+              SizedBox(height: 20),
+              _postButton(),
+            ],
+          ),
         ),
       ),
     );
