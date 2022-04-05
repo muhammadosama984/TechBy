@@ -12,8 +12,16 @@ class _ProductDetailState extends State<ProductDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        backgroundColor: Colors.transparent,
+      ),
       body: SingleChildScrollView(
         child: Container(
+          margin: EdgeInsets.only(bottom: 20),
           child: Column(
             //mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -21,37 +29,43 @@ class _ProductDetailState extends State<ProductDetail> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-
                     child: Image(
                         image: NetworkImage(
                             'https://techcrunch.com/wp-content/uploads/2019/11/MacBook-Pro-16-IMG_2820-1.jpeg')),
                   ),
-                  Text(
-
-                    "Product Title",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  Container(
+                    margin: EdgeInsets.only(left: 10),
+                    child: Column(
+                      children: [
+                        Text(
+                          "Product Title",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                        SizedBox(
+                          height: 6,
+                        ),
+                        Text("PKR Price",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15)),
+                        SizedBox(
+                          height: 6,
+                        ),
+                        Text("karachi"),
+                      ],
+                    ),
                   ),
                   SizedBox(
-                    height: 6,
-                  ),
-                  Text("PKR Price",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-                  SizedBox(
-                    height: 6,
-                  ),
-                  Text("karachi"),
-                  SizedBox(
-                    height: 16,
+                    height: 35,
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 5),
+                    margin: EdgeInsets.symmetric(horizontal: 15),
                     child: TextFormField(
                       readOnly: true,
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
                       initialValue:
-                          "This is the description of the Product\nbfff\ndfeyfgf ",
+                          "This is the description of the Product\nbfff\ndfeyfgf\nbvtgh\nbrgrg\ndrgrggrg ",
                       decoration: InputDecoration(
                           fillColor: Colors.grey[300],
                           filled: true,
@@ -63,7 +77,7 @@ class _ProductDetailState extends State<ProductDetail> {
                 ],
               ),
               SizedBox(
-                height: 200,
+                height: 70,
               ),
               Column(
                 //crossAxisAlignment: CrossAxisAlignment.center,

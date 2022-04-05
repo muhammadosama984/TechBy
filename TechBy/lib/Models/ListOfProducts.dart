@@ -1,4 +1,8 @@
+
+import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+import 'package:techby/Models/product.dart';
+
 
 class ListofProduct with ChangeNotifier {
   List<Product> productList = [];
@@ -9,4 +13,3 @@ class ListofProduct with ChangeNotifier {
     notifyListeners();
   }
 }
-
