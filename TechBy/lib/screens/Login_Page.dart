@@ -28,185 +28,161 @@ class _Login_screenState extends State<Login_screen> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(
-                  height: 100,
-                ),
-                Column(
-                  children: [
-                    Container(
-                      width: 80,
-                        child: Image(image: AssetImage('assets/TBicon.jpeg'))),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "Login",
-                      style: GoogleFonts.roboto(
-                          fontSize: 40, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-
-                SizedBox(
-                  height: 60,
-                ),
+                SizedBox(height: 100),
+                _topPart(),
+                SizedBox(height: 60),
                 Container(
                   padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
                   child: Column(
                     children: <Widget>[
-                      TextField(
-                        decoration: InputDecoration(
-                            border: null,
-                            focusedBorder: InputBorder.none,
-                            enabledBorder: InputBorder.none,
-                            fillColor: Color.fromRGBO(243, 243, 243, 100),
-                            filled: true,
-                            labelText: 'Username',
-                            hintText: 'Enter Your Username'),
-                      ),
-                      SizedBox(
-                        height: 50,
-                      ),
-                      TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                            border: null,
-                            focusedBorder: InputBorder.none,
-                            enabledBorder: InputBorder.none,
-                            fillColor: Color.fromRGBO(243, 243, 243, 100),
-                            filled: true,
-                            labelText: 'Password',
-                            hintText: 'Enter Your Password'),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-
-                        children: [
-
-                          Container(
-                            alignment: Alignment(1.0, 0.0),
-                            padding: EdgeInsets.only(top: 15.0, left: 20.0),
-                            child: InkWell(
-                              child: Text(
-                                "Sign Up?",
-                                style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Montserrat',
-                                  decoration: TextDecoration.underline,
-                                ),
-                              ),
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => Signup_screen()));
-                              },
-                            ),
-                          ),
-                          SizedBox(
-                            width: 100,
-                          ),
-                          Container(
-                            alignment: Alignment(1.0, 0.0),
-                            padding: EdgeInsets.only(top: 15.0, left: 20.0),
-                            child: InkWell(
-                              child: Text(
-                                "Forgot Password?",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Montserrat',
-                                  decoration: TextDecoration.underline,
-                                ),
-                              ),
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => ForgetPassword_screen()));
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-
-
-                      SizedBox(
-                        height: 35,
-                      ),
-                      ButtonTheme(
-                          height: 50,
-                          minWidth: 400,
-                          disabledColor: Colors.blueAccent,
-                          child: RaisedButton(
-                            disabledElevation: 8.0,
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      navBarNavigation()));
-                            },
-                            child: Text(
-                              "Log In",
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.white),
-                            ),
-                          ))
+                      _username(),
+                      SizedBox(height: 50),
+                      _password(),
+                      SizedBox(height: 5),
+                      _signUp_pass(),
+                      SizedBox(height: 35),
+                      _login_button(),
                     ],
                   ),
                 ),
-                // Container(
-                //
-                //   width: 500,
-                //   child: TextField(
-                //     decoration: InputDecoration(
-                //         border: OutlineInputBorder(),
-                //         fillColor: Colors.white70,
-                //         filled: true,
-                //         labelText: 'Username',
-                //         hintText: 'Enter Your Username'),
-                //   ),
-                // ),
-                // SizedBox(
-                //   height: 60,
-                // ),
-                // Container(
-                //   width: 500,
-                //   child: TextField(
-                //     obscureText: true,
-                //     decoration: InputDecoration(
-                //         border: OutlineInputBorder(),
-                //         fillColor: Colors.white70,
-                //         filled: true,
-                //         labelText: 'Password',
-                //         hintText: 'Enter Your Password'),
-                //   ),
-                // ),
-                // SizedBox(height: 5,),
-                // Container(
-                //   alignment: Alignment(0.44,0.0),
-                //   padding: EdgeInsets.only(top: 15.0, left: 20.0),
-                //   child: InkWell(
-                //     child: Text("Forgot Password"),
-                //   ),
-                // )
               ],
             )
           ],
         ),
+      ),
+    );
+  }
+}
 
-        // child: Column(
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        //   children: <Widget> [
-        //     Text("TechBy Account Login", style: TextStyle(fontSize: 40, color: Colors.black.withOpacity(1.0), fontStyle: FontStyle.normal)),
-        //     SizedBox(height: 300,),
-        //     TextField(
-        //       decoration: InputDecoration(
-        //           border: OutlineInputBorder(),
-        //           labelText: 'Enter Name',
-        //           hintText: 'Enter Your Name'
-        //       ),
-        //     ),
-        //
-        //   ],
-        // ),
+class _topPart extends StatelessWidget {
+  const _topPart({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+            width: 80, child: Image(image: AssetImage('assets/TBicon.jpeg'))),
+        SizedBox(
+          height: 10,
+        ),
+        Text(
+          "Login",
+          style: GoogleFonts.roboto(fontSize: 40, fontWeight: FontWeight.bold),
+        ),
+      ],
+    );
+  }
+}
+
+class _username extends StatelessWidget {
+  const _username({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      decoration: InputDecoration(
+          border: null,
+          focusedBorder: InputBorder.none,
+          enabledBorder: InputBorder.none,
+          fillColor: Color.fromRGBO(243, 243, 243, 100),
+          filled: true,
+          labelText: 'Username',
+          hintText: 'Enter Your Username'),
+    );
+  }
+}
+
+class _password extends StatelessWidget {
+  const _password({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      obscureText: true,
+      decoration: InputDecoration(
+          border: null,
+          focusedBorder: InputBorder.none,
+          enabledBorder: InputBorder.none,
+          fillColor: Color.fromRGBO(243, 243, 243, 100),
+          filled: true,
+          labelText: 'Password',
+          hintText: 'Enter Your Password'),
+    );
+  }
+}
+
+class _signUp_pass extends StatelessWidget {
+  const _signUp_pass({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          alignment: Alignment(1.0, 0.0),
+          padding: EdgeInsets.only(top: 15.0, left: 20.0),
+          child: InkWell(
+            child: Text(
+              "Sign Up?",
+              style: TextStyle(
+                color: Colors.blue,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Montserrat',
+                decoration: TextDecoration.underline,
+              ),
+            ),
+            onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => Signup_screen()));
+            },
+          ),
+        ),
+        SizedBox(
+          width: 100,
+        ),
+        Container(
+          alignment: Alignment(1.0, 0.0),
+          padding: EdgeInsets.only(top: 15.0, left: 20.0),
+          child: InkWell(
+            child: Text(
+              "Forgot Password?",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Montserrat',
+                decoration: TextDecoration.underline,
+              ),
+            ),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ForgetPassword_screen()));
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _login_button extends StatelessWidget {
+  const _login_button({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ButtonTheme(
+      height: 50,
+      minWidth: 400,
+      disabledColor: Colors.blueAccent,
+      child: RaisedButton(
+        disabledElevation: 8.0,
+        onPressed: () {
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => navBarNavigation()));
+        },
+        child: Text(
+          "Log In",
+          style: TextStyle(fontSize: 20, color: Colors.white),
+        ),
       ),
     );
   }

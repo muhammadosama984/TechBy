@@ -17,7 +17,7 @@ void main() {
         ChangeNotifierProvider(
           create: (_) => ListofProduct(),
         ),
-       
+
       ],
       child: const MyApp(),
     ),
@@ -40,33 +40,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-//
-// class MyHomePage extends StatefulWidget {
-//   const MyHomePage({Key? key, required this.title}) : super(key: key);
-//   final String title;
-//
-//   @override
-//   State<MyHomePage> createState() => _MyHomePageState();
-// }
-//
-// class _MyHomePageState extends State<MyHomePage> {
-//   int _counter = 0;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text(widget.title),
-//       ),
-//       body: Center(child: Text("Nothing")),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: () {
-//           Navigator.of(context)
-//               .push(MaterialPageRoute(builder: (context) => OpeningPage()));
-//         },
-//         tooltip: 'Increment',
-//         child: const Icon(Icons.add),
-//       ),
-//     );
-//   }
-// }
