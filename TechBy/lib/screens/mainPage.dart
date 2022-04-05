@@ -8,27 +8,6 @@ import 'package:techby/screens/SearchResult.dart';
 import 'package:techby/screens/ViewMyAds.dart';
 import 'package:techby/widgets/bottomBar.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(),
-    );
-  }
-}
-
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
@@ -37,8 +16,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,7 +91,7 @@ class _categoriesState extends State<categories> {
           children: [
             Card(
               child: GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => ParticularProduct()));
                 },
@@ -134,7 +111,7 @@ class _categoriesState extends State<categories> {
             ),
             Card(
               child: GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => ParticularProduct()));
                 },
@@ -154,7 +131,7 @@ class _categoriesState extends State<categories> {
             ),
             Card(
               child: GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => ParticularProduct()));
                 },
@@ -168,7 +145,6 @@ class _categoriesState extends State<categories> {
                     ),
                     shape: BoxShape.rectangle,
                   ),
-                  //child: Text("Desktop"),
                 ),
               ),
             ),

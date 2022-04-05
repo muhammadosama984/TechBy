@@ -26,13 +26,8 @@ class _navBarNavigationState extends State<navBarNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("TechBy"),
-      // ),
       body: screens[currentIndex],
       bottomNavigationBar: bottomNavBar(onPressed: (receivedIndex) {
-        //setState(() {});
-
         currentIndex = receivedIndex;
         setState(() {});
       }),
