@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -39,14 +38,7 @@ class _PostAdsState extends State<PostAds> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Container(
-            //   margin: EdgeInsets.only(top: 25, left: 25, right: 25),
-            //   height: 100,
-            //   decoration: BoxDecoration(color: Colors.lightBlue[200]),
-            // ),
-            SizedBox(
-              height: 100,
-            ),
+            SizedBox(height: 100),
             Container(
                 margin: EdgeInsets.symmetric(horizontal: 60),
                 child: TextFormField(
@@ -77,28 +69,9 @@ class _PostAdsState extends State<PostAds> {
                 });
               },
             ),
-            Container(
-                margin: EdgeInsets.symmetric(horizontal: 60),
-                child: TextFormField(
-                  decoration: InputDecoration(hintText: "Title"),
-                )),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              height: 100,
-              margin: EdgeInsets.symmetric(horizontal: 60),
-              child: TextFormField(
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                decoration: InputDecoration(
-                    hintText: "Description",
-                    fillColor: Colors.white,
-                    filled: true,
-                    contentPadding: const EdgeInsets.fromLTRB(12, 2, 12, 10),
-                    border: InputBorder.none),
-              ),
-            ),
+            _titleField(),
+            SizedBox(height: 20),
+            _description(),
             RaisedButton(
               onPressed: () {
                 _openImagePicker();
@@ -112,21 +85,64 @@ class _PostAdsState extends State<PostAds> {
                 side: BorderSide(color: Colors.black),
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
-            RaisedButton(
-              color: Colors.lightBlue[200],
-              onPressed: () {},
-              child: Text("  Post  ", style: TextStyle(fontSize: 20)),
-              textColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                  side: BorderSide(color: Colors.black)),
-            )
+            SizedBox(height: 20),
+            _postButton(),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _description extends StatelessWidget {
+  const _description({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 100,
+      margin: EdgeInsets.symmetric(horizontal: 60),
+      child: TextFormField(
+        keyboardType: TextInputType.multiline,
+        maxLines: null,
+        decoration: InputDecoration(
+            hintText: "Description",
+            fillColor: Colors.white,
+            filled: true,
+            contentPadding: const EdgeInsets.fromLTRB(12, 2, 12, 10),
+            border: InputBorder.none),
+      ),
+    );
+  }
+}
+
+class _titleField extends StatelessWidget {
+  const _titleField({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 60),
+      child: TextFormField(
+        decoration: InputDecoration(hintText: "Title"),
+      ),
+    );
+  }
+}
+
+class _postButton extends StatelessWidget {
+  const _postButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return RaisedButton(
+      color: Colors.lightBlue[200],
+      onPressed: () {},
+      child: Text("  Post  ", style: TextStyle(fontSize: 20)),
+      textColor: Colors.white,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0),
+          side: BorderSide(color: Colors.black)),
     );
   }
 }
