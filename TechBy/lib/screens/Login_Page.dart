@@ -69,6 +69,7 @@ class _Login_screenState extends State<Login_screen> {
                       SizedBox(
                         height: 5,
                       ),
+
                       Container(
                         alignment: Alignment(1.0, 0.0),
                         padding: EdgeInsets.only(top: 15.0, left: 20.0),

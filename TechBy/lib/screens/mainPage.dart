@@ -44,6 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("TechBy"),
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
             onPressed: () {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:techby/screens/ContactUs_Page.dart';
 import 'package:techby/screens/FAQs_Page.dart';
+import 'package:techby/screens/MyFav.dart';
+import 'package:techby/screens/OpeningPage.dart';
 import 'package:techby/screens/Profile_Page.dart';
 
 import 'ForgetPassword_Page.dart';
@@ -19,6 +21,7 @@ class _More_screenState extends State<More_screen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(""),
+        automaticallyImplyLeading: false,
       ),
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
@@ -72,7 +75,8 @@ class _More_screenState extends State<More_screen> {
                       leading: Icon(Icons.favorite),
                       title:Text("My Favorite") ,
                         onTap: (){
-
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (context) => MyFav()));
                         }
                     )
                 ),
@@ -101,7 +105,8 @@ class _More_screenState extends State<More_screen> {
                       leading: Icon(Icons.logout_outlined, color: Colors.red,),
                       title: Text("Logout", style: TextStyle(color: Colors.red),),
                       onTap: (){
-
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) => OpeningPage()));
                       },
                     )
                 ),

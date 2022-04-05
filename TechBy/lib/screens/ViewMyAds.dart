@@ -13,6 +13,7 @@ class _ViewMyAdsState extends State<ViewMyAds> {
     return Scaffold(
         appBar: AppBar(
           title: Text("MyAds"),
+          automaticallyImplyLeading: false,
         ),
         body: Container(
           child: ListView.builder(

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:techby/screens/Chat_Page.dart';
+
+import '../widgets/Search.dart';
 
 class ChatMain_screen extends StatefulWidget {
   const ChatMain_screen({Key? key}) : super(key: key);
@@ -20,6 +23,13 @@ class _ChatMain_screenState extends State<ChatMain_screen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Chats"),
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+              onPressed: () => Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => SearchPage())),
+              icon: Icon(Icons.search))
+        ],
       ),
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
@@ -57,38 +67,44 @@ class _ChatMain_screenState extends State<ChatMain_screen> {
                   itemCount: data.length,
                   itemBuilder: ((context, index){
                     return Card(
-                        child: Container(
-                          height: 120,
-                          child: Column(
-                            children: <Widget>[
-                              ListTile(
-                                leading: Image(image: AssetImage(data[index].image_name)),
-                                title:Text(data[index].name) ,
-                                subtitle: Text(data[index].product),
-                                trailing: Column(
-                                  children: [
-                                    Text(tdata),
-                                    // SizedBox(height: 4,),
+                        child: GestureDetector(
+                          onTap: (){
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Chat_screen()));
+                          },
+                          child: Container(
+                            height: 120,
+                            child: Column(
+                              children: <Widget>[
+                                ListTile(
+                                  leading: Image(image: AssetImage(data[index].image_name)),
+                                  title:Text(data[index].name) ,
+                                  subtitle: Text(data[index].product),
+                                  trailing: Column(
+                                    children: [
+                                      Text(tdata),
+                                      // SizedBox(height: 4,),
 
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              Container(
-                                alignment: Alignment(1.0,0.0),
-                                child: PopupMenuButton(
-                                    icon: Icon(Icons.more_vert_rounded),
-                                    itemBuilder: (context) => [
-                                      PopupMenuItem(
-                                        child: Text("Delete"),
-                                        value: 1,
-                                      ),
-                                    ]
+                                Container(
+                                  alignment: Alignment(1.0,0.0),
+                                  child: PopupMenuButton(
+                                      icon: Icon(Icons.more_vert_rounded),
+                                      itemBuilder: (context) => [
+                                        PopupMenuItem(
+                                          child: Text("Delete"),
+                                          value: 1,
+                                        ),
+                                      ]
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
 
 
 
+                            ),
                           ),
                         )
                     );

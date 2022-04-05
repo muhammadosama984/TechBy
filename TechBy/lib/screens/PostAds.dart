@@ -34,6 +34,7 @@ class _PostAdsState extends State<PostAds> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Post Ads"),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Column(

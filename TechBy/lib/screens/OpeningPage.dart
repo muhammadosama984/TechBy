@@ -18,38 +18,56 @@ class _OpeningPageState extends State<OpeningPage> {
             child: Column(
           children: [
             Container(
-              width: 230,
-              margin: EdgeInsets.only(bottom: 230, top: 130),
+              width: 150,
+              margin: EdgeInsets.only(bottom: 23, top: 290),
               child: Image(image: AssetImage('assets/TBicon.jpeg')),
             ),
             SizedBox(
-              height: 120,
+              height: 20,
             ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 40),
-              child: Row(
+              child: Column(
                 children: [
-                  RaisedButton(
-                      color: Colors.white,
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => Login_screen()));
-                      },
-                      child: Text(
-                        'LogIn',
-                        style: TextStyle(color: Colors.black),
-                      )),
-                  SizedBox(
+                  Container(
+                    height: 50,
                     width: 130,
+                    child: RaisedButton(
+
+                        color: Colors.black,
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Login_screen()));
+                        },
+                        child: Text(
+                          'LogIn',
+                          style: TextStyle(
+                            fontSize: 20,
+                              color: Colors.white),
+                        )),
                   ),
-                  RaisedButton(
-                      color: Colors.black,
-                      child:
-                          Text('SignUp', style: TextStyle(color: Colors.white)),
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => Signup_screen()));
-                      }),
+                  SizedBox(
+                    width: 200,
+                  ),
+                  Container(
+                    height: 50,
+                    width: 130,
+                    margin: EdgeInsets.only(top: 20),
+                    child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(width: 2, color: Colors.black),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        //color: Colors.black,
+                        child:
+                            Text('SignUp', style: TextStyle(
+                              fontSize: 20,
+                                color: Colors.black)),
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Signup_screen()));
+                        }),
+                  ),
                 ],
               ),
             )

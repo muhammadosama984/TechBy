@@ -94,15 +94,21 @@ class _Chat_screenState extends State<Chat_screen> {
             decoration: InputDecoration(
                 hintText: "Type Message", border: InputBorder.none),
           )),
-          FloatingActionButton(
-              onPressed: () {
-                addMessage(_message.text);
-              },
-              child: Icon(
-                Icons.send_sharp,
-                color: Colors.white,
-                size: 15,
-              ))
+          Row(
+            children: [
+              IconButton(onPressed: (){}, icon: Icon(Icons.attachment)),
+              FloatingActionButton(
+                  onPressed: () {
+                    addMessage(_message.text);
+                  },
+                  child: Icon(
+                    Icons.send_sharp,
+                    color: Colors.white,
+                    size: 15,
+                  ))
+            ],
+          ),
+
         ],
       ),
     );
