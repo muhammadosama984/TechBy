@@ -21,11 +21,13 @@ class _ProductDetailState extends State<ProductDetail> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
+
                     child: Image(
                         image: NetworkImage(
                             'https://techcrunch.com/wp-content/uploads/2019/11/MacBook-Pro-16-IMG_2820-1.jpeg')),
                   ),
                   Text(
+
                     "Product Title",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),

@@ -31,11 +31,22 @@ class _Login_screenState extends State<Login_screen> {
                 SizedBox(
                   height: 100,
                 ),
-                Text(
-                  "TechBy Account Login",
-                  style: GoogleFonts.roboto(
-                      fontSize: 40, fontWeight: FontWeight.bold),
+                Column(
+                  children: [
+                    Container(
+                      width: 80,
+                        child: Image(image: AssetImage('assets/TBicon.jpeg'))),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "Login",
+                      style: GoogleFonts.roboto(
+                          fontSize: 40, fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
+
                 SizedBox(
                   height: 60,
                 ),
@@ -73,7 +84,7 @@ class _Login_screenState extends State<Login_screen> {
                       Row(
 
                         children: [
-                         
+
                           Container(
                             alignment: Alignment(1.0, 0.0),
                             padding: EdgeInsets.only(top: 15.0, left: 20.0),

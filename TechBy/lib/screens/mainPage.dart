@@ -113,45 +113,63 @@ class _categoriesState extends State<categories> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Card(
-              child: Container(
-                height: 100.0,
-                width: 100.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/pc.png'),
-                    fit: BoxFit.contain,
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ParticularProduct()));
+                },
+                child: Container(
+                  height: 100.0,
+                  width: 100.0,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/pc.png'),
+                      fit: BoxFit.contain,
+                    ),
+                    shape: BoxShape.rectangle,
                   ),
-                  shape: BoxShape.rectangle,
+                  //child: Text("Desktop"),
                 ),
-                //child: Text("Desktop"),
               ),
             ),
             Card(
-              child: Container(
-                height: 100.0,
-                width: 100.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/smartphone.png'),
-                    fit: BoxFit.contain,
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ParticularProduct()));
+                },
+                child: Container(
+                  height: 100.0,
+                  width: 100.0,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/smartphone.png'),
+                      fit: BoxFit.contain,
+                    ),
+                    shape: BoxShape.rectangle,
                   ),
-                  shape: BoxShape.rectangle,
+                  //child: Text("Desktop"),
                 ),
-                //child: Text("Desktop"),
               ),
             ),
             Card(
-              child: Container(
-                height: 100.0,
-                width: 100.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/laptop.png'),
-                    fit: BoxFit.contain,
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ParticularProduct()));
+                },
+                child: Container(
+                  height: 100.0,
+                  width: 100.0,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/laptop.png'),
+                      fit: BoxFit.contain,
+                    ),
+                    shape: BoxShape.rectangle,
                   ),
-                  shape: BoxShape.rectangle,
+                  //child: Text("Desktop"),
                 ),
-                //child: Text("Desktop"),
               ),
             ),
           ],
