@@ -28,94 +28,108 @@ class _More_screenState extends State<More_screen> {
       body: Column(
         children: <Widget>[
       SizedBox(height: 30,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              // SizedBox(height: 10,),
-
-              CircleAvatar(
-                      radius: 30,
-                      backgroundImage: NetworkImage('https://cdn.pixabay.com/photo/2016/08/31/11/54/user-1633249_960_720.png'),
-                      // backgroundColor: Colors.transparent,
-                    ),
-              SizedBox(width: 10,),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text("User 123"),
-                  SizedBox( height: 10,),
-                  Container(
-                    alignment: Alignment(1.0,0.0),
-                    // padding: EdgeInsets.only(top: 15.0, left: 20.0),
-                    child: InkWell(
-                      child: Text("View Profile >",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Montserrat',
-                          // decoration: TextDecoration.underline,
-                        ),
-                      ),
-                      onTap: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => Profile_screen()));
-                      },
-                    ),
-                  ),
-                ],
-              )
-
-            ],
-          ),
+          _topPart(),
           SizedBox(height: 50,),
-          Expanded(
-            child: ListView(
-              children:  [
-                Card(
-                    child: ListTile(
-                      leading: Icon(Icons.favorite),
-                      title:Text("My Favorite") ,
-                        onTap: (){
-                          Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) => MyFav()));
-                        }
-                    )
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Icon(Icons.question_answer_rounded),
-                    title: Text("FAQs"),
-                      onTap: (){
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (context) => FAQs_screen()));
-                      }
-                  ),
-                ),
-                Card(
-                    child: ListTile(
-                      leading: Icon(Icons.message_sharp),
-                      title: Text("Contact  Us"),
-                        onTap: (){
-                          Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) => ContactUs_scrren()));
-                        }
-                    )
-                ),
-                Card(
-                    child: ListTile(
-                      leading: Icon(Icons.logout_outlined, color: Colors.red,),
-                      title: Text("Logout", style: TextStyle(color: Colors.red),),
-                      onTap: (){
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (context) => OpeningPage()));
-                      },
-                    )
-                ),
-              ],
-              padding: EdgeInsets.all(10),
-            )
-          ),
+          _lowerPart(),
         ],
       ),
+    );
+  }
+}
+class _topPart extends StatelessWidget {
+  const _topPart({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        CircleAvatar(
+          radius: 30,
+          backgroundImage: NetworkImage('https://cdn.pixabay.com/photo/2016/08/31/11/54/user-1633249_960_720.png'),
+          // backgroundColor: Colors.transparent,
+        ),
+        SizedBox(width: 10,),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text("User 123"),
+            SizedBox( height: 10,),
+            Container(
+              alignment: Alignment(1.0,0.0),
+              // padding: EdgeInsets.only(top: 15.0, left: 20.0),
+              child: InkWell(
+                child: Text("View Profile >",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Montserrat',
+                    // decoration: TextDecoration.underline,
+                  ),
+                ),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Profile_screen()));
+                },
+              ),
+            ),
+          ],
+        )
+
+      ],
+    );
+  }
+}
+class _lowerPart extends StatelessWidget {
+  const _lowerPart({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+        child: ListView(
+          children:  [
+            Card(
+                child: ListTile(
+                    leading: Icon(Icons.favorite),
+                    title:Text("My Favorite") ,
+                    onTap: (){
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) => MyFav()));
+                    }
+                )
+            ),
+            Card(
+              child: ListTile(
+                  leading: Icon(Icons.question_answer_rounded),
+                  title: Text("FAQs"),
+                  onTap: (){
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => FAQs_screen()));
+                  }
+              ),
+            ),
+            Card(
+                child: ListTile(
+                    leading: Icon(Icons.message_sharp),
+                    title: Text("Contact  Us"),
+                    onTap: (){
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) => ContactUs_scrren()));
+                    }
+                )
+            ),
+            Card(
+                child: ListTile(
+                  leading: Icon(Icons.logout_outlined, color: Colors.red,),
+                  title: Text("Logout", style: TextStyle(color: Colors.red),),
+                  onTap: (){
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => OpeningPage()));
+                  },
+                )
+            ),
+          ],
+          padding: EdgeInsets.all(10),
+        )
     );
   }
 }
