@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class bottomNavBar extends StatefulWidget {
-  const bottomNavBar({Key? key}) : super(key: key);
+  Function(int) onPressed;
+
+  bottomNavBar({Key? key, required this.onPressed}) : super(key: key);
 
   @override
   _bottomNavBarState createState() => _bottomNavBarState();
@@ -18,7 +20,12 @@ class _bottomNavBarState extends State<bottomNavBar> {
       //selectedItemColor: ,
       //unselectedItemColor: ,
       currentIndex: index,
-      onTap: (curIndex) => setState(() => index = curIndex),
+      onTap: (curIndex) {
+
+
+        setState(() {index=curIndex;});
+        widget.onPressed(index);
+      },
       items: [
         BottomNavigationBarItem(
             icon: Icon(Icons.home),

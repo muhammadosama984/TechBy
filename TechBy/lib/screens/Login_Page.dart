@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:techby/screens/mainPage.dart';
 import 'package:techby/screens/ForgetPassword_Page.dart';
+import 'package:techby/screens/navBarNavigation.dart';
 
 class Login_screen extends StatefulWidget {
   const Login_screen({Key? key}) : super(key: key);
+
   //final String title;
   @override
   State<Login_screen> createState() => _Login_screenState();
@@ -21,7 +24,6 @@ class _Login_screenState extends State<Login_screen> {
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: 18),
           children: <Widget>[
-
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -64,34 +66,47 @@ class _Login_screenState extends State<Login_screen> {
                             labelText: 'Password',
                             hintText: 'Enter Your Password'),
                       ),
-                      SizedBox(height: 5,),
+                      SizedBox(
+                        height: 5,
+                      ),
                       Container(
-                        alignment: Alignment(1.0,0.0),
+                        alignment: Alignment(1.0, 0.0),
                         padding: EdgeInsets.only(top: 15.0, left: 20.0),
                         child: InkWell(
-                          child: Text("Forgot Password?",
+                          child: Text(
+                            "Forgot Password?",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Montserrat',
                               decoration: TextDecoration.underline,
                             ),
                           ),
-                          onTap: (){
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ForgetPassword_screen()));
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => ForgetPassword_screen()));
                           },
                         ),
                       ),
-                      SizedBox(height: 35,),
+                      SizedBox(
+                        height: 35,
+                      ),
                       ButtonTheme(
                           height: 50,
                           minWidth: 400,
                           disabledColor: Colors.blueAccent,
                           child: RaisedButton(
                             disabledElevation: 8.0,
-                            onPressed: (){},
-                            child: Text("Log In", style: TextStyle(fontSize: 20, color: Colors.white),),
-                          )
-                      )
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      navBarNavigation()));
+                            },
+                            child: Text(
+                              "Log In",
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
+                            ),
+                          ))
                     ],
                   ),
                 ),
@@ -134,7 +149,6 @@ class _Login_screenState extends State<Login_screen> {
             )
           ],
         ),
-
 
         // child: Column(
         //   mainAxisAlignment: MainAxisAlignment.center,

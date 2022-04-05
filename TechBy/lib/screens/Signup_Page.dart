@@ -24,7 +24,7 @@ class _Signup_screenState extends State<Signup_screen> {
             child: Column(
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
+                  padding: EdgeInsets.only(top: 10, left: 20.0, right: 20.0,bottom: 35.0),
                   child: Column(
                     children: <Widget>[
                       SizedBox(height: 5,),
@@ -82,7 +82,7 @@ class _Signup_screenState extends State<Signup_screen> {
                             enabledBorder: InputBorder.none,
                             fillColor: Color.fromRGBO(243, 243, 243, 100),
                             filled: true,
-                            labelText: 'PMobile Number',
+                            labelText: 'Mobile Number',
                             hintText: 'Enter Your Mobile Number'),
                       ),
                       SizedBox(

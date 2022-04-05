@@ -1,6 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:techby/screens/Admin_Page.dart';
+import 'package:techby/screens/ChatMain_page.dart';
+import 'package:techby/screens/More_Page.dart';
+import 'package:techby/screens/PostAds.dart';
+import 'package:techby/screens/SearchResult.dart';
+import 'package:techby/screens/ViewMyAds.dart';
 import 'package:techby/widgets/bottomBar.dart';
 
 void main() {
@@ -19,28 +24,32 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Techby'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text("TechBy"),
         actions: [
           IconButton(
             onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => ParticularProduct()));
+              setState(() {});
               //new screen navigate
             },
             icon: Icon(Icons.search),
@@ -50,12 +59,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          browseProduct(),
-          categories()
-        ],
+        children: <Widget>[browseProduct(), categories()],
       ),
-      bottomNavigationBar: bottomNavBar(),
+      //bottomNavigationBar: bottomNavBar(),
     );
   }
 }
@@ -69,7 +75,6 @@ class browseProduct extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 20),
-
         Text(
           "   Tagline",
           style: TextStyle(fontSize: 24),
@@ -128,7 +133,6 @@ class _categoriesState extends State<categories> {
                   image: DecorationImage(
                     image: AssetImage('assets/smartphone.png'),
                     fit: BoxFit.contain,
-
                   ),
                   shape: BoxShape.rectangle,
                 ),
@@ -143,10 +147,8 @@ class _categoriesState extends State<categories> {
                   image: DecorationImage(
                     image: AssetImage('assets/laptop.png'),
                     fit: BoxFit.contain,
-
                   ),
                   shape: BoxShape.rectangle,
-
                 ),
                 //child: Text("Desktop"),
               ),
