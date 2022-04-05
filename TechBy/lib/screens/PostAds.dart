@@ -1,4 +1,8 @@
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class PostAds extends StatefulWidget {
   const PostAds({Key? key}) : super(key: key);
@@ -10,6 +14,21 @@ class PostAds extends StatefulWidget {
 class _PostAdsState extends State<PostAds> {
   List<String> items = ['Mobile', 'Laptop', 'Speakers', 'Keyboard'];
   String? value1;
+  File? _image;
+
+  final _picker = ImagePicker();
+
+  // Implementing the image picker
+  Future<void> _openImagePicker() async {
+    final XFile? pickedImage =
+        await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      setState(() {
+        _image = File(pickedImage.path);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +85,7 @@ class _PostAdsState extends State<PostAds> {
               height: 20,
             ),
             Container(
-              height: 200,
+              height: 100,
               margin: EdgeInsets.symmetric(horizontal: 60),
               child: TextFormField(
                 keyboardType: TextInputType.multiline,
@@ -80,9 +99,26 @@ class _PostAdsState extends State<PostAds> {
               ),
             ),
             RaisedButton(
+              onPressed: () {
+                _openImagePicker();
+              },
+              child: const Text('Pick Images', style: TextStyle(fontSize: 20)),
+              color: Colors.lightBlue[200],
+              textColor: Colors.white,
+              elevation: 5,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0),
+                side: BorderSide(color: Colors.black),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            RaisedButton(
               color: Colors.lightBlue[200],
               onPressed: () {},
-              child: Text("Post"),
+              child: Text("  Post  ", style: TextStyle(fontSize: 20)),
+              textColor: Colors.white,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5.0),
                   side: BorderSide(color: Colors.black)),
