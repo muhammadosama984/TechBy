@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:techby/Models/ListOfProducts.dart';
 import 'package:techby/screens/Admin_Page.dart';
 import 'package:techby/screens/More_Page.dart';
 import 'package:techby/screens/MyFav.dart';
@@ -9,7 +11,17 @@ import 'package:techby/screens/ViewMyAds.dart';
 import 'package:techby/widgets/Listview.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => ListofProduct(),
+        ),
+       
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
