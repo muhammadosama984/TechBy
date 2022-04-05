@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:techby/screens/Signup_Page.dart';
 import 'package:techby/screens/mainPage.dart';
 import 'package:techby/screens/ForgetPassword_Page.dart';
 import 'package:techby/screens/navBarNavigation.dart';
@@ -69,25 +70,54 @@ class _Login_screenState extends State<Login_screen> {
                       SizedBox(
                         height: 5,
                       ),
+                      Row(
 
-                      Container(
-                        alignment: Alignment(1.0, 0.0),
-                        padding: EdgeInsets.only(top: 15.0, left: 20.0),
-                        child: InkWell(
-                          child: Text(
-                            "Forgot Password?",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Montserrat',
-                              decoration: TextDecoration.underline,
+                        children: [
+                         
+                          Container(
+                            alignment: Alignment(1.0, 0.0),
+                            padding: EdgeInsets.only(top: 15.0, left: 20.0),
+                            child: InkWell(
+                              child: Text(
+                                "Sign Up?",
+                                style: TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Montserrat',
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => Signup_screen()));
+                              },
                             ),
                           ),
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => ForgetPassword_screen()));
-                          },
-                        ),
+                          SizedBox(
+                            width: 100,
+                          ),
+                          Container(
+                            alignment: Alignment(1.0, 0.0),
+                            padding: EdgeInsets.only(top: 15.0, left: 20.0),
+                            child: InkWell(
+                              child: Text(
+                                "Forgot Password?",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Montserrat',
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => ForgetPassword_screen()));
+                              },
+                            ),
+                          ),
+                        ],
                       ),
+
+
                       SizedBox(
                         height: 35,
                       ),
