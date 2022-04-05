@@ -82,7 +82,7 @@ class _Login_screenState extends State<Login_screen> {
                         height: 5,
                       ),
                       Row(
-
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
 
                           Container(
