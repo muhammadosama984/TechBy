@@ -39,13 +39,13 @@ class _PostAdsState extends State<PostAds> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              margin: EdgeInsets.only(top: 25, left: 25, right: 25),
-              height: 100,
-              decoration: BoxDecoration(color: Colors.lightBlue[200]),
-            ),
+            // Container(
+            //   margin: EdgeInsets.only(top: 25, left: 25, right: 25),
+            //   height: 100,
+            //   decoration: BoxDecoration(color: Colors.lightBlue[200]),
+            // ),
             SizedBox(
-              height: 20,
+              height: 100,
             ),
             Container(
                 margin: EdgeInsets.symmetric(horizontal: 60),
