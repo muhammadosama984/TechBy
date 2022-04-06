@@ -15,6 +15,7 @@ class Login_screen extends StatefulWidget {
   @override
   State<Login_screen> createState() => _Login_screenState();
 }
+
 List<String> items = ['User', 'Admin'];
 String? value1;
 
@@ -81,7 +82,9 @@ class _topPartState extends State<_topPart> {
           "Login",
           style: GoogleFonts.roboto(fontSize: 40, fontWeight: FontWeight.bold),
         ),
-        SizedBox(height: 20,),
+        SizedBox(
+          height: 20,
+        ),
         Container(
           // alignment: Alignment(1.0, 0.0),
           padding: EdgeInsets.only(top: 15.0, left: 20.0),
@@ -140,6 +143,7 @@ class _password extends StatefulWidget {
 
 class _passwordState extends State<_password> {
   bool ishide = true;
+
   void _toggle() {
     setState(() {
       ishide = !ishide;
@@ -221,8 +225,6 @@ class _signUp_passState extends State<_signUp_pass> {
             },
           ),
         ),
-
-
       ],
     );
   }
@@ -240,11 +242,13 @@ class _login_button extends StatelessWidget {
       child: RaisedButton(
         disabledElevation: 8.0,
         onPressed: () {
-          if(value1 == "User"){
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => navBarNavigation()));}
-          else{Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => Admin_screen()));}
+          if (value1 == "User") {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => navBarNavigation()));
+          } else {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => Admin_screen()));
+          }
         },
         child: Text(
           "Log In",
@@ -268,9 +272,9 @@ class SocialMediaSignIn extends StatelessWidget {
           GestureDetector(
             onTap: () {},
             child: CircleAvatar(
+              backgroundColor: Colors.white,
                 child: Image(
-                    image: NetworkImage(
-                        'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/1200px-2021_Facebook_icon.svg.png'))),
+                    image: AssetImage('assets/facebook.png'))),
           ),
           SizedBox(
             width: 15,
@@ -278,8 +282,8 @@ class SocialMediaSignIn extends StatelessWidget {
           GestureDetector(
             onTap: () {},
             child: CircleAvatar(
-                radius: 32,
-                child: Image(image: NetworkImage('assets/google.png'))),
+              backgroundColor: Colors.white,
+                child: Image(image: AssetImage('assets/google.png'))),
           ),
         ],
       ),
