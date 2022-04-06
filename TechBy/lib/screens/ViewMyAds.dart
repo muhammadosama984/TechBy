@@ -43,8 +43,7 @@ class _adsListState extends State<_adsList> {
                   leading: Image(image: AssetImage('assets/TBicon.jpeg')),
                   title: Text(
                     "Title\n",
-                    style:
-                    TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text("Rs: Price \nYear: 2022 "),
                   trailing: PopupMenuButton(

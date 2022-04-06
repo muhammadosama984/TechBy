@@ -5,6 +5,7 @@ import 'package:techby/screens/Signup_Page.dart';
 import 'package:techby/screens/mainPage.dart';
 import 'package:techby/screens/ForgetPassword_Page.dart';
 import 'package:techby/screens/navBarNavigation.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Login_screen extends StatefulWidget {
   const Login_screen({Key? key}) : super(key: key);
@@ -42,6 +43,8 @@ class _Login_screenState extends State<Login_screen> {
                       _signUp_pass(),
                       SizedBox(height: 35),
                       _login_button(),
+                      SizedBox(height: 35),
+                      SocialMediaSignIn(),
                     ],
                   ),
                 ),
@@ -117,7 +120,8 @@ class _passwordState extends State<_password> {
               onPressed: () {
                 _toggle();
               },
-              icon: Icon(Icons.visibility)),
+              icon:
+                  ishide ? Icon(Icons.visibility) : Icon(Icons.visibility_off)),
           border: null,
           focusedBorder: InputBorder.none,
           enabledBorder: InputBorder.none,
@@ -200,6 +204,38 @@ class _login_button extends StatelessWidget {
           "Log In",
           style: TextStyle(fontSize: 20, color: Colors.white),
         ),
+      ),
+    );
+  }
+}
+
+class SocialMediaSignIn extends StatelessWidget {
+  const SocialMediaSignIn({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          GestureDetector(
+            onTap: () {},
+            child: CircleAvatar(
+                child: Image(
+                    image: NetworkImage(
+                        'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/1200px-2021_Facebook_icon.svg.png'))),
+          ),
+          SizedBox(
+            width: 15,
+          ),
+          GestureDetector(
+            onTap: () {},
+            child: CircleAvatar(
+                radius: 32,
+                child: Image(image: NetworkImage('assets/google.png'))),
+          ),
+        ],
       ),
     );
   }
