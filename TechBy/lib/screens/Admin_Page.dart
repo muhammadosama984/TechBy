@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:techby/screens/Complaint_Page.dart';
+import 'package:techby/screens/Merchandiser_Page.dart';
+import 'package:techby/screens/OpeningPage.dart';
+
+import 'ViewMyAds.dart';
 
 class Admin_screen extends StatefulWidget {
   const Admin_screen({Key? key}) : super(key: key);
@@ -14,6 +18,17 @@ class _Admin_screenState extends State<Admin_screen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Admin"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => OpeningPage()));
+              setState(() {});
+              //new screen navigate
+            },
+            icon: Icon(Icons.logout, color: Colors.red,),
+          ),
+        ],
       ),
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
@@ -30,7 +45,9 @@ class _Admin_screenState extends State<Admin_screen> {
 
                 child: RaisedButton(
                   disabledElevation: 8.0,
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Merchandiser_screen()));
+                  },
                   child: Text("Approve Merchant", style: TextStyle(fontSize: 20, color: Colors.white),),
                 )
             ),
@@ -60,7 +77,9 @@ class _Admin_screenState extends State<Admin_screen> {
 
                 child: RaisedButton(
                   disabledElevation: 8.0,
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ViewMyAds()));
+                  },
                   child: Text("ADS Approve", style: TextStyle(fontSize: 20, color: Colors.white),),
                 )
             ),

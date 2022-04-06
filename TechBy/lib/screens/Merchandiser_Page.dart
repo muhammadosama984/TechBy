@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:techby/screens/MerchandiserProfile_Page.dart';
+import 'package:techby/widgets/Search.dart';
 
 class Merchandiser_screen extends StatefulWidget {
   const Merchandiser_screen({Key? key}) : super(key: key);
@@ -21,6 +22,18 @@ class _Merchandiser_screenState extends State<Merchandiser_screen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Merchandiser List"),
+          // automaticallyImplyLeading: false,
+          actions: [
+          IconButton(
+          onPressed: () {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => SearchPage()));
+    setState(() {});
+    //new screen navigate
+    },
+      icon: Icon(Icons.search),
+    ),
+    ]
       ),
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:techby/screens/Admin_Page.dart';
 import 'package:techby/screens/Signup_Page.dart';
 import 'package:techby/screens/mainPage.dart';
 import 'package:techby/screens/ForgetPassword_Page.dart';
@@ -14,6 +15,8 @@ class Login_screen extends StatefulWidget {
   @override
   State<Login_screen> createState() => _Login_screenState();
 }
+List<String> items = ['User', 'Admin'];
+String? value1;
 
 class _Login_screenState extends State<Login_screen> {
   @override
@@ -29,9 +32,9 @@ class _Login_screenState extends State<Login_screen> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(height: 100),
+                SizedBox(height: 80),
                 _topPart(),
-                SizedBox(height: 60),
+                SizedBox(height: 30),
                 Container(
                   padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
                   child: Column(
@@ -57,9 +60,14 @@ class _Login_screenState extends State<Login_screen> {
   }
 }
 
-class _topPart extends StatelessWidget {
+class _topPart extends StatefulWidget {
   const _topPart({Key? key}) : super(key: key);
 
+  @override
+  State<_topPart> createState() => _topPartState();
+}
+
+class _topPartState extends State<_topPart> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -72,6 +80,33 @@ class _topPart extends StatelessWidget {
         Text(
           "Login",
           style: GoogleFonts.roboto(fontSize: 40, fontWeight: FontWeight.bold),
+        ),
+        SizedBox(height: 20,),
+        Container(
+          // alignment: Alignment(1.0, 0.0),
+          padding: EdgeInsets.only(top: 15.0, left: 20.0),
+          child: DropdownButton(
+            // Initial Value
+            value: value1,
+
+            // Down Arrow Icon
+            icon: const Icon(Icons.keyboard_arrow_down),
+
+            // Array list of items
+            items: items.map((String items) {
+              return DropdownMenuItem(
+                value: items,
+                child: Text(items),
+              );
+            }).toList(),
+            // After selecting the desired option,it will
+            // change button value to selected value
+            onChanged: (value) {
+              setState(() {
+                value1 = value.toString();
+              });
+            },
+          ),
         ),
       ],
     );
@@ -133,12 +168,18 @@ class _passwordState extends State<_password> {
   }
 }
 
-class _signUp_pass extends StatelessWidget {
+class _signUp_pass extends StatefulWidget {
   const _signUp_pass({Key? key}) : super(key: key);
 
   @override
+  State<_signUp_pass> createState() => _signUp_passState();
+}
+
+class _signUp_passState extends State<_signUp_pass> {
+  @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
           alignment: Alignment(1.0, 0.0),
@@ -180,6 +221,8 @@ class _signUp_pass extends StatelessWidget {
             },
           ),
         ),
+
+
       ],
     );
   }
@@ -197,8 +240,11 @@ class _login_button extends StatelessWidget {
       child: RaisedButton(
         disabledElevation: 8.0,
         onPressed: () {
+          if(value1 == "User"){
           Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => navBarNavigation()));
+              MaterialPageRoute(builder: (context) => navBarNavigation()));}
+          else{Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => Admin_screen()));}
         },
         child: Text(
           "Log In",
