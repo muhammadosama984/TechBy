@@ -26,6 +26,12 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: [
           IconButton(
             onPressed: () {
+              //new screen navigate
+            },
+            icon: Icon(Icons.notifications),
+          ),
+          IconButton(
+            onPressed: () {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => SearchPage()));
               setState(() {});

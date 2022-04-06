@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:techby/widgets/Listview.dart';
 import 'package:techby/widgets/Search.dart';
+import 'package:techby/screens/Filter.dart';
 
 class ParticularProduct extends StatefulWidget {
   const ParticularProduct({Key? key}) : super(key: key);
@@ -39,7 +41,10 @@ class _ParticularProductState extends State<ParticularProduct> {
           Container(
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => filter()));
+                },
                 child: Container(
                   width: 70,
                   child: Center(

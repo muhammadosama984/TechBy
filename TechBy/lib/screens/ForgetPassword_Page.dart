@@ -11,8 +11,7 @@ class _ForgetPassword_screenState extends State<ForgetPassword_screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: Text("Forget Password")),
+      appBar: AppBar(title: Text("Forget Password")),
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
@@ -43,16 +42,33 @@ class _ForgetPassword_screenState extends State<ForgetPassword_screen> {
                       height: 50,
                       minWidth: 400,
                       disabledColor: Colors.blueAccent,
-
                       child: RaisedButton(
                         disabledElevation: 8.0,
-                        onPressed: (){},
-                        child: Text("Send Link", style: TextStyle(fontSize: 20, color: Colors.white),),
-                      )
+                        onPressed: () {},
+                        child: Text(
+                          "Send Link",
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        ),
+                      )),
+                  Container(
+                    alignment: Alignment(1.0, 0.0),
+                    padding: EdgeInsets.only(top: 15.0, left: 20.0),
+                    child: InkWell(
+                      child: Text(
+                        "Resent the OTP",
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Montserrat',
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                      onTap: () {},
+                    ),
                   ),
                 ],
-              ),),
-
+              ),
+            ),
           ),
         ),
         // ),

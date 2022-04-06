@@ -26,7 +26,7 @@ class _ProductDetailState extends State<ProductDetail> {
             //mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Container(
                     child: Image(
@@ -57,6 +57,50 @@ class _ProductDetailState extends State<ProductDetail> {
                   ),
                   SizedBox(
                     height: 35,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          Icon(
+                            Icons.calendar_today,
+                            size: 35,
+                            color: Colors.blue,
+                          ),
+                          Text("2022"),
+                        ],
+                      ),
+                      // SizedBox(
+                      //   width: 20,
+                      // ),
+                      Column(
+                        children: [
+                          Icon(
+                            Icons.battery_charging_full,
+                            size: 35,
+                            color: Colors.blue,
+                          ),
+                          Text("100%"),
+                        ],
+                      ),
+                      // SizedBox(
+                      //   width: 20,
+                      // ),
+                      Column(
+                        children: [
+                          Icon(
+                            Icons.check_circle_outline_rounded,
+                            size: 35,
+                            color: Colors.blue,
+                          ),
+                          Text("2 years"),
+                        ],
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
                   ),
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 15),
