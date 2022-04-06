@@ -93,14 +93,31 @@ class _username extends StatelessWidget {
   }
 }
 
-class _password extends StatelessWidget {
+class _password extends StatefulWidget {
   const _password({Key? key}) : super(key: key);
+
+  @override
+  State<_password> createState() => _passwordState();
+}
+
+class _passwordState extends State<_password> {
+  bool ishide = true;
+  void _toggle() {
+    setState(() {
+      ishide = !ishide;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      obscureText: true,
+      obscureText: ishide,
       decoration: InputDecoration(
+          suffixIcon: IconButton(
+              onPressed: () {
+                _toggle();
+              },
+              icon: Icon(Icons.visibility)),
           border: null,
           focusedBorder: InputBorder.none,
           enabledBorder: InputBorder.none,

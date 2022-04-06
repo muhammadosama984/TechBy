@@ -249,13 +249,19 @@ class _Signup_screenState extends State<Signup_screen> {
                           disabledElevation: 8.0,
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              // context.read<ListofUser>().userListSet = User(
-                              //     firstname.text,
-                              //     lastname.text,
-                              //     email.text,
-                              //     location.text,
-                              //     imageURL.text,
-                              //     password.text);
+                              Provider.of<ListofUser>(context, listen: false)
+                                      .userListSet =
+                                  User(
+                                      firstname.text,
+                                      lastname.text,
+                                      email.text,
+                                      location.text,
+                                      imageURL.text,
+                                      password.text);
+                              print(Provider.of<ListofUser>(context,
+                                      listen: false)
+                                  .returnUserList[0]
+                                  .firstname);
 
                               Navigator.push(
                                   context,
