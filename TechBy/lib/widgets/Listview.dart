@@ -59,7 +59,7 @@ class _HeartState extends State<Heart> with SingleTickerProviderStateMixin {
     _controller =
         AnimationController(duration: Duration(milliseconds: 400), vsync: this);
 
-    _colorAnimation = ColorTween(begin: Colors.grey[200], end: Colors.red)
+    _colorAnimation = ColorTween(begin: Colors.grey[400], end: Colors.red)
         .animate(_controller);
 
     _sizeAnimation = TweenSequence(<TweenSequenceItem<double>>[
