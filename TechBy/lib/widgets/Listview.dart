@@ -32,11 +32,84 @@ class _ListState extends State<List> {
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text("Rs: Price \nYear: 2022 "),
-                      trailing: FavoriteButton(valueChanged: () {})),
+                      trailing: Heart()),
                 ),
               ),
             );
           })),
     );
+  }
+}
+
+class Heart extends StatefulWidget {
+  const Heart({Key? key}) : super(key: key);
+
+  @override
+  State<Heart> createState() => _HeartState();
+}
+
+class _HeartState extends State<Heart> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation _colorAnimation;
+  late Animation<double> _sizeAnimation;
+  bool isFav = false;
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+        AnimationController(duration: Duration(milliseconds: 400), vsync: this);
+
+    _colorAnimation = ColorTween(begin: Colors.grey[200], end: Colors.red)
+        .animate(_controller);
+
+    _sizeAnimation = TweenSequence(<TweenSequenceItem<double>>[
+      TweenSequenceItem<double>(
+        tween: Tween<double>(begin: 30, end: 50),
+        weight: 50,
+      ),
+      TweenSequenceItem<double>(
+        tween: Tween<double>(begin: 50, end: 30),
+        weight: 50,
+      ),
+    ]).animate(_controller);
+
+    _controller.addListener(() {
+      print(_controller.value);
+      print(_colorAnimation.value);
+    });
+    _controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        setState(() {
+          isFav = true;
+        });
+      }
+      if (status == AnimationStatus.dismissed) {
+        setState(() {
+          isFav = false;
+        });
+      }
+    });
+  }
+
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+        animation: _controller,
+        builder: (BuildContext context, _) {
+          return IconButton(
+            icon: Icon(
+              Icons.favorite,
+              color: _colorAnimation.value,
+              size: _sizeAnimation.value,
+            ),
+            onPressed: () {
+              isFav ? _controller.reverse() : _controller.forward();
+            },
+          );
+        });
   }
 }
