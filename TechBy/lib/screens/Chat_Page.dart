@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Chat_screen extends StatefulWidget {
   const Chat_screen({Key? key}) : super(key: key);
@@ -96,7 +99,7 @@ class _Chat_screenState extends State<Chat_screen> {
           )),
           Row(
             children: [
-              IconButton(onPressed: (){}, icon: Icon(Icons.attachment)),
+              IconButton(onPressed: (){_openImagePicker();}, icon: Icon(Icons.attachment)),
               FloatingActionButton(
                   onPressed: () {
                     addMessage(_message.text);
@@ -113,7 +116,17 @@ class _Chat_screenState extends State<Chat_screen> {
       ),
     );
   }
-
+  Future<void> _openImagePicker() async {
+    File? _image;
+    final _picker = ImagePicker();
+    final XFile? pickedImage =
+    await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      setState(() {
+        _image = File(pickedImage.path);
+      });
+    }
+  }
   addMessage(String input) {
     _message.text = "";
     data.add(ChatMessage(message: input, messagetype: "sender"));

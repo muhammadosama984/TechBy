@@ -77,12 +77,19 @@ class browseProduct extends StatelessWidget {
         SizedBox(height: 60),
         Text(
           "   Browse Products",
-          style: TextStyle(fontSize: 24),
+          style: TextStyle(
+            fontSize: 24,
+            fontFamily: 'Montserrat',
+          ),
         ),
         SizedBox(height: 20),
         Text(
-          "     Category",
-          style: TextStyle(fontSize: 18, color: Colors.blue),
+          "     Categories",
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.blue,
+            fontFamily: 'Montserrat',
+          ),
         ),
         SizedBox(height: 20),
       ],
