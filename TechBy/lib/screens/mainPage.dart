@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:techby/screens/Admin_Page.dart';
 import 'package:techby/screens/ChatMain_page.dart';
 import 'package:techby/screens/More_Page.dart';
+import 'package:techby/screens/OpeningPage.dart';
 import 'package:techby/screens/PostAds.dart';
 import 'package:techby/screens/SearchResult.dart';
 import 'package:techby/screens/ViewMyAds.dart';
@@ -60,9 +61,18 @@ class browseProduct extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 20),
-        Text(
-          "   Tagline",
-          style: TextStyle(fontSize: 24),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Center(
+              child: Container(
+                width: 100,
+                child: Image(
+                  image: AssetImage('assets/TBicon.jpeg'),
+                ),
+              ),
+            ),
+          ],
         ),
         SizedBox(height: 60),
         Text(
@@ -103,16 +113,16 @@ class _categoriesState extends State<categories> {
             _camera(),
             _monitor(),
             _speaker(),
-
           ],
         ),
       ),
-
     );
   }
 }
+
 class _desktop extends StatelessWidget {
   const _desktop({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -154,6 +164,7 @@ class _desktop extends StatelessWidget {
     );
   }
 }
+
 class _mobile extends StatelessWidget {
   const _mobile({Key? key}) : super(key: key);
 
@@ -198,6 +209,7 @@ class _mobile extends StatelessWidget {
     );
   }
 }
+
 class _laptop extends StatelessWidget {
   const _laptop({Key? key}) : super(key: key);
 
@@ -241,6 +253,7 @@ class _laptop extends StatelessWidget {
     );
   }
 }
+
 class _camera extends StatelessWidget {
   const _camera({Key? key}) : super(key: key);
 
