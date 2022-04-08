@@ -242,12 +242,31 @@ class _login_button extends StatelessWidget {
       child: RaisedButton(
         disabledElevation: 8.0,
         onPressed: () {
-          if (value1 == "User") {
+          if(value1 == null){
+            showDialog(
+              context: context,
+              builder: (ctx) => AlertDialog(
+                title: Text("Error"),
+                content: Text("Please select login type from the drop down option"),
+                actions: <Widget>[
+                  FlatButton(
+                    onPressed: () {
+                      Navigator.of(ctx).pop();
+                    },
+                    child: Text("Exit"),
+                  ),
+                ],
+              ),
+            );
+          }
+          else if (value1 == "User") {
             Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => navBarNavigation()));
+            value1 =  null;
           } else {
             Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) => Admin_screen()));
+            value1 =  null;
           }
         },
         child: Text(

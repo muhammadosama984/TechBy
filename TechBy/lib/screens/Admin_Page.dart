@@ -18,6 +18,7 @@ class _Admin_screenState extends State<Admin_screen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Admin"),
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
             onPressed: () {
@@ -40,7 +41,7 @@ class _Admin_screenState extends State<Admin_screen> {
             ),
             ButtonTheme(
                 height: 50,
-                minWidth: 400,
+                minWidth: 200,
                 disabledColor: Colors.blueAccent,
 
                 child: RaisedButton(
@@ -56,7 +57,7 @@ class _Admin_screenState extends State<Admin_screen> {
             ),
             ButtonTheme(
                 height: 50,
-                minWidth: 400,
+                minWidth: 200,
                 disabledColor: Colors.blueAccent,
 
                 child: RaisedButton(
@@ -72,7 +73,7 @@ class _Admin_screenState extends State<Admin_screen> {
             ),
             ButtonTheme(
                 height: 50,
-                minWidth: 400,
+                minWidth: 200,
                 disabledColor: Colors.blueAccent,
 
                 child: RaisedButton(
