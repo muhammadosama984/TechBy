@@ -80,6 +80,8 @@ class browseProduct extends StatelessWidget {
           style: TextStyle(
             fontSize: 24,
             fontFamily: 'Montserrat',
+            fontWeight: FontWeight. bold,
+            color: Colors.blue.shade900,
           ),
         ),
         SizedBox(height: 20),

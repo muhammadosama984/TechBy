@@ -29,7 +29,7 @@ class _bottomNavBarState extends State<bottomNavBar> {
       items: [
         BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: "home",
+            label: "Home",
             backgroundColor: Colors.blue),
         BottomNavigationBarItem(
             icon: Icon(Icons.my_library_books),
