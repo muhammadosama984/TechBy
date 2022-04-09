@@ -29,9 +29,7 @@ class _ProductDetailState extends State<ProductDetail> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Container(
-                    child: Image(
-                        image: NetworkImage(
-                            'https://techcrunch.com/wp-content/uploads/2019/11/MacBook-Pro-16-IMG_2820-1.jpeg')),
+                    child: Image(image: NetworkImage('assets/macbook.jpeg')),
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 10),
