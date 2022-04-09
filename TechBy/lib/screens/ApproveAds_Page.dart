@@ -12,7 +12,7 @@ class _Approveads_screenState extends State<Approveads_screen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("MyAds"),
+        title: Text("Approve Ads"),
       ),
       body: _adsList(),
     );
