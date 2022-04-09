@@ -3,6 +3,7 @@ import 'package:techby/screens/Complaint_Page.dart';
 import 'package:techby/screens/Merchandiser_Page.dart';
 import 'package:techby/screens/OpeningPage.dart';
 
+import 'ApproveAds_Page.dart';
 import 'ViewMyAds.dart';
 
 class Admin_screen extends StatefulWidget {
@@ -79,7 +80,7 @@ class _Admin_screenState extends State<Admin_screen> {
                 child: RaisedButton(
                   disabledElevation: 8.0,
                   onPressed: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ViewMyAds()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Approveads_screen()));
                   },
                   child: Text("ADS Approve", style: TextStyle(fontSize: 20, color: Colors.white),),
                 )
