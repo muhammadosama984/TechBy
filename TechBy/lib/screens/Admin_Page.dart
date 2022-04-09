@@ -27,7 +27,7 @@ class _Admin_screenState extends State<Admin_screen> {
               setState(() {});
               //new screen navigate
             },
-            icon: Icon(Icons.logout, color: Colors.red,),
+            icon: Icon(Icons.logout, color: Colors.white,),
           ),
         ],
       ),

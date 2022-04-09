@@ -104,7 +104,7 @@ class _PostAdsState extends State<PostAds> {
                 },
                 child:
                     const Text('Pick Images', style: TextStyle(fontSize: 20)),
-                color: Colors.lightBlue[200],
+                color: Colors.blue,
                 textColor: Colors.white,
                 elevation: 5,
                 shape: RoundedRectangleBorder(
@@ -164,7 +164,7 @@ class _postButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
-      color: Colors.lightBlue[200],
+      color: Colors.blue,
       onPressed: () {},
       child: Text("  Post  ", style: TextStyle(fontSize: 20)),
       textColor: Colors.white,

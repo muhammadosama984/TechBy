@@ -32,9 +32,18 @@ class _SplashState extends State<Splash> {
             duration: Duration(milliseconds: 1700),
             tween: Tween<double>(begin: 20, end: 100),
             builder: (BuildContext context, double value, Widget? child) {
-              return Text(
-                "TechBy",
-                style: TextStyle(fontSize: value, color: Colors.white),
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "TechBy",
+                    style: TextStyle(fontSize: value, color: Colors.white),
+                  ),
+                  Text(
+                    "One Stop Tech Market",
+                    style: TextStyle(fontSize: value/5.0, color: Colors.white),
+                  ),
+                ],
               );
             },
           ),
