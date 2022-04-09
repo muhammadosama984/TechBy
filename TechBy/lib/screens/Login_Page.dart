@@ -246,7 +246,7 @@ class _login_button extends StatelessWidget {
             showDialog(
               context: context,
               builder: (ctx) => AlertDialog(
-                title: Text("Error"),
+                title: Text("Error",style: TextStyle(color: Colors.red)),
                 content: Text("Please select login type from the drop down option"),
                 actions: <Widget>[
                   FlatButton(
