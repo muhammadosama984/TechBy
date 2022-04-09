@@ -8,6 +8,7 @@ import 'package:techby/screens/MyFav.dart';
 import 'package:techby/screens/OpeningPage.dart';
 import 'package:techby/screens/PostAds.dart';
 import 'package:techby/screens/SearchResult.dart';
+import 'package:techby/screens/Splash_Screen.dart';
 import 'package:techby/screens/ViewMyAds.dart';
 import 'package:techby/widgets/Listview.dart';
 
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: OpeningPage(),
+      home: Splash(),
     );
   }
 }

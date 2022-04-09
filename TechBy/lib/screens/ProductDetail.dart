@@ -109,7 +109,7 @@ class _ProductDetailState extends State<ProductDetail> {
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
                       initialValue:
-                          "This is the description of the Product\nbfff\ndfeyfgf\nbvtgh\nbrgrg\ndrgrggrg ",
+                          "Lorem Ipsum is simply dummy text of the printing and \ntypesetting industry. Lorem Ipsum has been the industry's standard dummy text ever \nsince the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but dont know ",
                       decoration: InputDecoration(
                           fillColor: Colors.grey[300],
                           filled: true,
