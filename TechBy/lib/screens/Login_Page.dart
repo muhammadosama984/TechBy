@@ -253,7 +253,7 @@ class _login_button extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(ctx).pop();
                     },
-                    child: Text("Exit"),
+                    child: Text("Ok"),
                   ),
                 ],
               ),
