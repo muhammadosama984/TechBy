@@ -17,8 +17,7 @@ class _FAQ_DetailState extends State<FAQ_Detail> {
           leading: IconButton(
               icon: Icon(Icons.arrow_back, color: Colors.black),
               onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => FAQs_screen()));
+                Navigator.pop(context);
               }),
         ),
         body: Column(
