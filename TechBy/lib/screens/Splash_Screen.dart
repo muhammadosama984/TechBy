@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:techby/Sign%20_In/google_sign_in.dart';
 import 'package:techby/screens/OpeningPage.dart';
 
 class Splash extends StatefulWidget {
@@ -18,6 +20,7 @@ class _SplashState extends State<Splash> {
     await Future.delayed(Duration(milliseconds: 2000), () {});
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => OpeningPage()));
+
   }
 
   @override

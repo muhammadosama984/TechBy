@@ -303,8 +303,10 @@ class SocialMediaSignIn extends StatelessWidget {
           GestureDetector(
             onTap: (){
               //context.read()<GoogleSingInProvider>().googleSignIn;
-              final provider= Provider.of<GoogleSingInProvider>(context,listen: false);
-              provider.googleLogin();
+              Provider.of<GoogleSingInProvider>(context,listen: false).googleLogin();
+
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => navBarNavigation()));
                   },
             child: CircleAvatar(
               backgroundColor: Colors.white,
