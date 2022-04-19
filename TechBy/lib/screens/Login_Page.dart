@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:techby/screens/Admin_Page.dart';
 import 'package:techby/screens/Signup_Page.dart';
 import 'package:techby/screens/mainPage.dart';
 import 'package:techby/screens/ForgetPassword_Page.dart';
 import 'package:techby/screens/navBarNavigation.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:techby/Sign%20_In/google_sign_in.dart';
 
 class Login_screen extends StatefulWidget {
   const Login_screen({Key? key}) : super(key: key);
@@ -299,7 +301,11 @@ class SocialMediaSignIn extends StatelessWidget {
             width: 15,
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: (){
+              //context.read()<GoogleSingInProvider>().googleSignIn;
+              final provider= Provider.of<GoogleSingInProvider>(context,listen: false);
+              provider.googleLogin();
+                  },
             child: CircleAvatar(
               backgroundColor: Colors.white,
                 child: Image(image: AssetImage('assets/google.png'))),
