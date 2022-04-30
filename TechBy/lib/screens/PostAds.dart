@@ -1,7 +1,9 @@
 import 'dart:io';
-
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:techby/Models/ListOfProducts.dart';
+import 'package:techby/Models/product.dart';
 
 class PostAds extends StatefulWidget {
   const PostAds({Key? key}) : super(key: key);
@@ -12,22 +14,22 @@ class PostAds extends StatefulWidget {
 
 class _PostAdsState extends State<PostAds> {
   List<String> items = ['Mobile', 'Laptop', 'Speakers', 'Keyboard'];
-  String? value1;
+  String? valueOfCategory;
   File? _image;
-  TextEditingController location = TextEditingController();
-  TextEditingController category = TextEditingController();
-  TextEditingController title = TextEditingController();
-  TextEditingController description = TextEditingController();
+  TextEditingController locationMain = TextEditingController();
+  TextEditingController categoryMain = TextEditingController();
+  TextEditingController titleMain = TextEditingController();
+  TextEditingController descriptionMain = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
   final _picker = ImagePicker();
 
   bool validate() {
-    if (location == null ||
-        category == null ||
-        title == null ||
-        description == null) {
+    if (locationMain == null ||
+        categoryMain == null ||
+        titleMain == null ||
+        descriptionMain == null) {
       return true;
     }
     return false;
@@ -40,6 +42,7 @@ class _PostAdsState extends State<PostAds> {
     if (pickedImage != null) {
       setState(() {
         _image = File(pickedImage.path);
+        print(_image);
       });
     }
   }
@@ -60,7 +63,7 @@ class _PostAdsState extends State<PostAds> {
               Container(
                   margin: EdgeInsets.symmetric(horizontal: 60),
                   child: TextFormField(
-                    controller: location,
+                    controller: locationMain,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Please enter some text';
@@ -75,7 +78,7 @@ class _PostAdsState extends State<PostAds> {
               ),
               DropdownButton(
                 // Initial Value
-                value: value1,
+                value: valueOfCategory,
 
                 // Down Arrow Icon
                 icon: const Icon(Icons.keyboard_arrow_down),
@@ -91,13 +94,17 @@ class _PostAdsState extends State<PostAds> {
                 // change button value to selected value
                 onChanged: (value) {
                   setState(() {
-                    value1 = value.toString();
+                    valueOfCategory = value.toString();
                   });
                 },
               ),
-              _titleField(),
+              _titleField(
+                titleController: titleMain,
+              ),
               SizedBox(height: 20),
-              _description(),
+              _description(
+                descriptionController: descriptionMain,
+              ),
               RaisedButton(
                 onPressed: () {
                   _openImagePicker();
@@ -113,7 +120,14 @@ class _PostAdsState extends State<PostAds> {
                 ),
               ),
               SizedBox(height: 20),
-              _postButton(),
+              _postButton(
+                val: valueOfCategory,
+                titleController: titleMain,
+                descriptionController: descriptionMain,
+                locationController: locationMain,
+                CategoryController: categoryMain,
+                img: _image,
+              ),
             ],
           ),
         ),
@@ -123,7 +137,9 @@ class _PostAdsState extends State<PostAds> {
 }
 
 class _description extends StatelessWidget {
-  const _description({Key? key}) : super(key: key);
+  TextEditingController descriptionController = TextEditingController();
+  _description({Key? key, required this.descriptionController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -145,7 +161,9 @@ class _description extends StatelessWidget {
 }
 
 class _titleField extends StatelessWidget {
-  const _titleField({Key? key}) : super(key: key);
+  TextEditingController titleController = TextEditingController();
+
+  _titleField({Key? key, required this.titleController}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -159,13 +177,37 @@ class _titleField extends StatelessWidget {
 }
 
 class _postButton extends StatelessWidget {
-  const _postButton({Key? key}) : super(key: key);
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  TextEditingController locationController = TextEditingController();
+  TextEditingController CategoryController = TextEditingController();
+  String? val;
+  File? img;
+  _postButton(
+      {Key? key,
+      required this.titleController,
+      required this.descriptionController,
+      required this.locationController,
+      required this.CategoryController,
+      required this.val,
+      this.img})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
       color: Colors.blue,
-      onPressed: () {},
+      onPressed: () {
+        if (val != null) {
+          CategoryController.text = val.toString();
+        }
+        Provider.of<ListofProduct>(context, listen: false).addProduct(Product(
+            img,
+            titleController.text,
+            descriptionController.text,
+            locationController.text,
+            DateTime.now()));
+      },
       child: Text("  Post  ", style: TextStyle(fontSize: 20)),
       textColor: Colors.white,
       shape: RoundedRectangleBorder(

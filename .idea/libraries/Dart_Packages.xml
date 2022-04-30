@@ -93,6 +93,48 @@
             </list>
           </value>
         </entry>
+        <entry key="firebase_auth">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-3.3.14/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="firebase_auth_platform_interface">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_platform_interface-6.2.3/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="firebase_auth_web">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-3.3.12/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="firebase_core">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-1.14.1/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="firebase_core_platform_interface">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-4.2.5/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="firebase_core_web">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-1.6.2/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="flutter">
           <value>
             <list>
@@ -139,6 +181,41 @@
           <value>
             <list>
               <option value="$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/google_fonts-2.3.1/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="google_sign_in">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in-5.3.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="google_sign_in_android">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in_android-5.2.5/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="google_sign_in_ios">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in_ios-5.2.5/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="google_sign_in_platform_interface">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in_platform_interface-2.1.2/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="google_sign_in_web">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in_web-0.10.1/lib" />
             </list>
           </value>
         </entry>
@@ -310,6 +387,13 @@
             </list>
           </value>
         </entry>
+        <entry key="quiver">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-3.0.1+1/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="sky_engine">
           <value>
             <list>
@@ -403,10 +487,21 @@
       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/favorite_button-0.0.4/lib" />
       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/ffi-1.1.2/lib" />
       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/file-6.1.2/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-3.3.14/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_platform_interface-6.2.3/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-3.3.12/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-1.14.1/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-4.2.5/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-1.6.2/lib" />
       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_lints-1.0.4/lib" />
       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-2.0.5/lib" />
       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/font_awesome_flutter-10.1.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/google_fonts-2.3.1/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in-5.3.0/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in_android-5.2.5/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in_ios-5.2.5/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in_platform_interface-2.1.2/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in_web-0.10.1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.13.4/lib" />
       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.4+11/lib" />
@@ -431,6 +526,7 @@
       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/plugin_platform_interface-2.1.2/lib" />
       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/process-4.2.4/lib" />
       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/provider-6.0.2/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-3.0.1+1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/source_span-1.8.1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/stack_trace-1.10.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../src/flutter/.pub-cache/hosted/pub.dartlang.org/stream_channel-2.1.0/lib" />

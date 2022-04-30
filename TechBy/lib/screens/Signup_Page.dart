@@ -141,7 +141,6 @@ class _Signup_screenState extends State<Signup_screen> {
                           return null;
                         }
                       },
-                      obscureText: true,
                       decoration: InputDecoration(
                           border: null,
                           focusedBorder: InputBorder.none,
