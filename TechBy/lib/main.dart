@@ -6,12 +6,12 @@ import 'package:techby/Models/ListOfProducts.dart';
 import 'package:techby/Models/ListofUsers.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
 import 'package:techby/screens/Admin_Page.dart';
-import 'package:techby/screens/More_Page.dart';
-import 'package:techby/screens/MyFav.dart';
+import 'package:techby/screens/more%20page/More_Page.dart';
+import 'package:techby/screens/more%20page/widgets%20and%20routes/MyFav.dart';
 import 'package:techby/screens/OpeningPage.dart';
 import 'package:techby/screens/PostAds.dart';
 import 'package:techby/screens/SearchResult.dart';
-import 'package:techby/screens/Splash_Screen.dart';
+import 'package:techby/screens/signIn%20pages/Splash_Screen.dart';
 import 'package:techby/screens/ViewMyAds.dart';
 import 'package:techby/widgets/Listview.dart';
 

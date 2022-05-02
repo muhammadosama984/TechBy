@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:techby/screens/ChatMain_page.dart';
-import 'package:techby/screens/More_Page.dart';
+import 'package:techby/screens/Chat%20system/ChatMain_page.dart';
+import 'package:techby/screens/more%20page/More_Page.dart';
 import '../widgets/bottomBar.dart';
 import 'PostAds.dart';
 import 'ViewMyAds.dart';

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:techby/screens/Admin_Page.dart';
-import 'package:techby/screens/Signup_Page.dart';
+import 'package:techby/screens/signIn%20pages/Signup_Page.dart';
 import 'package:techby/screens/mainPage.dart';
 import 'package:techby/screens/ForgetPassword_Page.dart';
 import 'package:techby/screens/navBarNavigation.dart';
