@@ -23,6 +23,19 @@ String? value1;
 
 class _Login_screenState extends State<Login_screen> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  void checkSignin() {
+    if (context.read<GoogleSingInProvider>().user != null) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => navBarNavigation()));
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -244,12 +257,13 @@ class _login_button extends StatelessWidget {
       child: RaisedButton(
         disabledElevation: 8.0,
         onPressed: () {
-          if(value1 == null){
+          if (value1 == null) {
             showDialog(
               context: context,
               builder: (ctx) => AlertDialog(
-                title: Text("Error",style: TextStyle(color: Colors.red)),
-                content: Text("Please select login type from the drop down option"),
+                title: Text("Error", style: TextStyle(color: Colors.red)),
+                content:
+                    Text("Please select login type from the drop down option"),
                 actions: <Widget>[
                   FlatButton(
                     onPressed: () {
@@ -260,15 +274,14 @@ class _login_button extends StatelessWidget {
                 ],
               ),
             );
-          }
-          else if (value1 == "User") {
+          } else if (value1 == "User") {
             Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => navBarNavigation()));
-            value1 =  null;
+            value1 = null;
           } else {
             Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) => Admin_screen()));
-            value1 =  null;
+            value1 = null;
           }
         },
         child: Text(
@@ -293,23 +306,23 @@ class SocialMediaSignIn extends StatelessWidget {
           GestureDetector(
             onTap: () {},
             child: CircleAvatar(
-              backgroundColor: Colors.white,
-                child: Image(
-                    image: AssetImage('assets/facebook.png'))),
+                backgroundColor: Colors.white,
+                child: Image(image: AssetImage('assets/facebook.png'))),
           ),
           SizedBox(
             width: 15,
           ),
           GestureDetector(
-            onTap: (){
+            onTap: () {
               //context.read()<GoogleSingInProvider>().googleSignIn;
-              Provider.of<GoogleSingInProvider>(context,listen: false).googleLogin();
+              Provider.of<GoogleSingInProvider>(context, listen: false)
+                  .googleLogin();
 
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => navBarNavigation()));
-                  },
+            },
             child: CircleAvatar(
-              backgroundColor: Colors.white,
+                backgroundColor: Colors.white,
                 child: Image(image: AssetImage('assets/google.png'))),
           ),
         ],
