@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:techby/Sign%20_In/google_sign_in.dart';
 import 'package:techby/screens/ContactUs_Page.dart';
 import 'package:techby/screens/FAQs_Page.dart';
 import 'package:techby/screens/MyFav.dart';
@@ -135,6 +137,8 @@ class _lowerPart extends StatelessWidget {
             style: TextStyle(color: Colors.red),
           ),
           onTap: () {
+            Provider.of<GoogleSingInProvider>(context, listen: false)
+                .googleSignOut();
             Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) => OpeningPage()));
           },

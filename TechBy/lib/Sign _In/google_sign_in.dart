@@ -8,24 +8,31 @@ import 'package:techby/screens/navBarNavigation.dart';
 class GoogleSingInProvider extends ChangeNotifier {
   final googleSignIn = GoogleSignIn();
   GoogleSignInAccount? _user;
-  GoogleSignInAccount get user=> _user!;
-  FirebaseAuth auth=FirebaseAuth.instance;
-  
-  Future googleLogin() async{
-    final googleUser =await googleSignIn.signIn();
-    if(googleUser==null) return;
-    _user =googleUser;
-    final googleAuth=await googleUser.authentication;
-    final credential=GoogleAuthProvider.credential(
+
+  GoogleSignInAccount get user => _user!;
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  Future googleLogin() async {
+    final googleUser = await googleSignIn.signIn();
+    if (googleUser == null) return;
+    _user = googleUser;
+    final googleAuth = await googleUser.authentication;
+    final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
     await FirebaseAuth.instance.signInWithCredential(credential);
     notifyListeners();
   }
-  Future<bool> checkSignedIn()async{
-    final signin= await auth.currentUser;
-    if(signin!=null){
+
+  Future googleSignOut() async {
+    await googleSignIn.disconnect();
+    FirebaseAuth.instance.signOut();
+  }
+
+  Future<bool> checkSignedIn() async {
+    final signin = await auth.currentUser;
+    if (signin != null) {
       return true;
     }
     return false;
