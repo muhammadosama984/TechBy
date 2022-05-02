@@ -1,5 +1,8 @@
+import 'dart:io';
+
 class Product {
-  List<String> Image;
+  // List<String> Image;
+  File? Image;
   String title;
   String description;
   //int Price;

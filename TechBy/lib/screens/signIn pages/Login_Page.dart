@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,12 +29,6 @@ class _Login_screenState extends State<Login_screen> {
     super.initState();
   }
 
-  void checkSignin() {
-    if (context.read<GoogleSingInProvider>().user != null) {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => navBarNavigation()));
-    }
-  }
 
   @override
   Widget build(BuildContext context) {

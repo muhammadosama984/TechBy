@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:techby/screens/Login_Page.dart';
+import 'package:techby/screens/signIn%20pages/Login_Page.dart';
 import 'package:techby/screens/Signup_Page.dart';
+import 'package:techby/screens/navBarNavigation.dart';
 
 class OpeningPage extends StatefulWidget {
   const OpeningPage({Key? key}) : super(key: key);
@@ -10,6 +12,11 @@ class OpeningPage extends StatefulWidget {
 }
 
 class _OpeningPageState extends State<OpeningPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

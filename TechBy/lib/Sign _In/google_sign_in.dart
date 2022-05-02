@@ -23,4 +23,11 @@ class GoogleSingInProvider extends ChangeNotifier {
     await FirebaseAuth.instance.signInWithCredential(credential);
     notifyListeners();
   }
+  Future<bool> checkSignedIn()async{
+    final signin= await auth.currentUser;
+    if(signin!=null){
+      return true;
+    }
+    return false;
+  }
 }

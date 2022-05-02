@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
 import 'package:techby/screens/OpeningPage.dart';
+import 'package:techby/screens/navBarNavigation.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -18,9 +20,16 @@ class _SplashState extends State<Splash> {
 
   Future<void> _navigatetoHome() async {
     await Future.delayed(Duration(milliseconds: 2000), () {});
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => OpeningPage()));
+    FirebaseAuth auth = FirebaseAuth.instance;
 
+    final signin = await auth.currentUser;
+    if (signin != null) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => navBarNavigation()));
+    } else {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => OpeningPage()));
+    }
   }
 
   @override
@@ -44,7 +53,8 @@ class _SplashState extends State<Splash> {
                   ),
                   Text(
                     "One Stop Tech Market",
-                    style: TextStyle(fontSize: value/5.0, color: Colors.white),
+                    style:
+                        TextStyle(fontSize: value / 5.0, color: Colors.white),
                   ),
                 ],
               );
