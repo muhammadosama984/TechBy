@@ -8,6 +8,7 @@ import 'package:techby/screens/navBarNavigation.dart';
 class GoogleSingInProvider extends ChangeNotifier {
   final googleSignIn = GoogleSignIn();
   GoogleSignInAccount? _user;
+  bool signInDone=false;
 
   GoogleSignInAccount get user => _user!;
   FirebaseAuth auth = FirebaseAuth.instance;
@@ -22,12 +23,14 @@ class GoogleSingInProvider extends ChangeNotifier {
       idToken: googleAuth.idToken,
     );
     await FirebaseAuth.instance.signInWithCredential(credential);
+    signInDone=true;
     notifyListeners();
   }
 
   Future googleSignOut() async {
     await googleSignIn.disconnect();
     FirebaseAuth.instance.signOut();
+    notifyListeners();
   }
 
   Future<bool> checkSignedIn() async {

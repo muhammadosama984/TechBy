@@ -29,7 +29,6 @@ class _Login_screenState extends State<Login_screen> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -170,7 +169,7 @@ class _passwordState extends State<_password> {
                 _toggle();
               },
               icon:
-                  ishide ? Icon(Icons.visibility) : Icon(Icons.visibility_off)),
+              ishide ? Icon(Icons.visibility) : Icon(Icons.visibility_off)),
           border: null,
           focusedBorder: InputBorder.none,
           enabledBorder: InputBorder.none,
@@ -255,19 +254,20 @@ class _login_button extends StatelessWidget {
           if (value1 == null) {
             showDialog(
               context: context,
-              builder: (ctx) => AlertDialog(
-                title: Text("Error", style: TextStyle(color: Colors.red)),
-                content:
+              builder: (ctx) =>
+                  AlertDialog(
+                    title: Text("Error", style: TextStyle(color: Colors.red)),
+                    content:
                     Text("Please select login type from the drop down option"),
-                actions: <Widget>[
-                  FlatButton(
-                    onPressed: () {
-                      Navigator.of(ctx).pop();
-                    },
-                    child: Text("Ok"),
+                    actions: <Widget>[
+                      FlatButton(
+                        onPressed: () {
+                          Navigator.of(ctx).pop();
+                        },
+                        child: Text("Ok"),
+                      ),
+                    ],
                   ),
-                ],
-              ),
             );
           } else if (value1 == "User") {
             Navigator.of(context).push(
@@ -288,9 +288,14 @@ class _login_button extends StatelessWidget {
   }
 }
 
-class SocialMediaSignIn extends StatelessWidget {
+class SocialMediaSignIn extends StatefulWidget {
   const SocialMediaSignIn({Key? key}) : super(key: key);
 
+  @override
+  _SocialMediaSignInState createState() => _SocialMediaSignInState();
+}
+
+class _SocialMediaSignInState extends State<SocialMediaSignIn> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -308,13 +313,15 @@ class SocialMediaSignIn extends StatelessWidget {
             width: 15,
           ),
           GestureDetector(
-            onTap: () {
+            onTap: () async {
               //context.read()<GoogleSingInProvider>().googleSignIn;
-              Provider.of<GoogleSingInProvider>(context, listen: false)
+              await Provider.of<GoogleSingInProvider>(context, listen: false)
                   .googleLogin();
-
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => navBarNavigation()));
+              if (context.read<GoogleSingInProvider>().signInDone) {
+                Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (context) => navBarNavigation()));
+              }
             },
             child: CircleAvatar(
                 backgroundColor: Colors.white,
