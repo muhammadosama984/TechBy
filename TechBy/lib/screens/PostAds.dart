@@ -15,7 +15,7 @@ class PostAds extends StatefulWidget {
 class _PostAdsState extends State<PostAds> {
   List<String> items = ['Mobile', 'Laptop', 'Speakers', 'Keyboard'];
   String? valueOfCategory;
-  File? _image;
+  late File _image;
   TextEditingController locationMain = TextEditingController();
   TextEditingController categoryMain = TextEditingController();
   TextEditingController titleMain = TextEditingController();
@@ -182,7 +182,7 @@ class _postButton extends StatelessWidget {
   TextEditingController locationController = TextEditingController();
   TextEditingController CategoryController = TextEditingController();
   String? val;
-  File? img;
+  File img;
   _postButton(
       {Key? key,
       required this.titleController,
@@ -190,7 +190,7 @@ class _postButton extends StatelessWidget {
       required this.locationController,
       required this.CategoryController,
       required this.val,
-      this.img})
+      required this.img})
       : super(key: key);
 
   @override
@@ -201,12 +201,14 @@ class _postButton extends StatelessWidget {
         if (val != null) {
           CategoryController.text = val.toString();
         }
+        String URL = img as String;
         Provider.of<ListofProduct>(context, listen: false).addProduct(Product(
-            img,
-            titleController.text,
-            descriptionController.text,
-            locationController.text,
-            DateTime.now()));
+            Image: img,
+            imgURL: URL,
+            title: titleController.text,
+            description: descriptionController.text,
+            location: locationController.text,
+            uploadDate: DateTime.now()));
       },
       child: Text("  Post  ", style: TextStyle(fontSize: 20)),
       textColor: Colors.white,

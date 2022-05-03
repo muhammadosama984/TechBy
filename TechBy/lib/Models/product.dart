@@ -1,8 +1,9 @@
 import 'dart:io';
 
 class Product {
-  // List<String> Image;
-  File? Image;
+  String doc;
+  File Image;
+  String imgURL;
   String title;
   String description;
   //int Price;
@@ -10,5 +11,11 @@ class Product {
   DateTime uploadDate;
 
   Product(
-      this.Image, this.title, this.description, this.location, this.uploadDate);
+      {required this.Image,
+      required this.imgURL,
+      required this.title,
+      required this.description,
+      required this.location,
+      required this.uploadDate,
+      this.doc = ""});
 }
