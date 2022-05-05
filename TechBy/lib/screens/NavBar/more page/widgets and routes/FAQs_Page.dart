@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:techby/screens/more%20page/widgets%20and%20routes/FAQs_datail.dart';
+
+import 'FAQs_datail.dart';
 
 class FAQs_screen extends StatefulWidget {
   const FAQs_screen({Key? key}) : super(key: key);

@@ -1,14 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:techby/screens/Admin_Page.dart';
-import 'package:techby/screens/Chat%20system/ChatMain_page.dart';
-import 'package:techby/screens/more%20page/More_Page.dart';
-import 'package:techby/screens/OpeningPage.dart';
-import 'package:techby/screens/PostAds.dart';
 import 'package:techby/screens/SearchResult.dart';
-import 'package:techby/screens/ViewMyAds.dart';
 import 'package:techby/widgets/Search.dart';
-import 'package:techby/widgets/bottomBar.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);

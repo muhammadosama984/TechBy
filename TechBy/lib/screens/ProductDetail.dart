@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:techby/screens/Chat%20system/Chat_Page.dart';
+
+import 'NavBar/Chat system/Chat_Page.dart';
+
 
 class ProductDetail extends StatefulWidget {
   const ProductDetail({Key? key}) : super(key: key);
