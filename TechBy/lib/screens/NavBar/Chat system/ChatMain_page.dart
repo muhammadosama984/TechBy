@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:techby/screens/Chat%20system/Chat_Page.dart';
+import 'package:techby/widgets/Search.dart';
 
-import '../../widgets/Search.dart';
+import 'Chat_Page.dart';
+
 
 class ChatMain_screen extends StatefulWidget {
   const ChatMain_screen({Key? key}) : super(key: key);

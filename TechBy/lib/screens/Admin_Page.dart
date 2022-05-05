@@ -4,7 +4,6 @@ import 'package:techby/screens/Merchandiser_Page.dart';
 import 'package:techby/screens/OpeningPage.dart';
 
 import 'ApproveAds_Page.dart';
-import 'ViewMyAds.dart';
 
 class Admin_screen extends StatefulWidget {
   const Admin_screen({Key? key}) : super(key: key);

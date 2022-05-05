@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
 import 'package:techby/screens/OpeningPage.dart';
-import 'package:techby/screens/navBarNavigation.dart';
+import '../NavBar/navBarNavigation.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);

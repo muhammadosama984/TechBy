@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:techby/screens/Chat%20system/ChatMain_page.dart';
-import 'package:techby/screens/more%20page/More_Page.dart';
-import '../widgets/bottomBar.dart';
-import 'PostAds.dart';
-import 'ViewMyAds.dart';
-import 'mainPage.dart';
+
+import '../../widgets/bottomBar.dart';
+import 'Chat system/ChatMain_page.dart';
+import 'Home/mainPage.dart';
+import 'Post ad/PostAds.dart';
+import 'My Ads/ViewMyAds.dart';
+import 'more page/More_Page.dart';
 
 class navBarNavigation extends StatefulWidget {
   const navBarNavigation({Key? key}) : super(key: key);

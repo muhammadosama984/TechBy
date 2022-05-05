@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
-import 'package:techby/screens/navBarNavigation.dart';
 
 class GoogleSingInProvider extends ChangeNotifier {
   final googleSignIn = GoogleSignIn();

@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:techby/screens/signIn%20pages/Login_Page.dart';
 import 'package:techby/screens/signIn%20pages/Signup_Page.dart';
-import 'package:techby/screens/navBarNavigation.dart';
 
 class OpeningPage extends StatefulWidget {
   const OpeningPage({Key? key}) : super(key: key);

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
-import 'package:techby/screens/more%20page/widgets%20and%20routes/ContactUs_Page.dart';
-import 'package:techby/screens/more%20page/widgets%20and%20routes/FAQs_Page.dart';
-import 'package:techby/screens/more%20page/widgets%20and%20routes/MyFav.dart';
+
 import 'package:techby/screens/OpeningPage.dart';
 import 'package:techby/screens/Profile_Page.dart';
 
-import '../ForgetPassword_Page.dart';
+import 'widgets and routes/ContactUs_Page.dart';
+import 'widgets and routes/FAQs_Page.dart';
+import 'widgets and routes/MyFav.dart';
+
 
 class More_screen extends StatefulWidget {
   const More_screen({Key? key}) : super(key: key);

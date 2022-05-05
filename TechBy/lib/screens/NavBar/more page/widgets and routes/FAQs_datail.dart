@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:techby/screens/more%20page/widgets%20and%20routes/FAQs_Page.dart';
 
 class FAQ_Detail extends StatefulWidget {
   const FAQ_Detail({Key? key}) : super(key: key);
