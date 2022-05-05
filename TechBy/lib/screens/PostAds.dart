@@ -15,7 +15,7 @@ class PostAds extends StatefulWidget {
 class _PostAdsState extends State<PostAds> {
   List<String> items = ['Mobile', 'Laptop', 'Speakers', 'Keyboard'];
   String? valueOfCategory;
-  late File _image;
+  File? _image;
   TextEditingController locationMain = TextEditingController();
   TextEditingController categoryMain = TextEditingController();
   TextEditingController titleMain = TextEditingController();
@@ -182,7 +182,7 @@ class _postButton extends StatelessWidget {
   TextEditingController locationController = TextEditingController();
   TextEditingController CategoryController = TextEditingController();
   String? val;
-  File img;
+  File? img;
   _postButton(
       {Key? key,
       required this.titleController,

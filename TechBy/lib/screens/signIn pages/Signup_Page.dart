@@ -251,12 +251,12 @@ class _Signup_screenState extends State<Signup_screen> {
                               Provider.of<ListofUser>(context, listen: false)
                                       .userListSet =
                                   User(
-                                      firstname.text,
-                                      lastname.text,
-                                      email.text,
-                                      location.text,
-                                      imageURL.text,
-                                      password.text);
+                                      firstname: firstname.text,
+                                      lastname: lastname.text,
+                                      email: email.text,
+                                      location: location.text,
+                                      ImageUrl: imageURL.text,
+                                      password: password.text);
                               print(Provider.of<ListofUser>(context,
                                       listen: false)
                                   .returnUserList[0]

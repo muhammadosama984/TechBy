@@ -52,7 +52,7 @@ class ListofProduct with ChangeNotifier {
   addProduct(Product product) async {
     String a = product.imgURL;
 
-    await _storage.ref('ProductImages/$a').putFile(product.Image);
+    //await _storage.ref('ProductImages/$a').putFile(product.Image);
     users
         .add({
           'title': product.title,

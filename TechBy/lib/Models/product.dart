@@ -2,7 +2,7 @@ import 'dart:io';
 
 class Product {
   String doc;
-  File Image;
+  File? Image;
   String imgURL;
   String title;
   String description;

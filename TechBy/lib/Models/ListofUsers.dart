@@ -10,4 +10,13 @@ class ListofUser with ChangeNotifier {
     userList.add(user);
     notifyListeners();
   }
+
+  getUsers() {}
+  addUsers() {}
+
+  updateUser(User user) {}
+
+  deleteUser(User user) {}
+
+  remove(User user) {}
 }
