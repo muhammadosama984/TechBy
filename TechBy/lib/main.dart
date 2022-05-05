@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:techby/Models/ListOfProducts.dart';
 import 'package:techby/Models/ListofUsers.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
+import 'package:techby/database/adsList.dart';
 
 import 'package:techby/screens/signIn%20pages/Splash_Screen.dart';
 
@@ -17,6 +18,9 @@ Future main() async {
       providers: [
         ChangeNotifierProvider(
           create: (_) => ListofProduct(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => adsList(),
         ),
         ChangeNotifierProvider(
           create: (_) => GoogleSingInProvider(),

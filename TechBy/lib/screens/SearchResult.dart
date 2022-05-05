@@ -26,15 +26,7 @@ class _ParticularProductState extends State<ParticularProduct> {
       ),
       body: Column(
         children: [
-          // Container(
-          //   margin: EdgeInsets.only(left: 80, right: 80),
-          //   child: TextField(
-          //     decoration: InputDecoration(
-          //         labelText: 'Search',
-          //         suffixIcon:
-          //             IconButton(onPressed: () {}, icon: Icon(Icons.search))),
-          //   ),
-          // ),
+
           SizedBox(
             height: 10,
           ),
@@ -96,6 +88,7 @@ class _ParticularProductState extends State<ParticularProduct> {
               ),
             ]),
           ),
+          SizedBox(height: 20,),
           Expanded(child: List())
         ],
       ),

@@ -1,5 +1,7 @@
 import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:techby/database/adsList.dart';
 import 'package:techby/screens/ProductDetail.dart';
 
 class List extends StatefulWidget {
@@ -11,10 +13,22 @@ class List extends StatefulWidget {
 
 class _ListState extends State<List> {
   @override
+  void initState() {
+    // TODO: implement initState
+    getTasks();
+    super.initState();
+  }
+  getTasks() async {
+
+    await context.read<adsList>().getAds();
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
-          itemCount: 10,
+          itemCount: context.watch<adsList>().ListOfAds.length,
           itemBuilder: ((context, index) {
             return Card(
               child: GestureDetector(
@@ -27,11 +41,15 @@ class _ListState extends State<List> {
                   child: ListTile(
                       leading: Image(image: AssetImage('assets/TBicon.jpeg')),
                       title: Text(
-                        "Title\n",
+                        context.watch<adsList>().ListOfAds[index].title,
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      subtitle: Text("Rs: Price \nYear: 2022 "),
+                      subtitle: Text(
+                        context.watch<adsList>().ListOfAds[index].price +
+                            "\n" +
+                            context.watch<adsList>().ListOfAds[index].location,
+                      ),
                       trailing: Heart()),
                 ),
               ),
@@ -53,6 +71,7 @@ class _HeartState extends State<Heart> with SingleTickerProviderStateMixin {
   late Animation _colorAnimation;
   late Animation<double> _sizeAnimation;
   bool isFav = false;
+
   @override
   void initState() {
     super.initState();
