@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:techby/OTP.dart';
 
 class ForgetPassword_screen extends StatefulWidget {
   const ForgetPassword_screen({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class _ForgetPassword_screenState extends State<ForgetPassword_screen> {
         child: Center(
           child: Container(
             height: 600,
-            padding: EdgeInsets.only(top: 35.0, left: 30.0, right: 30.0),
+            padding: EdgeInsets.only(top: 35.0, left: 50.0, right: 50.0),
             child: Align(
               alignment: Alignment.center,
               child: Column(
@@ -32,8 +33,8 @@ class _ForgetPassword_screenState extends State<ForgetPassword_screen> {
                         enabledBorder: InputBorder.none,
                         fillColor: Color.fromRGBO(243, 243, 243, 100),
                         filled: true,
-                        labelText: 'Username',
-                        hintText: 'Enter Your Username'),
+                        labelText: 'Phone Number',
+                        hintText: 'Enter Your Phone Number'),
                   ),
                   SizedBox(
                     height: 40,
@@ -44,28 +45,31 @@ class _ForgetPassword_screenState extends State<ForgetPassword_screen> {
                       disabledColor: Colors.blueAccent,
                       child: RaisedButton(
                         disabledElevation: 8.0,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => OTP()));
+                        },
                         child: Text(
                           "Send Link",
                           style: TextStyle(fontSize: 20, color: Colors.white),
                         ),
                       )),
-                  Container(
-                    alignment: Alignment(1.0, 0.0),
-                    padding: EdgeInsets.only(top: 15.0, left: 20.0),
-                    child: InkWell(
-                      child: Text(
-                        "Resent the OTP",
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Montserrat',
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
-                      onTap: () {},
-                    ),
-                  ),
+                  // Container(
+                  //   alignment: Alignment(1.0, 0.0),
+                  //   padding: EdgeInsets.only(top: 15.0, left: 20.0),
+                  //   child: InkWell(
+                  //     child: Text(
+                  //       "Resent the OTP",
+                  //       style: TextStyle(
+                  //         color: Colors.blue,
+                  //         fontWeight: FontWeight.bold,
+                  //         fontFamily: 'Montserrat',
+                  //         decoration: TextDecoration.underline,
+                  //       ),
+                  //     ),
+                  //     onTap: () {},
+                  //   ),
+                  // ),
                 ],
               ),
             ),

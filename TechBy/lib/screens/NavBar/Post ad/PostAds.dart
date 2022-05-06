@@ -76,27 +76,32 @@ class _PostAdsState extends State<PostAds> {
               SizedBox(
                 height: 20,
               ),
-              DropdownButton(
-                // Initial Value
-                value: valueOfCategory,
+              Container(
+                height: 30,
+                decoration:
+                    BoxDecoration(border: Border.all(color: Colors.black)),
+                child: DropdownButton(
+                  // Initial Value
+                  value: valueOfCategory,
 
-                // Down Arrow Icon
-                icon: const Icon(Icons.keyboard_arrow_down),
+                  // Down Arrow Icon
+                  icon: const Icon(Icons.keyboard_arrow_down),
 
-                // Array list of items
-                items: items.map((String items) {
-                  return DropdownMenuItem(
-                    value: items,
-                    child: Text(items),
-                  );
-                }).toList(),
-                // After selecting the desired option,it will
-                // change button value to selected value
-                onChanged: (value) {
-                  setState(() {
-                    valueOfCategory = value.toString();
-                  });
-                },
+                  // Array list of items
+                  items: items.map((String items) {
+                    return DropdownMenuItem(
+                      value: items,
+                      child: Text(items),
+                    );
+                  }).toList(),
+                  // After selecting the desired option,it will
+                  // change button value to selected value
+                  onChanged: (value) {
+                    setState(() {
+                      valueOfCategory = value.toString();
+                    });
+                  },
+                ),
               ),
               _titleField(
                 titleController: titleMain,

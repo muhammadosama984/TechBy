@@ -94,8 +94,10 @@ class _topPartState extends State<_topPart> {
           height: 20,
         ),
         Container(
+          height: 30,
           // alignment: Alignment(1.0, 0.0),
-          padding: EdgeInsets.only(top: 15.0, left: 20.0),
+          decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+
           child: DropdownButton(
             // Initial Value
             value: value1,
@@ -168,7 +170,7 @@ class _passwordState extends State<_password> {
                 _toggle();
               },
               icon:
-              ishide ? Icon(Icons.visibility) : Icon(Icons.visibility_off)),
+                  ishide ? Icon(Icons.visibility) : Icon(Icons.visibility_off)),
           border: null,
           focusedBorder: InputBorder.none,
           enabledBorder: InputBorder.none,
@@ -253,20 +255,19 @@ class _login_button extends StatelessWidget {
           if (value1 == null) {
             showDialog(
               context: context,
-              builder: (ctx) =>
-                  AlertDialog(
-                    title: Text("Error", style: TextStyle(color: Colors.red)),
-                    content:
+              builder: (ctx) => AlertDialog(
+                title: Text("Error", style: TextStyle(color: Colors.red)),
+                content:
                     Text("Please select login type from the drop down option"),
-                    actions: <Widget>[
-                      FlatButton(
-                        onPressed: () {
-                          Navigator.of(ctx).pop();
-                        },
-                        child: Text("Ok"),
-                      ),
-                    ],
+                actions: <Widget>[
+                  FlatButton(
+                    onPressed: () {
+                      Navigator.of(ctx).pop();
+                    },
+                    child: Text("Ok"),
                   ),
+                ],
+              ),
             );
           } else if (value1 == "User") {
             Navigator.of(context).push(
@@ -317,9 +318,8 @@ class _SocialMediaSignInState extends State<SocialMediaSignIn> {
               await Provider.of<GoogleSingInProvider>(context, listen: false)
                   .googleLogin();
               if (context.read<GoogleSingInProvider>().signInDone) {
-                Navigator.of(context).push(
-                    MaterialPageRoute(
-                        builder: (context) => navBarNavigation()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => navBarNavigation()));
               }
             },
             child: CircleAvatar(
