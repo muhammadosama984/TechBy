@@ -9,6 +9,8 @@ class ads {
   String location;
   DateTime uploadDate;
   String category;
+  late List<String> downloadURLS;
+  String signIN_ID;
 
   ads(
       {required this.title,
@@ -17,16 +19,16 @@ class ads {
       required this.uploadDate,
       required this.price,
       required this.category,
-      this.docID = ""});
+      this.docID = "",
+      this.signIN_ID = ""});
 
   static ads fromJson(Map<String, dynamic> json) => ads(
-        title: json['title'],
-        description: json['description'],
-        location: json['location'],
-        uploadDate: DateTime.parse(json['uploadDate']),
-        price: json['price'],
-        category: json['category']
-  );
+      title: json['title'],
+      description: json['description'],
+      location: json['location'],
+      uploadDate: DateTime.parse(json['uploadDate']),
+      price: json['price'],
+      category: json['category']);
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
@@ -35,7 +37,7 @@ class ads {
     data['location'] = location;
     data['uploadDate'] = uploadDate.toIso8601String();
     data['price'] = price;
-    data['category']=category;
+    data['category'] = category;
     return data;
   }
 }

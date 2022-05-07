@@ -20,10 +20,9 @@ class _PostAdsState extends State<PostAds> {
   TextEditingController categoryMain = TextEditingController();
   TextEditingController titleMain = TextEditingController();
   TextEditingController descriptionMain = TextEditingController();
-
   final _formKey = GlobalKey<FormState>();
-
   final _picker = ImagePicker();
+  List<XFile> multipleImages = [];
 
   bool validate() {
     if (locationMain == null ||
@@ -45,6 +44,14 @@ class _PostAdsState extends State<PostAds> {
         print(_image);
       });
     }
+  }
+
+  Future<List<XFile>> multiImagePicker() async {
+    List<XFile>? _images = await ImagePicker().pickMultiImage();
+    if (_images != null && _images.isNotEmpty) {
+      return _images;
+    }
+    return [];
   }
 
   @override
@@ -103,16 +110,24 @@ class _PostAdsState extends State<PostAds> {
                   },
                 ),
               ),
-              _titleField(
-                titleController: titleMain,
-              ),
+              _titleField(titleController: titleMain),
               SizedBox(height: 20),
-              _description(
-                descriptionController: descriptionMain,
+              _description(descriptionController: descriptionMain),
+              Wrap(
+                children: multipleImages
+                    .map((e) => Image.file(
+                          File(e.path),
+                          width: 200,
+                        ))
+                    .toList(),
               ),
               RaisedButton(
-                onPressed: () {
-                  _openImagePicker();
+                onPressed: () async {
+                  // _openImagePicker();
+                  multipleImages = await multiImagePicker();
+                  if (multipleImages.isNotEmpty) {
+                    setState(() {});
+                  }
                 },
                 child:
                     const Text('Pick Images', style: TextStyle(fontSize: 20)),
@@ -143,6 +158,7 @@ class _PostAdsState extends State<PostAds> {
 
 class _description extends StatelessWidget {
   TextEditingController descriptionController = TextEditingController();
+
   _description({Key? key, required this.descriptionController})
       : super(key: key);
 
@@ -188,6 +204,7 @@ class _postButton extends StatelessWidget {
   TextEditingController CategoryController = TextEditingController();
   String? val;
   File? img;
+
   _postButton(
       {Key? key,
       required this.titleController,
