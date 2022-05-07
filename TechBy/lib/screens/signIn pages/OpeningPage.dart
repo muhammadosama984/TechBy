@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:techby/screens/signIn%20pages/Login_Page.dart';
 import 'package:techby/screens/signIn%20pages/Signup_Page.dart';
 
+import 'notification_api.dart';
+
 class OpeningPage extends StatefulWidget {
   const OpeningPage({Key? key}) : super(key: key);
 
@@ -15,7 +17,19 @@ class _OpeningPageState extends State<OpeningPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    NotificationApi.init();
+    listenNotification();
   }
+
+  void listenNotification() {
+    NotificationApi.onNotification.stream.listen(onClick);
+  }
+
+  void onClick(String? payload) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => Signup_screen()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,8 +101,13 @@ class login_Signup extends StatelessWidget {
                 child: Text('SignUp',
                     style: TextStyle(fontSize: 20, color: Colors.black)),
                 onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Signup_screen()));
+                  NotificationApi.showNotification(
+                      title: 'Sarah',
+                      body: 'This is body',
+                      payload: 'sarah.abs');
+
+                  // Navigator.of(context).push(
+                  //     MaterialPageRoute(builder: (context) => Signup_screen()));
                 }),
           ),
         ],
