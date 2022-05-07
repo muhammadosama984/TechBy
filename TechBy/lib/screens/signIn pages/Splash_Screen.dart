@@ -24,6 +24,9 @@ class _SplashState extends State<Splash> {
 
     final signin = await auth.currentUser;
     if (signin != null) {
+
+      // print(await Provider.of<GoogleSingInProvider>(context, listen: false)
+      //     .emailAddress());
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => navBarNavigation()));
     } else {

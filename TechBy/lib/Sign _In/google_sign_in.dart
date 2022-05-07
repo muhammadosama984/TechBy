@@ -7,10 +7,11 @@ import 'package:provider/provider.dart';
 class GoogleSingInProvider extends ChangeNotifier {
   final googleSignIn = GoogleSignIn();
   GoogleSignInAccount? _user;
-  bool signInDone=false;
+  bool signInDone = false;
 
   GoogleSignInAccount get user => _user!;
   FirebaseAuth auth = FirebaseAuth.instance;
+  final user_things = FirebaseAuth.instance.currentUser;
 
   Future googleLogin() async {
     final googleUser = await googleSignIn.signIn();
@@ -22,8 +23,13 @@ class GoogleSingInProvider extends ChangeNotifier {
       idToken: googleAuth.idToken,
     );
     await FirebaseAuth.instance.signInWithCredential(credential);
-    signInDone=true;
+    signInDone = true;
     notifyListeners();
+  }
+
+  Future<String> emailAddress() async {
+    String? email = await user_things?.email.toString();
+    return email!;
   }
 
   Future googleSignOut() async {
