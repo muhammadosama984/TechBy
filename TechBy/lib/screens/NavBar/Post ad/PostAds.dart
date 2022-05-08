@@ -20,6 +20,7 @@ class _PostAdsState extends State<PostAds> {
   TextEditingController categoryMain = TextEditingController();
   TextEditingController titleMain = TextEditingController();
   TextEditingController descriptionMain = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
   final _picker = ImagePicker();
   List<XFile> multipleImages = [];
