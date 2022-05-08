@@ -77,21 +77,40 @@ class _topPart extends StatefulWidget {
 }
 
 class _topPartState extends State<_topPart> {
+  //addition
+  // List<String> labels = ['User', 'Admin'];
+  // int counter = 0;
+//  List<bool> _selections = List.generate(2, (_) => true);
+  List<bool> _selections = [true, false];
+
+  //addition
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-            width: 80, child: Image(image: AssetImage('assets/TBicon.jpeg'))),
-        SizedBox(
-          height: 10,
-        ),
-        Text(
-          "Login",
-          style: GoogleFonts.roboto(fontSize: 40, fontWeight: FontWeight.bold),
-        ),
         SizedBox(
           height: 20,
+        ),
+        Container(
+            // width: 80, child: Image(image: AssetImage('assets/TBicon.jpeg'))),
+            width: 250,
+            child: Image(image: AssetImage('assets/TBiconLong.png'))),
+        SizedBox(
+          height: 30,
+
+        ),
+        Center(
+          child: Text(
+            "Sign In to TechBy",
+            style: GoogleFonts.roboto(
+              fontSize: 24,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 30,
         ),
         Container(
           height: 30,
@@ -119,6 +138,47 @@ class _topPartState extends State<_topPart> {
                 value1 = value.toString();
               });
             },
+          ),
+        ),
+        SizedBox(
+          height: 30,
+        ),
+        Container(
+          height: 35,
+          decoration: BoxDecoration(
+            borderRadius: new BorderRadius.circular(16.0),
+            color: Colors.grey.shade100,
+          ),
+          child: ToggleButtons(
+            children: [
+              Text('    User    '),
+              Text("   Admin   "),
+            ],
+
+            color: Colors.black,
+            highlightColor: Colors.white70,
+            selectedColor: Colors.white,
+            fillColor: Colors.blue,
+            splashColor: Colors.lightBlueAccent,
+//        hoverColor: Colors.white70,
+            renderBorder: false,
+            borderColor: Colors.black,
+            borderRadius: BorderRadius.circular(16),
+            isSelected: _selections,
+            onPressed: (int index) {
+              setState(() {
+                for (int buttonIndex = 0;
+                    buttonIndex < _selections.length;
+                    buttonIndex++) {
+                  if (buttonIndex == index) {
+                    _selections[buttonIndex] = true;
+                  } else {
+                    _selections[buttonIndex] = false;
+                  }
+                }
+                //_selections[index] = !_selections[index];
+              });
+            }, //onPress
           ),
         ),
       ],
@@ -197,15 +257,15 @@ class _signUp_passState extends State<_signUp_pass> {
       children: [
         Container(
           alignment: Alignment(1.0, 0.0),
-          padding: EdgeInsets.only(top: 15.0, left: 20.0),
+          padding: EdgeInsets.only(top: 15.0, left: 0.0),
           child: InkWell(
             child: Text(
-              "Sign Up?",
+              "Sign Up",
               style: TextStyle(
-                color: Colors.blue,
-                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
                 fontFamily: 'Montserrat',
-                decoration: TextDecoration.underline,
+                // decoration: TextDecoration.underline,
               ),
             ),
             onTap: () {
@@ -213,20 +273,40 @@ class _signUp_passState extends State<_signUp_pass> {
                   MaterialPageRoute(builder: (context) => Signup_screen()));
             },
           ),
+
+          // child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          //   Text("data"),
+          // InkWell(
+          //     child: Text(
+          //       "Sign Up?",
+          //       style: TextStyle(
+          //         color: Colors.black,
+          //         fontWeight: FontWeight.bold,
+          //         fontFamily: 'Montserrat',
+          //         // decoration: TextDecoration.underline,
+          //       ),
+          //     ),
+          //     onTap: () {
+          //       Navigator.of(context).push(
+          //           MaterialPageRoute(builder: (context) => Signup_screen()));
+          //     },
+          //   ),
+          //
+          // ]),
         ),
         SizedBox(
           width: 100,
         ),
         Container(
           alignment: Alignment(1.0, 0.0),
-          padding: EdgeInsets.only(top: 15.0, left: 20.0),
+          padding: EdgeInsets.only(top: 15.0, left: 40.0),
           child: InkWell(
             child: Text(
               "Forgot Password?",
               style: TextStyle(
-                fontWeight: FontWeight.bold,
+                color: Colors.grey,
+                fontWeight: FontWeight.normal,
                 fontFamily: 'Montserrat',
-                decoration: TextDecoration.underline,
               ),
             ),
             onTap: () {
@@ -237,6 +317,27 @@ class _signUp_passState extends State<_signUp_pass> {
         ),
       ],
     );
+
+    //ahmed
+    // return Container(
+    //   alignment: Alignment(1.0, 0.0),
+    //   padding: EdgeInsets.only(top: 15.0, left: 40.0),
+    //   child: InkWell(
+    //     child: Text(
+    //       "Forgot Password?",
+    //       style: TextStyle(
+    //         color: Colors.grey,
+    //         fontWeight: FontWeight.normal,
+    //         fontFamily: 'Montserrat',
+    //       ),
+    //     ),
+    //     onTap: () {
+    //       Navigator.of(context).push(
+    //           MaterialPageRoute(builder: (context) => ForgetPassword_screen()));
+    //     },
+    //   ),
+    // );
+    // //ahmed
   }
 }
 
@@ -249,6 +350,9 @@ class _login_button extends StatelessWidget {
       height: 50,
       minWidth: 400,
       disabledColor: Colors.blueAccent,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
       child: RaisedButton(
         disabledElevation: 8.0,
         onPressed: () {
@@ -331,3 +435,20 @@ class _SocialMediaSignInState extends State<SocialMediaSignIn> {
     );
   }
 }
+
+//
+// class signUpLink extends StatefulWidget {
+//   const signUpLink({Key? key}) : super(key: key);
+//
+//   @override
+//   State<signUpLink> createState() => _signUpLinkState();
+// }
+//
+// class _signUpLinkState extends State<signUpLink> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       child: Text("Hello"),
+//     );
+//   }
+// }
