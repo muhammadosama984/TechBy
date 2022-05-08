@@ -139,8 +139,8 @@ class _desktop extends StatelessWidget {
               onTap: () async{
                 await context.read<adsList>().getAds();
 
-                // Navigator.of(context).push(MaterialPageRoute(
-                //     builder: (context) => ParticularProduct()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ParticularProduct()));
               },
               child: Container(
                 height: 100.0,
