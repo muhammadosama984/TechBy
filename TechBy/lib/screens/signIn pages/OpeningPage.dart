@@ -57,7 +57,7 @@ class techByLogo extends StatelessWidget {
     return Container(
       width: 150,
       margin: EdgeInsets.only(bottom: 23, top: 290),
-      child: Image(image: AssetImage('assets/TBicon.jpeg')),
+      child: Image(image: AssetImage('assets/TBicon.png')),
     );
   }
 }
