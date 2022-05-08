@@ -16,17 +16,26 @@ class PostAds extends StatefulWidget {
 }
 
 class _PostAdsState extends State<PostAds> {
-  List<String> items = ['Mobile', 'Laptop', 'Speakers', 'Keyboard'];
+  List<String> items1 = ['Category'];
+  List<String> items = ['Category', 'Mobile', 'Laptop', 'Speakers', 'Keyboard'];
   String? valueOfCategory;
   File? _image;
   TextEditingController locationMain = TextEditingController();
   TextEditingController categoryMain = TextEditingController();
   TextEditingController titleMain = TextEditingController();
   TextEditingController descriptionMain = TextEditingController();
+  TextEditingController priceMain = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
   final _picker = ImagePicker();
   List<XFile> multipleImages = [];
+  void clearfield() {
+    locationMain.clear();
+    categoryMain.clear();
+    titleMain.clear();
+    descriptionMain.clear();
+    priceMain.clear();
+  }
 
   bool validate() {
     if (locationMain == null ||
@@ -71,6 +80,15 @@ class _PostAdsState extends State<PostAds> {
           child: Column(
             children: [
               SizedBox(height: 100),
+              _titleField(titleController: titleMain),
+              SizedBox(
+                height: 50,
+              ),
+              _description(descriptionController: descriptionMain),
+              _priceField(priceController: priceMain),
+              SizedBox(
+                height: 50,
+              ),
               Container(
                   margin: EdgeInsets.symmetric(horizontal: 60),
                   child: TextFormField(
@@ -110,13 +128,12 @@ class _PostAdsState extends State<PostAds> {
                   onChanged: (value) {
                     setState(() {
                       valueOfCategory = value.toString();
+                      categoryMain.text = valueOfCategory!;
                     });
                   },
                 ),
               ),
-              _titleField(titleController: titleMain),
               SizedBox(height: 20),
-              _description(descriptionController: descriptionMain),
               Wrap(
                 children: multipleImages
                     .map((e) => Image.file(
@@ -150,6 +167,8 @@ class _PostAdsState extends State<PostAds> {
                 descriptionController: descriptionMain,
                 locationController: locationMain,
                 CategoryController: categoryMain,
+                priceController: priceMain,
+
                 //img: _image,
                 multiImages: multipleImages,
               ),
@@ -173,6 +192,7 @@ class _description extends StatelessWidget {
       height: 100,
       margin: EdgeInsets.symmetric(horizontal: 60),
       child: TextFormField(
+        controller: descriptionController,
         keyboardType: TextInputType.multiline,
         maxLines: null,
         decoration: InputDecoration(
@@ -180,7 +200,9 @@ class _description extends StatelessWidget {
             fillColor: Colors.white,
             filled: true,
             contentPadding: const EdgeInsets.fromLTRB(12, 2, 12, 10),
-            border: InputBorder.none),
+            focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.white, width: 2.0),
+            )),
       ),
     );
   }
@@ -196,7 +218,26 @@ class _titleField extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 60),
       child: TextFormField(
+        controller: titleController,
         decoration: InputDecoration(hintText: "Title"),
+      ),
+    );
+  }
+}
+
+class _priceField extends StatelessWidget {
+  TextEditingController priceController = TextEditingController();
+
+  _priceField({Key? key, required this.priceController}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 60),
+      child: TextFormField(
+        keyboardType: TextInputType.number,
+        controller: priceController,
+        decoration: InputDecoration(hintText: "Price"),
       ),
     );
   }
@@ -207,6 +248,7 @@ class _postButton extends StatelessWidget {
   TextEditingController descriptionController = TextEditingController();
   TextEditingController locationController = TextEditingController();
   TextEditingController CategoryController = TextEditingController();
+  TextEditingController priceController = TextEditingController();
   //String? val;
   //File? img;
   List<XFile> multiImages;
@@ -217,6 +259,7 @@ class _postButton extends StatelessWidget {
       required this.descriptionController,
       required this.locationController,
       required this.CategoryController,
+      required this.priceController,
       //required this.val,
       //required this.img,
       required this.multiImages})
@@ -241,13 +284,20 @@ class _postButton extends StatelessWidget {
 
         List<String> urls = await Provider.of<adsList>(context, listen: false)
             .multiImageUploader(multiImages) as List<String>;
+        print(titleController.text +
+            descriptionController.text +
+            CategoryController.text +
+            priceController.text +
+            locationController.text +
+            " " +
+            urls[0]);
         Provider.of<adsList>(context, listen: false).postAds(
             title_f: titleController.text,
             description_f: descriptionController.text,
             location_f: locationController.text,
             uploadDate_f: DateTime.now(),
-            price_f: "500",
-            category_f: "Mobile",
+            price_f: priceController.text,
+            category_f: CategoryController.text,
             downloadURLS_f: urls,
             emailAddressUser_f:
                 (await Provider.of<GoogleSingInProvider>(context, listen: false)
