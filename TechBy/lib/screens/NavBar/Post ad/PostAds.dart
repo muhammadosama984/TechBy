@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:techby/Models/ListOfProducts.dart';
 import 'package:techby/Models/product.dart';
+import 'package:techby/database/adsList.dart';
+
+import '../../../Sign _In/google_sign_in.dart';
 
 class PostAds extends StatefulWidget {
   const PostAds({Key? key}) : super(key: key);
@@ -142,12 +145,13 @@ class _PostAdsState extends State<PostAds> {
               ),
               SizedBox(height: 20),
               _postButton(
-                val: valueOfCategory,
+                //val: valueOfCategory,
                 titleController: titleMain,
                 descriptionController: descriptionMain,
                 locationController: locationMain,
                 CategoryController: categoryMain,
-                img: _image,
+                //img: _image,
+                multiImages: multipleImages,
               ),
             ],
           ),
@@ -203,8 +207,9 @@ class _postButton extends StatelessWidget {
   TextEditingController descriptionController = TextEditingController();
   TextEditingController locationController = TextEditingController();
   TextEditingController CategoryController = TextEditingController();
-  String? val;
-  File? img;
+  //String? val;
+  //File? img;
+  List<XFile> multiImages;
 
   _postButton(
       {Key? key,
@@ -212,26 +217,41 @@ class _postButton extends StatelessWidget {
       required this.descriptionController,
       required this.locationController,
       required this.CategoryController,
-      required this.val,
-      required this.img})
+      //required this.val,
+      //required this.img,
+      required this.multiImages})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
       color: Colors.blue,
-      onPressed: () {
-        if (val != null) {
-          CategoryController.text = val.toString();
-        }
-        String URL = img as String;
-        Provider.of<ListofProduct>(context, listen: false).addProduct(Product(
-            Image: img,
-            imgURL: URL,
-            title: titleController.text,
-            description: descriptionController.text,
-            location: locationController.text,
-            uploadDate: DateTime.now()));
+      onPressed: () async {
+        // if (val != null) {
+        //   CategoryController.text = val.toString();
+        // }
+        //String URL = img as String;
+        // Provider.of<ListofProduct>(context, listen: false).addProduct(Product(
+        //     Image: img,
+        //     imgURL: URL,
+        //     title: titleController.text,
+        //     description: descriptionController.text,
+        //     location: locationController.text,
+        //     uploadDate: DateTime.now()));
+
+        List<String> urls = await Provider.of<adsList>(context, listen: false)
+            .multiImageUploader(multiImages) as List<String>;
+        Provider.of<adsList>(context, listen: false).postAds(
+            title_f: titleController.text,
+            description_f: descriptionController.text,
+            location_f: locationController.text,
+            uploadDate_f: DateTime.now(),
+            price_f: "500",
+            category_f: "Mobile",
+            downloadURLS_f: urls,
+            emailAddressUser_f:
+                (await Provider.of<GoogleSingInProvider>(context, listen: false)
+                    .emailAddress()));
       },
       child: Text("  Post  ", style: TextStyle(fontSize: 20)),
       textColor: Colors.white,
