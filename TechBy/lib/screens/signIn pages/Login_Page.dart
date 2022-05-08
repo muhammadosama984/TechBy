@@ -158,7 +158,7 @@ class _topPartState extends State<_topPart> {
             color: Colors.black,
             highlightColor: Colors.white70,
             selectedColor: Colors.white,
-            fillColor: Colors.blue,
+            fillColor: Color.fromRGBO(30, 159, 217, 1),
             splashColor: Colors.lightBlueAccent,
 //        hoverColor: Colors.white70,
             renderBorder: false,
@@ -349,7 +349,8 @@ class _login_button extends StatelessWidget {
     return ButtonTheme(
       height: 50,
       minWidth: 400,
-      disabledColor: Colors.blueAccent,
+      buttonColor: Color.fromRGBO(30, 159, 217, 1),
+      disabledColor: Color.fromRGBO(30, 159, 217, 1),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
