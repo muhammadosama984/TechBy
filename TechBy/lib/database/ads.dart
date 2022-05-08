@@ -9,7 +9,7 @@ class ads {
   String location;
   DateTime uploadDate;
   String category;
-  List<String> downloadURLS;
+  List<dynamic> downloadURLS;
   String emailAddressUser;
 
   ads({

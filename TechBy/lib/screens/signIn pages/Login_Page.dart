@@ -58,7 +58,7 @@ class _Login_screenState extends State<Login_screen> {
                       //SizedBox(height: 35),
                       googleSignIn(),
                       SizedBox(height: 35),
-                      SocialMediaSignIn(),
+                      //SocialMediaSignIn(),
                     ],
                   ),
                 ),
@@ -79,10 +79,6 @@ class _topPart extends StatefulWidget {
 }
 
 class _topPartState extends State<_topPart> {
-  //addition
-  // List<String> labels = ['User', 'Admin'];
-  // int counter = 0;
-//  List<bool> _selections = List.generate(2, (_) => true);
   List<bool> _selections = [true, false];
 
   //addition
@@ -97,11 +93,10 @@ class _topPartState extends State<_topPart> {
         Container(
             // width: 80, child: Image(image: AssetImage('assets/TBicon.jpeg'))),
             width: 250,
-            margin: EdgeInsets.only(left: 0,right: 10),
+            margin: EdgeInsets.only(left: 0, right: 10),
             child: Image(image: AssetImage('assets/TBiconLong.png'))),
         SizedBox(
           height: 40,
-
         ),
         Center(
           child: Text(
@@ -403,87 +398,42 @@ class googleSignIn extends StatefulWidget {
 class _googleSignInState extends State<googleSignIn> {
   @override
   Widget build(BuildContext context) {
-    return InkWell(onTap: () {
-      Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => navBarNavigation()));
-    },
+    return InkWell(
+      onTap: () async {
+        await Provider.of<GoogleSingInProvider>(context, listen: false)
+            .googleLogin();
+        if (context.read<GoogleSingInProvider>().signInDone) {
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => navBarNavigation()));
+        }
+      },
       child: Container(
-          width: 300,
-          height: 60,
-          margin: EdgeInsets.only(top: 10),
-          decoration: BoxDecoration(
-              //color: Color.fromRGBO(30, 159, 217, 1),
-              border: Border.all(color: Colors.black, width: 1),
-              borderRadius: BorderRadius.circular(35)),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              CircleAvatar(
-                  backgroundColor: Colors.white,
-                  radius: 16,
-                  child: Image(image: AssetImage('assets/google.png'))),
-              SizedBox(width: 10),
-              Text(
-                "Continue with Google",
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'Microsoft YaHei',
-                ),
-              ),
-              // Icon(
-              //   Icons.east,
-              //   //color: Color.fromRGBO(30, 159, 217, 1),
-              //   color: Colors.white,
-              // ),
-            ],
-          )),);
-  }
-}
-
-
-class SocialMediaSignIn extends StatefulWidget {
-  const SocialMediaSignIn({Key? key}) : super(key: key);
-
-  @override
-  _SocialMediaSignInState createState() => _SocialMediaSignInState();
-}
-
-class _SocialMediaSignInState extends State<SocialMediaSignIn> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          GestureDetector(
-            onTap: () {},
-            child: CircleAvatar(
+        width: 300,
+        height: 60,
+        margin: EdgeInsets.only(top: 10),
+        decoration: BoxDecoration(
+            border: Border.all(color: Colors.black, width: 1),
+            borderRadius: BorderRadius.circular(35)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            CircleAvatar(
                 backgroundColor: Colors.white,
-                child: Image(image: AssetImage('assets/facebook.png'))),
-          ),
-          SizedBox(
-            width: 15,
-          ),
-          GestureDetector(
-            onTap: () async {
-              //context.read()<GoogleSingInProvider>().googleSignIn;
-              await Provider.of<GoogleSingInProvider>(context, listen: false)
-                  .googleLogin();
-              if (context.read<GoogleSingInProvider>().signInDone) {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => navBarNavigation()));
-              }
-            },
-            child: CircleAvatar(
-                backgroundColor: Colors.white,
+                radius: 16,
                 child: Image(image: AssetImage('assets/google.png'))),
-          ),
-        ],
+            SizedBox(width: 10),
+            Text(
+              "Continue with Google",
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Microsoft YaHei',
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
-

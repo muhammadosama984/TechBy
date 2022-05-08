@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:techby/screens/SearchResult.dart';
 import 'package:techby/widgets/Search.dart';
+
+import '../../../database/adsList.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -133,9 +136,11 @@ class _desktop extends StatelessWidget {
         children: [
           Card(
             child: GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ParticularProduct()));
+              onTap: () async{
+                await context.read<adsList>().getAds();
+
+                // Navigator.of(context).push(MaterialPageRoute(
+                //     builder: (context) => ParticularProduct()));
               },
               child: Container(
                 height: 100.0,
