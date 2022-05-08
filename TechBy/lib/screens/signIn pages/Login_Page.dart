@@ -48,12 +48,12 @@ class _Login_screenState extends State<Login_screen> {
                   padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
                   child: Column(
                     children: <Widget>[
-                      _username(),
-                      SizedBox(height: 50),
-                      _password(),
-                      SizedBox(height: 5),
-                      _signUp_pass(),
-                      SizedBox(height: 35),
+                      //_username(),
+                      //SizedBox(height: 50),
+                      //_password(),
+                      //SizedBox(height: 5),
+                      //_signUp_pass(),
+                      //SizedBox(height: 35),
                       _login_button(),
                       SizedBox(height: 35),
                       SocialMediaSignIn(),
@@ -143,204 +143,204 @@ class _topPartState extends State<_topPart> {
         SizedBox(
           height: 30,
         ),
-        Container(
-          height: 35,
-          decoration: BoxDecoration(
-            borderRadius: new BorderRadius.circular(16.0),
-            color: Colors.grey.shade100,
-          ),
-          child: ToggleButtons(
-            children: [
-              Text('    User    '),
-              Text("   Admin   "),
-            ],
-
-            color: Colors.black,
-            highlightColor: Colors.white70,
-            selectedColor: Colors.white,
-            fillColor: Color.fromRGBO(30, 159, 217, 1),
-            splashColor: Colors.lightBlueAccent,
-//        hoverColor: Colors.white70,
-            renderBorder: false,
-            borderColor: Colors.black,
-            borderRadius: BorderRadius.circular(16),
-            isSelected: _selections,
-            onPressed: (int index) {
-              setState(() {
-                for (int buttonIndex = 0;
-                    buttonIndex < _selections.length;
-                    buttonIndex++) {
-                  if (buttonIndex == index) {
-                    _selections[buttonIndex] = true;
-                  } else {
-                    _selections[buttonIndex] = false;
-                  }
-                }
-                //_selections[index] = !_selections[index];
-              });
-            }, //onPress
-          ),
-        ),
+//         Container(
+//           height: 35,
+//           decoration: BoxDecoration(
+//             borderRadius: new BorderRadius.circular(16.0),
+//             color: Colors.grey.shade100,
+//           ),
+//           child: ToggleButtons(
+//             children: [
+//               Text('    User    '),
+//               Text("   Admin   "),
+//             ],
+//
+//             color: Colors.black,
+//             highlightColor: Colors.white70,
+//             selectedColor: Colors.white,
+//             fillColor: Color.fromRGBO(30, 159, 217, 1),
+//             splashColor: Colors.lightBlueAccent,
+// //        hoverColor: Colors.white70,
+//             renderBorder: false,
+//             borderColor: Colors.black,
+//             borderRadius: BorderRadius.circular(16),
+//             isSelected: _selections,
+//             onPressed: (int index) {
+//               setState(() {
+//                 for (int buttonIndex = 0;
+//                     buttonIndex < _selections.length;
+//                     buttonIndex++) {
+//                   if (buttonIndex == index) {
+//                     _selections[buttonIndex] = true;
+//                   } else {
+//                     _selections[buttonIndex] = false;
+//                   }
+//                 }
+//                 //_selections[index] = !_selections[index];
+//               });
+//             }, //onPress
+//           ),
+//         ),
       ],
     );
   }
 }
-
-class _username extends StatelessWidget {
-  const _username({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-          border: null,
-          focusedBorder: InputBorder.none,
-          enabledBorder: InputBorder.none,
-          fillColor: Color.fromRGBO(243, 243, 243, 100),
-          filled: true,
-          labelText: 'Username',
-          hintText: 'Enter Your Username'),
-    );
-  }
-}
-
-class _password extends StatefulWidget {
-  const _password({Key? key}) : super(key: key);
-
-  @override
-  State<_password> createState() => _passwordState();
-}
-
-class _passwordState extends State<_password> {
-  bool ishide = true;
-
-  void _toggle() {
-    setState(() {
-      ishide = !ishide;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      obscureText: ishide,
-      decoration: InputDecoration(
-          suffixIcon: IconButton(
-              onPressed: () {
-                _toggle();
-              },
-              icon:
-                  ishide ? Icon(Icons.visibility) : Icon(Icons.visibility_off)),
-          border: null,
-          focusedBorder: InputBorder.none,
-          enabledBorder: InputBorder.none,
-          fillColor: Color.fromRGBO(243, 243, 243, 100),
-          filled: true,
-          labelText: 'Password',
-          hintText: 'Enter Your Password'),
-    );
-  }
-}
-
-class _signUp_pass extends StatefulWidget {
-  const _signUp_pass({Key? key}) : super(key: key);
-
-  @override
-  State<_signUp_pass> createState() => _signUp_passState();
-}
-
-class _signUp_passState extends State<_signUp_pass> {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          alignment: Alignment(1.0, 0.0),
-          padding: EdgeInsets.only(top: 15.0, left: 0.0),
-          child: InkWell(
-            child: Text(
-              "Sign Up",
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-                fontFamily: 'Montserrat',
-                // decoration: TextDecoration.underline,
-              ),
-            ),
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => Signup_screen()));
-            },
-          ),
-
-          // child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          //   Text("data"),
-          // InkWell(
-          //     child: Text(
-          //       "Sign Up?",
-          //       style: TextStyle(
-          //         color: Colors.black,
-          //         fontWeight: FontWeight.bold,
-          //         fontFamily: 'Montserrat',
-          //         // decoration: TextDecoration.underline,
-          //       ),
-          //     ),
-          //     onTap: () {
-          //       Navigator.of(context).push(
-          //           MaterialPageRoute(builder: (context) => Signup_screen()));
-          //     },
-          //   ),
-          //
-          // ]),
-        ),
-        SizedBox(
-          width: 100,
-        ),
-        Container(
-          alignment: Alignment(1.0, 0.0),
-          padding: EdgeInsets.only(top: 15.0, left: 40.0),
-          child: InkWell(
-            child: Text(
-              "Forgot Password?",
-              style: TextStyle(
-                color: Colors.grey,
-                fontWeight: FontWeight.normal,
-                fontFamily: 'Montserrat',
-              ),
-            ),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ForgetPassword_screen()));
-            },
-          ),
-        ),
-      ],
-    );
-
-    //ahmed
-    // return Container(
-    //   alignment: Alignment(1.0, 0.0),
-    //   padding: EdgeInsets.only(top: 15.0, left: 40.0),
-    //   child: InkWell(
-    //     child: Text(
-    //       "Forgot Password?",
-    //       style: TextStyle(
-    //         color: Colors.grey,
-    //         fontWeight: FontWeight.normal,
-    //         fontFamily: 'Montserrat',
-    //       ),
-    //     ),
-    //     onTap: () {
-    //       Navigator.of(context).push(
-    //           MaterialPageRoute(builder: (context) => ForgetPassword_screen()));
-    //     },
-    //   ),
-    // );
-    // //ahmed
-  }
-}
-
+//
+// class _username extends StatelessWidget {
+//   const _username({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return TextField(
+//       decoration: InputDecoration(
+//           border: null,
+//           focusedBorder: InputBorder.none,
+//           enabledBorder: InputBorder.none,
+//           fillColor: Color.fromRGBO(243, 243, 243, 100),
+//           filled: true,
+//           labelText: 'Username',
+//           hintText: 'Enter Your Username'),
+//     );
+//   }
+// }
+//
+// class _password extends StatefulWidget {
+//   const _password({Key? key}) : super(key: key);
+//
+//   @override
+//   State<_password> createState() => _passwordState();
+// }
+//
+// class _passwordState extends State<_password> {
+//   bool ishide = true;
+//
+//   void _toggle() {
+//     setState(() {
+//       ishide = !ishide;
+//     });
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return TextField(
+//       obscureText: ishide,
+//       decoration: InputDecoration(
+//           suffixIcon: IconButton(
+//               onPressed: () {
+//                 _toggle();
+//               },
+//               icon:
+//                   ishide ? Icon(Icons.visibility) : Icon(Icons.visibility_off)),
+//           border: null,
+//           focusedBorder: InputBorder.none,
+//           enabledBorder: InputBorder.none,
+//           fillColor: Color.fromRGBO(243, 243, 243, 100),
+//           filled: true,
+//           labelText: 'Password',
+//           hintText: 'Enter Your Password'),
+//     );
+//   }
+// }
+//
+// class _signUp_pass extends StatefulWidget {
+//   const _signUp_pass({Key? key}) : super(key: key);
+//
+//   @override
+//   State<_signUp_pass> createState() => _signUp_passState();
+// }
+//
+// class _signUp_passState extends State<_signUp_pass> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       children: [
+//         Container(
+//           alignment: Alignment(1.0, 0.0),
+//           padding: EdgeInsets.only(top: 15.0, left: 0.0),
+//           child: InkWell(
+//             child: Text(
+//               "Sign Up",
+//               style: TextStyle(
+//                 color: Colors.black,
+//                 fontWeight: FontWeight.w500,
+//                 fontFamily: 'Montserrat',
+//                 // decoration: TextDecoration.underline,
+//               ),
+//             ),
+//             onTap: () {
+//               Navigator.of(context).push(
+//                   MaterialPageRoute(builder: (context) => Signup_screen()));
+//             },
+//           ),
+//
+//           // child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+//           //   Text("data"),
+//           // InkWell(
+//           //     child: Text(
+//           //       "Sign Up?",
+//           //       style: TextStyle(
+//           //         color: Colors.black,
+//           //         fontWeight: FontWeight.bold,
+//           //         fontFamily: 'Montserrat',
+//           //         // decoration: TextDecoration.underline,
+//           //       ),
+//           //     ),
+//           //     onTap: () {
+//           //       Navigator.of(context).push(
+//           //           MaterialPageRoute(builder: (context) => Signup_screen()));
+//           //     },
+//           //   ),
+//           //
+//           // ]),
+//         ),
+//         SizedBox(
+//           width: 100,
+//         ),
+//         Container(
+//           alignment: Alignment(1.0, 0.0),
+//           padding: EdgeInsets.only(top: 15.0, left: 40.0),
+//           child: InkWell(
+//             child: Text(
+//               "Forgot Password?",
+//               style: TextStyle(
+//                 color: Colors.grey,
+//                 fontWeight: FontWeight.normal,
+//                 fontFamily: 'Montserrat',
+//               ),
+//             ),
+//             onTap: () {
+//               Navigator.of(context).push(MaterialPageRoute(
+//                   builder: (context) => ForgetPassword_screen()));
+//             },
+//           ),
+//         ),
+//       ],
+//     );
+//
+//     //ahmed
+//     // return Container(
+//     //   alignment: Alignment(1.0, 0.0),
+//     //   padding: EdgeInsets.only(top: 15.0, left: 40.0),
+//     //   child: InkWell(
+//     //     child: Text(
+//     //       "Forgot Password?",
+//     //       style: TextStyle(
+//     //         color: Colors.grey,
+//     //         fontWeight: FontWeight.normal,
+//     //         fontFamily: 'Montserrat',
+//     //       ),
+//     //     ),
+//     //     onTap: () {
+//     //       Navigator.of(context).push(
+//     //           MaterialPageRoute(builder: (context) => ForgetPassword_screen()));
+//     //     },
+//     //   ),
+//     // );
+//     // //ahmed
+//   }
+// }
+//
 class _login_button extends StatelessWidget {
   const _login_button({Key? key}) : super(key: key);
 

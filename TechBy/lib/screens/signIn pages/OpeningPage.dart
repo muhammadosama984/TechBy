@@ -81,8 +81,8 @@ class _getStart_btnState extends State<getStart_btn> {
     },
       child: Container(
           width: 250,
-          height: 50,
-          margin: EdgeInsets.only(top: 20),
+          height: 60,
+          margin: EdgeInsets.only(top: 10),
           decoration: BoxDecoration(
               color: Color.fromRGBO(30, 159, 217, 1),
               // border: Border.all(color: Colors.black, width: 2),
