@@ -41,9 +41,9 @@ class _Login_screenState extends State<Login_screen> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(height: 80),
+                SizedBox(height: 180),
                 _topPart(),
-                SizedBox(height: 30),
+                SizedBox(height: 0),
                 Container(
                   padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
                   child: Column(
@@ -54,7 +54,9 @@ class _Login_screenState extends State<Login_screen> {
                       //SizedBox(height: 5),
                       //_signUp_pass(),
                       //SizedBox(height: 35),
-                      _login_button(),
+                      //_login_button(),
+                      //SizedBox(height: 35),
+                      googleSignIn(),
                       SizedBox(height: 35),
                       SocialMediaSignIn(),
                     ],
@@ -95,54 +97,52 @@ class _topPartState extends State<_topPart> {
         Container(
             // width: 80, child: Image(image: AssetImage('assets/TBicon.jpeg'))),
             width: 250,
+            margin: EdgeInsets.only(left: 0,right: 10),
             child: Image(image: AssetImage('assets/TBiconLong.png'))),
         SizedBox(
-          height: 30,
+          height: 40,
 
         ),
         Center(
           child: Text(
             "Sign In to TechBy",
             style: GoogleFonts.roboto(
-              fontSize: 24,
+              fontSize: 25,
               fontWeight: FontWeight.w500,
             ),
           ),
         ),
-        SizedBox(
-          height: 30,
-        ),
-        Container(
-          height: 30,
-          // alignment: Alignment(1.0, 0.0),
-          decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-
-          child: DropdownButton(
-            // Initial Value
-            value: value1,
-
-            // Down Arrow Icon
-            icon: const Icon(Icons.keyboard_arrow_down),
-
-            // Array list of items
-            items: items.map((String items) {
-              return DropdownMenuItem(
-                value: items,
-                child: Text(items),
-              );
-            }).toList(),
-            // After selecting the desired option,it will
-            // change button value to selected value
-            onChanged: (value) {
-              setState(() {
-                value1 = value.toString();
-              });
-            },
-          ),
-        ),
-        SizedBox(
-          height: 30,
-        ),
+        // Container(
+        //   height: 30,
+        //   // alignment: Alignment(1.0, 0.0),
+        //   decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+        //
+        //   child: DropdownButton(
+        //     // Initial Value
+        //     value: value1,
+        //
+        //     // Down Arrow Icon
+        //     icon: const Icon(Icons.keyboard_arrow_down),
+        //
+        //     // Array list of items
+        //     items: items.map((String items) {
+        //       return DropdownMenuItem(
+        //         value: items,
+        //         child: Text(items),
+        //       );
+        //     }).toList(),
+        //     // After selecting the desired option,it will
+        //     // change button value to selected value
+        //     onChanged: (value) {
+        //       setState(() {
+        //         value1 = value.toString();
+        //       });
+        //     },
+        //   ),
+        // ),
+        // SizedBox(
+        //   height: 30,
+        // ),
 //         Container(
 //           height: 35,
 //           decoration: BoxDecoration(
@@ -341,57 +341,107 @@ class _topPartState extends State<_topPart> {
 //   }
 // }
 //
-class _login_button extends StatelessWidget {
-  const _login_button({Key? key}) : super(key: key);
+// class _login_button extends StatelessWidget {
+//   const _login_button({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return ButtonTheme(
+//       height: 50,
+//       minWidth: 400,
+//       buttonColor: Color.fromRGBO(30, 159, 217, 1),
+//       disabledColor: Color.fromRGBO(30, 159, 217, 1),
+//       shape: RoundedRectangleBorder(
+//         borderRadius: BorderRadius.circular(16),
+//       ),
+//       child: RaisedButton(
+//         disabledElevation: 8.0,
+//         onPressed: () {
+//           if (value1 == null) {
+//             showDialog(
+//               context: context,
+//               builder: (ctx) => AlertDialog(
+//                 title: Text("Error", style: TextStyle(color: Colors.red)),
+//                 content:
+//                     Text("Please select login type from the drop down option"),
+//                 actions: <Widget>[
+//                   FlatButton(
+//                     onPressed: () {
+//                       Navigator.of(ctx).pop();
+//                     },
+//                     child: Text("Ok"),
+//                   ),
+//                 ],
+//               ),
+//             );
+//           } else if (value1 == "User") {
+//             Navigator.of(context).push(
+//                 MaterialPageRoute(builder: (context) => navBarNavigation()));
+//             value1 = null;
+//           } else {
+//             Navigator.of(context)
+//                 .push(MaterialPageRoute(builder: (context) => Admin_screen()));
+//             value1 = null;
+//           }
+//         },
+//         child: Text(
+//           "Log In",
+//           style: TextStyle(fontSize: 20, color: Colors.white),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+class googleSignIn extends StatefulWidget {
+  const googleSignIn({Key? key}) : super(key: key);
 
   @override
+  State<googleSignIn> createState() => _googleSignInState();
+}
+
+class _googleSignInState extends State<googleSignIn> {
+  @override
   Widget build(BuildContext context) {
-    return ButtonTheme(
-      height: 50,
-      minWidth: 400,
-      buttonColor: Color.fromRGBO(30, 159, 217, 1),
-      disabledColor: Color.fromRGBO(30, 159, 217, 1),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: RaisedButton(
-        disabledElevation: 8.0,
-        onPressed: () {
-          if (value1 == null) {
-            showDialog(
-              context: context,
-              builder: (ctx) => AlertDialog(
-                title: Text("Error", style: TextStyle(color: Colors.red)),
-                content:
-                    Text("Please select login type from the drop down option"),
-                actions: <Widget>[
-                  FlatButton(
-                    onPressed: () {
-                      Navigator.of(ctx).pop();
-                    },
-                    child: Text("Ok"),
-                  ),
-                ],
+    return InkWell(onTap: () {
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => navBarNavigation()));
+    },
+      child: Container(
+          width: 300,
+          height: 60,
+          margin: EdgeInsets.only(top: 10),
+          decoration: BoxDecoration(
+              //color: Color.fromRGBO(30, 159, 217, 1),
+              border: Border.all(color: Colors.black, width: 1),
+              borderRadius: BorderRadius.circular(35)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 16,
+                  child: Image(image: AssetImage('assets/google.png'))),
+              SizedBox(width: 10),
+              Text(
+                "Continue with Google",
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'Microsoft YaHei',
+                ),
               ),
-            );
-          } else if (value1 == "User") {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => navBarNavigation()));
-            value1 = null;
-          } else {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => Admin_screen()));
-            value1 = null;
-          }
-        },
-        child: Text(
-          "Log In",
-          style: TextStyle(fontSize: 20, color: Colors.white),
-        ),
-      ),
-    );
+              // Icon(
+              //   Icons.east,
+              //   //color: Color.fromRGBO(30, 159, 217, 1),
+              //   color: Colors.white,
+              // ),
+            ],
+          )),);
   }
 }
+
 
 class SocialMediaSignIn extends StatefulWidget {
   const SocialMediaSignIn({Key? key}) : super(key: key);
@@ -437,19 +487,3 @@ class _SocialMediaSignInState extends State<SocialMediaSignIn> {
   }
 }
 
-//
-// class signUpLink extends StatefulWidget {
-//   const signUpLink({Key? key}) : super(key: key);
-//
-//   @override
-//   State<signUpLink> createState() => _signUpLinkState();
-// }
-//
-// class _signUpLinkState extends State<signUpLink> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       child: Text("Hello"),
-//     );
-//   }
-// }
