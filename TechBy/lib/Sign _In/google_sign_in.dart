@@ -40,6 +40,7 @@ class GoogleSingInProvider extends ChangeNotifier {
   Future userEntryToDatabase() async{
     UserCredential userCredential=await auth.signInWithCredential(credential!);
     DocumentSnapshot userExist = await FirebaseFirestore.instance.collection('Users').doc(userCredential.user!.uid).get();
+    List<DocumentReference> roomsArr = [];
     if(userExist.exists){
       print("User already exists");
     }
@@ -51,6 +52,7 @@ class GoogleSingInProvider extends ChangeNotifier {
             'image':userCredential.user!.photoURL,
             'uid':userCredential.user!.uid,
             'date':DateTime.now(),
+            'rooms':roomsArr,
           });
     }
   }
