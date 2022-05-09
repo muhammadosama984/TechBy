@@ -1,21 +1,62 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+
+import '../../../Sign _In/google_sign_in.dart';
 
 class Chat_screen extends StatefulWidget {
-  const Chat_screen({Key? key}) : super(key: key);
-
+  String docid;
+   Chat_screen({ required this.docid});
+  
+  // Chat_screen(){required this.docid};
   @override
   State<Chat_screen> createState() => _Chat_screenState();
 }
 
+
 class _Chat_screenState extends State<Chat_screen> {
+  // String get docid => null;
+  // String final_docid = "";
+  // void assign(String id1, id2) {
+  //   id1 = id2;
+  // }
+  void initState() {
+    super.initState();
+    // print(widget.docid);
+    getChat();
+
+  }
+
+  void  getChat() async {
+    data.clear();
+    String email = await Provider.of<GoogleSingInProvider>(context, listen: false).emailAddress();
+    await FirebaseFirestore.instance.collection('Userrooms').doc(widget.docid).get()
+        .then((DocumentSnapshot documentSnapshot) {
+      var useroomMap = documentSnapshot.data() as Map;
+      List<dynamic> room = useroomMap["room"];
+      room.forEach((messagedoc) async {
+        await FirebaseFirestore.instance.collection('Rooms').doc(messagedoc).get()
+            .then((DocumentSnapshot documentSnapshot) {
+          var message = documentSnapshot.data() as Map;
+          print(message);
+          if(email == message["sender"])
+            data.add(ChatMessage(message: message["message"], messagetype: "sender"));
+          else
+            data.add(ChatMessage(message: message["message"], messagetype: "reciever"));
+          setState(() {
+
+          });
+        });
+  });});}
+
   List<ChatMessage> data = [
-    ChatMessage(message: "Hi", messagetype: "sender"),
-    ChatMessage(message: "Hello", messagetype: "reciever"),
-    ChatMessage(message: "Rates?", messagetype: "sender"),
-    ChatMessage(message: "Please Wait", messagetype: "reciever"),
+    // ChatMessage(message: "Hi", messagetype: "sender"),
+    // ChatMessage(message: "Hello", messagetype: "reciever"),
+    // ChatMessage(message: "Rates?", messagetype: "sender"),
+    // ChatMessage(message: "Please Wait", messagetype: "reciever"),
   ];
 
   TextEditingController _message = new TextEditingController();

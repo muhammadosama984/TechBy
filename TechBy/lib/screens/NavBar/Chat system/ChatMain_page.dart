@@ -60,7 +60,7 @@ class _ChatMain_screenState extends State<ChatMain_screen> {
            setState(() {
 
            });
-           print(data);
+           //print(data);
              });
        });
         // ads temp = ads.fromJson(doc.data() as Map<String, dynamic>);
@@ -104,7 +104,7 @@ class _ChatMain_screenState extends State<ChatMain_screen> {
                     child: GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => Chat_screen()));
+                        MaterialPageRoute(builder: (context) => Chat_screen(docid: data[index].doc_id,)));
                   },
                   child: Container(
                     height: 120,

@@ -133,8 +133,8 @@ class _ProductDetailState extends State<ProductDetail> {
                   Center(
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => Chat_screen()));
+                        // Navigator.of(context).push(MaterialPageRoute(
+                        //     builder: (context) => Chat_screen()));
                       },
                       child: Container(
                         width: 110,
