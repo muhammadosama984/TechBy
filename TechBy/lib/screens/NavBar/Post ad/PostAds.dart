@@ -17,7 +17,14 @@ class PostAds extends StatefulWidget {
 
 class _PostAdsState extends State<PostAds> {
   List<String> items1 = ['Category'];
-  List<String> items = [ 'Mobile', 'Laptop', 'Speakers', 'Keyboard'];
+  List<String> items = [
+    'Desktop',
+    'Mobile',
+    'Laptop',
+    'Speaker',
+    'Monitor',
+    'Camera',
+  ];
   String? valueOfCategory;
   File? _image;
   TextEditingController locationMain = TextEditingController();
@@ -118,9 +125,7 @@ class _PostAdsState extends State<PostAds> {
 
                   // Array list of items
                   items: items.map((String items) {
-
                     return DropdownMenuItem(
-
                       value: items,
                       child: Text(items),
                     );
@@ -299,7 +304,7 @@ class _postButton extends StatelessWidget {
             location_f: locationController.text,
             uploadDate_f: DateTime.now(),
             price_f: priceController.text,
-            category_f: CategoryController.text.toString() ,
+            category_f: CategoryController.text.toString(),
             downloadURLS_f: urls,
             emailAddressUser_f:
                 (await Provider.of<GoogleSingInProvider>(context, listen: false)

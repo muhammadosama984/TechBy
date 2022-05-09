@@ -29,6 +29,16 @@ class adsList extends ChangeNotifier {
     });
   }
 
+  List<ads> categoryAds(List<ads> Ads, String category) {
+    List<ads> categoryList = [];
+    for (int i = 0; i < Ads.length; i++) {
+      if (Ads[i].category == category) {
+        categoryList.add(Ads[i]);
+      }
+    }
+    return categoryList;
+  }
+
   Future<void> postAds({
     required String title_f,
     required String description_f,

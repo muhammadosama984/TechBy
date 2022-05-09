@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:techby/database/adsList.dart';
 import 'package:techby/widgets/Listview.dart';
 import 'package:techby/widgets/Search.dart';
 import 'package:techby/screens/Filter.dart';
+import 'package:provider/provider.dart';
+
+import '../database/ads.dart';
 
 class ParticularProduct extends StatefulWidget {
-  const ParticularProduct({Key? key}) : super(key: key);
+  final List<ads> categoryList;
+  const ParticularProduct({Key? key, required this.categoryList})
+      : super(key: key);
 
   @override
   State<ParticularProduct> createState() => _ParticularProductState();
@@ -26,7 +32,6 @@ class _ParticularProductState extends State<ParticularProduct> {
       ),
       body: Column(
         children: [
-
           SizedBox(
             height: 10,
           ),
@@ -88,8 +93,10 @@ class _ParticularProductState extends State<ParticularProduct> {
               ),
             ]),
           ),
-          SizedBox(height: 20,),
-          Expanded(child: List())
+          SizedBox(
+            height: 20,
+          ),
+          Expanded(child: Lists(comingList: widget.categoryList))
         ],
       ),
     );

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:techby/database/ads.dart';
 
 import 'NavBar/Chat system/Chat_Page.dart';
 
-
 class ProductDetail extends StatefulWidget {
-  const ProductDetail({Key? key}) : super(key: key);
+  final ads Ads;
+  const ProductDetail({Key? key, required this.Ads}) : super(key: key);
 
   @override
   State<ProductDetail> createState() => _ProductDetailState();
@@ -31,27 +32,27 @@ class _ProductDetailState extends State<ProductDetail> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Container(
-                    child: Image(image: NetworkImage('assets/macbook.jpeg')),
+                    child: Image.network(widget.Ads.downloadURLS[0]),
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 10),
                     child: Column(
                       children: [
                         Text(
-                          "Product Title",
+                          widget.Ads.title,
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
                         ),
                         SizedBox(
                           height: 6,
                         ),
-                        Text("PKR Price",
+                        Text("PKR Price: " + widget.Ads.price,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 15)),
                         SizedBox(
                           height: 6,
                         ),
-                        Text("karachi"),
+                        Text("Location: " + widget.Ads.location),
                       ],
                     ),
                   ),
@@ -68,7 +69,7 @@ class _ProductDetailState extends State<ProductDetail> {
                             size: 35,
                             color: Colors.blue,
                           ),
-                          Text("2022"),
+                          Text(widget.Ads.uploadDate.year.toString()),
                         ],
                       ),
                       // SizedBox(
@@ -94,7 +95,10 @@ class _ProductDetailState extends State<ProductDetail> {
                             size: 35,
                             color: Colors.blue,
                           ),
-                          Text("2 years"),
+                          Text(widget.Ads.uploadDate.year + 1 ==
+                                  DateTime.now().year
+                              ? ("0 year")
+                              : ("1 year"))
                         ],
                       )
                     ],
@@ -108,8 +112,7 @@ class _ProductDetailState extends State<ProductDetail> {
                       readOnly: true,
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
-                      initialValue:
-                          "Lorem Ipsum is simply dummy text of the printing and \ntypesetting industry. Lorem Ipsum has been the industry's standard dummy text ever \nsince the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but dont know ",
+                      initialValue: widget.Ads.description,
                       decoration: InputDecoration(
                           fillColor: Colors.grey[300],
                           filled: true,

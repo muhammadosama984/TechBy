@@ -4,23 +4,30 @@ import 'package:provider/provider.dart';
 import 'package:techby/database/adsList.dart';
 import 'package:techby/screens/ProductDetail.dart';
 
-class List extends StatefulWidget {
-  const List({Key? key}) : super(key: key);
+import '../database/ads.dart';
+
+class Lists extends StatefulWidget {
+  final List<ads> comingList;
+  const Lists({Key? key, required this.comingList}) : super(key: key);
 
   @override
-  State<List> createState() => _ListState();
+  State<Lists> createState() => _ListState();
 }
 
-class _ListState extends State<List> {
+class _ListState extends State<Lists> {
+  bool isLoading = true;
   @override
   void initState() {
+    super.initState();
     // TODO: implement initState
     getTasks();
-    super.initState();
   }
-  getTasks() async {
 
+  getTasks() async {
+    isLoading = true;
+    setState(() {});
     await context.read<adsList>().getAds();
+    isLoading = false;
     setState(() {});
   }
 
@@ -28,27 +35,33 @@ class _ListState extends State<List> {
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
-          itemCount: context.watch<adsList>().ListOfAds.length,
+          itemCount: widget.comingList.length,
           itemBuilder: ((context, index) {
             return Card(
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => ProductDetail()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ProductDetail(
+                            Ads: context.watch<adsList>().ListOfAds[index],
+                          )));
                 },
                 child: Container(
                   height: 130,
                   child: ListTile(
-                      leading: Image(image: AssetImage('assets/TBicon.jpeg')),
+                      leading: Image.network(
+                        widget.comingList[index].downloadURLS[0],
+                        fit: BoxFit.fill,
+                      ),
                       title: Text(
-                        context.watch<adsList>().ListOfAds[index].title,
+                        widget.comingList[index].title,
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text(
-                        context.watch<adsList>().ListOfAds[index].price +
-                            "\n" +
-                            context.watch<adsList>().ListOfAds[index].location,
+                        "Price: " +
+                            widget.comingList[index].price +
+                            "\nLocation: " +
+                            widget.comingList[index].location,
                       ),
                       trailing: Heart()),
                 ),

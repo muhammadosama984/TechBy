@@ -14,6 +14,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool isLoading = true;
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+    getTasks();
+  }
+
+  getTasks() async {
+    isLoading = true;
+    setState(() {});
+    await context.read<adsList>().getAds();
+    isLoading = false;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +92,7 @@ class browseProduct extends StatelessWidget {
           style: TextStyle(
             fontSize: 24,
             fontFamily: 'Montserrat',
-            fontWeight: FontWeight. bold,
+            fontWeight: FontWeight.bold,
             color: Colors.blue.shade900,
           ),
         ),
@@ -136,11 +152,14 @@ class _desktop extends StatelessWidget {
         children: [
           Card(
             child: GestureDetector(
-              onTap: () async{
+              onTap: () async {
                 await context.read<adsList>().getAds();
 
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ParticularProduct()));
+                    builder: (context) => ParticularProduct(
+                          categoryList: context.read<adsList>().categoryAds(
+                              context.read<adsList>().ListOfAds, "Desktop"),
+                        )));
               },
               child: Container(
                 height: 100.0,
@@ -157,7 +176,7 @@ class _desktop extends StatelessWidget {
             ),
           ),
           Text(
-            "Desktop",
+            "Desktops",
             style: TextStyle(
               //color: Colors.blue,
               //fontWeight: FontWeight.bold,
@@ -185,7 +204,10 @@ class _mobile extends StatelessWidget {
             child: GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ParticularProduct()));
+                    builder: (context) => ParticularProduct(
+                          categoryList: context.read<adsList>().categoryAds(
+                              context.read<adsList>().ListOfAds, "Mobile"),
+                        )));
               },
               child: Container(
                 height: 100.0,
@@ -230,7 +252,10 @@ class _laptop extends StatelessWidget {
             child: GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ParticularProduct()));
+                    builder: (context) => ParticularProduct(
+                          categoryList: context.read<adsList>().categoryAds(
+                              context.read<adsList>().ListOfAds, "Laptop"),
+                        )));
               },
               child: Container(
                 height: 100.0,
@@ -274,7 +299,10 @@ class _camera extends StatelessWidget {
             child: GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ParticularProduct()));
+                    builder: (context) => ParticularProduct(
+                          categoryList: context.read<adsList>().categoryAds(
+                              context.read<adsList>().ListOfAds, "Camera"),
+                        )));
               },
               child: Container(
                 height: 100.0,
@@ -318,7 +346,10 @@ class _monitor extends StatelessWidget {
             child: GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ParticularProduct()));
+                    builder: (context) => ParticularProduct(
+                          categoryList: context.read<adsList>().categoryAds(
+                              context.read<adsList>().ListOfAds, "Monitor"),
+                        )));
               },
               child: Container(
                 height: 100.0,
@@ -362,7 +393,10 @@ class _speaker extends StatelessWidget {
             child: GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ParticularProduct()));
+                    builder: (context) => ParticularProduct(
+                          categoryList: context.read<adsList>().categoryAds(
+                              context.read<adsList>().ListOfAds, "Speaker"),
+                        )));
               },
               child: Container(
                 height: 100.0,
