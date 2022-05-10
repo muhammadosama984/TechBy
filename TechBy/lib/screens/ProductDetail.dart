@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:techby/database/ads.dart';
 
@@ -32,7 +33,7 @@ class _ProductDetailState extends State<ProductDetail> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Container(
-                    child: Image.network(widget.Ads.downloadURLS[0]),
+                    child: Slider(URLS: widget.Ads.downloadURLS),
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 10),
@@ -170,4 +171,46 @@ class _ProductDetailState extends State<ProductDetail> {
       ),
     );
   }
+}
+
+class Slider extends StatefulWidget {
+  List URLS = [];
+  Slider({Key? key, required this.URLS}) : super(key: key);
+
+  @override
+  State<Slider> createState() => _SliderState();
+}
+
+class _SliderState extends State<Slider> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: CarouselSlider.builder(
+        options: CarouselOptions(
+          height: 400,
+          // viewportFraction: 1,
+          reverse: true,
+          pageSnapping: false,
+          enlargeStrategy: CenterPageEnlargeStrategy.height,
+          autoPlay: true,
+        ),
+        itemCount: widget.URLS.length,
+        itemBuilder: (context, index, realIndex) {
+          final urlImage = widget.URLS[index];
+          return buildImage(urlImage, index);
+        },
+      ),
+    );
+  }
+}
+
+Widget buildImage(String urlImage, int index) {
+  return Container(
+    margin: EdgeInsets.symmetric(horizontal: 12),
+    color: Colors.grey,
+    child: Image.network(
+      urlImage,
+      fit: BoxFit.cover,
+    ),
+  );
 }
