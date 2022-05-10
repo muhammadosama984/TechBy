@@ -1,10 +1,11 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 import '../../../Sign _In/google_sign_in.dart';
 
 class Chat_screen extends StatefulWidget {
@@ -18,17 +19,75 @@ class Chat_screen extends StatefulWidget {
 
 
 class _Chat_screenState extends State<Chat_screen> {
-  // String get docid => null;
-  // String final_docid = "";
-  // void assign(String id1, id2) {
-  //   id1 = id2;
-  // }
+
+  Timer? timer;
+
   void initState() {
     super.initState();
     // print(widget.docid);
     getChat();
 
+    timer = Timer.periodic(Duration(seconds: 5), (Timer t) => getChatRuntime());
+
   }
+
+
+  @override
+  void deactivate() {
+    timer?.cancel();
+    super.deactivate();
+  }
+
+  // Future<void> socketSetup() async {
+  //   email = await Provider.of<GoogleSingInProvider>(
+  //       context, listen: false).emailAddress();
+  //
+  //   final Map<String, dynamic> chatData = {};
+  //   chatData['doc'] = widget.docid;
+  //   chatData['sender'] = email;
+  //
+  //   IO.Socket socket = IO.io('http://localhost:5000');
+  //   socket.onConnect((_) {
+  //     print('connect');
+  //     socket.emit('start_chat', chatData);
+  //   });
+  //
+  //
+  //   );
+  // }
+
+  void  getChatRuntime() async {
+    String email = await Provider.of<GoogleSingInProvider>(context, listen: false).emailAddress();
+    await FirebaseFirestore.instance.collection('Userrooms').doc(widget.docid).get()
+        .then((DocumentSnapshot documentSnapshot) {
+      var useroomMap = documentSnapshot.data() as Map;
+      List<dynamic> room = useroomMap["room"];
+      bool flag = false;
+      String lastId = data.last.docid;
+      room.forEach((messagedoc) async {
+        await FirebaseFirestore.instance.collection('Rooms').doc(messagedoc).get()
+            .then((DocumentSnapshot documentSnapshot) {
+
+          if(flag) {
+            var message = documentSnapshot.data() as Map;
+            print(message);
+            if (email == message["sender"])
+              data.add(ChatMessage(message: message["message"],
+                  messagetype: "sender",
+                  sender: message["sender"],
+                  docid: documentSnapshot.id));
+            else
+              data.add(ChatMessage(message: message["message"],
+                  messagetype: "reciever",
+                  sender: message["sender"],
+                  docid: documentSnapshot.id));
+            setState(() {});
+          }
+          if(lastId == documentSnapshot.id) flag = true;
+
+          });
+        });
+      });}
 
   void  getChat() async {
     data.clear();
@@ -43,14 +102,23 @@ class _Chat_screenState extends State<Chat_screen> {
           var message = documentSnapshot.data() as Map;
           print(message);
           if(email == message["sender"])
-            data.add(ChatMessage(message: message["message"], messagetype: "sender"));
+            data.add(ChatMessage(message: message["message"], messagetype: "sender", sender: message["sender"], docid: documentSnapshot.id));
           else
-            data.add(ChatMessage(message: message["message"], messagetype: "reciever"));
+            data.add(ChatMessage(message: message["message"], messagetype: "reciever", sender: message["sender"], docid: documentSnapshot.id));
           setState(() {
 
           });
         });
   });});}
+  //
+  // IO.Socket socket = IO.io('http://localhost:5000');
+  //
+  // socket.on("get_msg", (msg) {
+  //   data.add(ChatMessage.fromJson(msg));
+  //   setState(() {});
+  // });
+
+  String email = "";
 
   List<ChatMessage> data = [
     // ChatMessage(message: "Hi", messagetype: "sender"),
@@ -168,9 +236,21 @@ class _Chat_screenState extends State<Chat_screen> {
       });
     }
   }
-  addMessage(String input) {
+  addMessage(String input) async {
+    String email = await Provider.of<GoogleSingInProvider>(context, listen: false).emailAddress();
     _message.text = "";
-    data.add(ChatMessage(message: input, messagetype: "sender"));
+    ChatMessage obj = ChatMessage(message: input, messagetype: "sender", sender: email, docid: '');
+    data.add(obj);
+    await FirebaseFirestore.instance.collection('Rooms').add(obj.toJson())
+        .then((value) async {
+          obj.docid = value.id;
+    await FirebaseFirestore.instance.collection("Userrooms").doc(widget.docid).update({
+    "room": FieldValue.arrayUnion([value.id]),
+    });
+    });
+
+
+
     setState(() {});
   }
 
@@ -186,6 +266,30 @@ class _Chat_screenState extends State<Chat_screen> {
 class ChatMessage {
   final String message;
   final String messagetype;
+  final String sender;
+  String docid;
+  DateTime dt = DateTime.now();
 
-  ChatMessage({required this.message, required this.messagetype});
-}
+  ChatMessage({ required this.message, required this.messagetype, required this.sender, required this.docid});
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = {};
+    data['message'] = this.message;
+    data['sender'] = this.sender;
+    data['datetime'] = this.dt;
+    return data;
+  }
+
+  Map<String, dynamic> toIOJson() {
+    final Map<String, dynamic> data = {};
+    data['message'] = this.message;
+    data['sender'] = this.sender;
+    data['messagetype'] = "reciever";
+    return data;
+  }}
+
+//   static ChatMessage fromJson(Map<String, dynamic> json) => ChatMessage(
+//       message: json['message'],
+//       sender: json['sender'],
+//       messagetype: json['messagetype']);
+// }

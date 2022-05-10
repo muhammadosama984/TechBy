@@ -1,7 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:techby/database/ads.dart';
 
+import '../Sign _In/google_sign_in.dart';
 import 'NavBar/Chat system/Chat_Page.dart';
 
 class ProductDetail extends StatefulWidget {
@@ -13,6 +17,86 @@ class ProductDetail extends StatefulWidget {
 }
 
 class _ProductDetailState extends State<ProductDetail> {
+
+  void userEntryToDatabase() async{
+    String email = await Provider.of<GoogleSingInProvider>(context, listen: false).emailAddress();
+    bool userexists = false;
+    String docid = "";
+
+    await FirebaseFirestore.instance.collection('Userrooms').where('buyerid', isEqualTo: email).where('sellerid', isEqualTo: widget.Ads.emailAddressUser).get().
+    then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc)
+      {
+        userexists = true;
+        docid = doc.id;
+      });
+    });
+    print("abc");
+    if(!userexists) {
+      await FirebaseFirestore.instance.collection(
+          'Userrooms').where('sellerid', isEqualTo: email)
+          .where('buyerid',
+          isEqualTo: widget.Ads.emailAddressUser).get()
+          .
+      then((QuerySnapshot querySnapshot) {
+        querySnapshot.docs.forEach((doc) {
+          userexists = true;
+          docid = doc.id;
+        });
+      });
+    }
+
+    List<DocumentReference> roomsArr = [];
+    if(userexists){
+      print("Chat already exists");
+    }
+    else{
+      final Map<String, dynamic> data = {};
+      data['buyer_id'] = email;
+      data['seller_id'] = widget.Ads.emailAddressUser;
+      data['room'] = [];
+      data['Image'] = widget.Ads.downloadURLS[0];
+      data['Product'] = widget.Ads.title;
+
+      await FirebaseFirestore.instance.collection('Userrooms').add(data)
+          .then((value) async {
+        docid = value.id;
+
+        String buyerdoc = "";
+        String sellerdoc = "";
+
+        await FirebaseFirestore.instance.collection('Userd').where('email', isEqualTo: email)
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            buyerdoc = doc.id;
+          });
+        });
+
+        await FirebaseFirestore.instance.collection('Userd').where('email', isEqualTo: widget.Ads.emailAddressUser)
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            sellerdoc = doc.id;
+          });
+        });
+
+
+        await FirebaseFirestore.instance.collection("Users").doc(buyerdoc).update({
+          "rooms": FieldValue.arrayUnion([docid]),
+        });
+
+        await FirebaseFirestore.instance.collection("Users").doc(sellerdoc).update({
+          "rooms": FieldValue.arrayUnion([docid]),
+        });
+      });
+    }
+
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => Chat_screen(docid: docid)));
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,8 +218,10 @@ class _ProductDetailState extends State<ProductDetail> {
                   Center(
                     child: GestureDetector(
                       onTap: () {
+                        userEntryToDatabase();
+
                         // Navigator.of(context).push(MaterialPageRoute(
-                        //     builder: (context) => Chat_screen()));
+                        //     builder: (context) => Chat_screen(docid: docid)));
                       },
                       child: Container(
                         width: 110,
