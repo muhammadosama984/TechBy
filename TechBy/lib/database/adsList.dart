@@ -39,6 +39,26 @@ class adsList extends ChangeNotifier {
     return categoryList;
   }
 
+  List<ads> locationSort(List<ads> Ads, String location) {
+    List<ads> locationList = [];
+    for (int i = 0; i < Ads.length; i++) {
+      if (Ads[i].location == location) {
+        locationList.add(Ads[i]);
+      }
+    }
+    return locationList;
+  }
+
+  List<ads> priceSort(List<ads> Ads, {int min = 0, int max = 4294967296}) {
+    List<ads> priceList = [];
+    for (int i = 0; i < Ads.length; i++) {
+      if (int.parse(Ads[i].price) >= min && int.parse(Ads[i].price) <= max) {
+        priceList.add(Ads[i]);
+      }
+    }
+    return priceList;
+  }
+
   Future<void> postAds({
     required String title_f,
     required String description_f,
