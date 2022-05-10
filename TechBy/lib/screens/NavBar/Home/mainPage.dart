@@ -57,7 +57,11 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[browseProduct(), categories()],
+        children: <Widget>[
+          browseProduct(),
+          categories(),
+          Grid(),
+        ],
       ),
       //bottomNavigationBar: bottomNavBar(),
     );
@@ -444,6 +448,41 @@ class _container_1_categories extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class Grid extends StatefulWidget {
+  const Grid({Key? key}) : super(key: key);
+
+  @override
+  State<Grid> createState() => _GridState();
+}
+
+class _GridState extends State<Grid> {
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: GridView.builder(
+          itemCount: 5,
+          gridDelegate:
+              new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+          itemBuilder: (BuildContext context, int index) {
+            return Card(
+              child: InkWell(
+                onTap: (() {}),
+                child: GridTile(
+                  footer: Container(
+                    color: Colors.red,
+                    child: ListTile(
+                      leading: Text("Leading"),
+                    ),
+                  ),
+                  child: Text("Grid Child"),
+                ),
+              ),
+            );
+          }),
     );
   }
 }
