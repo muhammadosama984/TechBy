@@ -8,8 +8,11 @@ import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:techby/database/ads.dart';
 
+import '../Sign _In/google_sign_in.dart';
+
 class adsList extends ChangeNotifier {
   List<ads> ListOfAds = [];
+  List<ads> ListOfMyAds = [];
 
   Future<void> getAds() async {
     ListOfAds.clear();
@@ -27,6 +30,17 @@ class adsList extends ChangeNotifier {
         //  print(tasks[0].title);
       });
     });
+  }
+
+  Future<List<ads>> myAds(String email) async {
+    ListOfMyAds.clear();
+    await adsList();
+    for (int i = 0; i < ListOfAds.length; i++) {
+      if (ListOfAds[i].emailAddressUser == email) {
+        ListOfMyAds.add(ListOfAds[i]);
+      }
+    }
+    return ListOfMyAds;
   }
 
   List<ads> categoryAds(List<ads> Ads, String category) {
