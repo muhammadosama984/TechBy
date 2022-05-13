@@ -8,6 +8,7 @@ import '../database/ads.dart';
 
 class Lists extends StatefulWidget {
   final List<ads> comingList;
+
   const Lists({Key? key, required this.comingList}) : super(key: key);
 
   @override
@@ -16,6 +17,7 @@ class Lists extends StatefulWidget {
 
 class _ListState extends State<Lists> {
   bool isLoading = true;
+
   @override
   void initState() {
     super.initState();
@@ -42,7 +44,7 @@ class _ListState extends State<Lists> {
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => ProductDetail(
-                            Ads: context.watch<adsList>().ListOfAds[index],
+                            Ads: widget.comingList[index],
                           )));
                 },
                 child: Container(
@@ -63,7 +65,7 @@ class _ListState extends State<Lists> {
                             "\nLocation: " +
                             widget.comingList[index].location,
                       ),
-                      trailing: Heart()),
+                      trailing: Heart(comingAd: widget.comingList[index])),
                 ),
               ),
             );
@@ -73,7 +75,9 @@ class _ListState extends State<Lists> {
 }
 
 class Heart extends StatefulWidget {
-  const Heart({Key? key}) : super(key: key);
+  final ads comingAd;
+
+  Heart( {Key? key, required this.comingAd}) : super(key: key);
 
   @override
   State<Heart> createState() => _HeartState();

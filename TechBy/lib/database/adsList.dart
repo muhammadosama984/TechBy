@@ -22,6 +22,7 @@ class adsList extends ChangeNotifier {
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
         ads temp = ads.fromJson(doc.data() as Map<String, dynamic>);
+       // temp.favAd=false;
         temp.docID = doc.id;
         print(doc.id);
         // if(temp.done==true)
@@ -93,7 +94,8 @@ class adsList extends ChangeNotifier {
         price: price_f,
         category: category_f,
         downloadURLS: downloadURLS_f,
-        emailAddressUser: emailAddressUser_f);
+        emailAddressUser: emailAddressUser_f,
+        favAd: false);
     adReference
         .add(ad_Obj.toJson())
         .then((value) => print("Ad Posted"))
