@@ -22,7 +22,7 @@ class adsList extends ChangeNotifier {
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
         ads temp = ads.fromJson(doc.data() as Map<String, dynamic>);
-       // temp.favAd=false;
+        // temp.favAd=false;
         temp.docID = doc.id;
         print(doc.id);
         // if(temp.done==true)
@@ -95,7 +95,8 @@ class adsList extends ChangeNotifier {
         category: category_f,
         downloadURLS: downloadURLS_f,
         emailAddressUser: emailAddressUser_f,
-        favAd: false);
+        favAd: false,
+        verifiedAd: false);
     adReference
         .add(ad_Obj.toJson())
         .then((value) => print("Ad Posted"))
@@ -109,9 +110,10 @@ class adsList extends ChangeNotifier {
     }
     return _path;
   }
-  updateFavAd({required ads myAd}){
+
+  updateFavAd({required ads myAd}) {
     DocumentReference documentReference =
-    FirebaseFirestore.instance.collection('PostedAds').doc(myAd.docID);
+        FirebaseFirestore.instance.collection('PostedAds').doc(myAd.docID);
     final Map<String, dynamic> data = {};
     data['title'] = myAd.title;
     data['description'] = myAd.description;
@@ -122,12 +124,12 @@ class adsList extends ChangeNotifier {
     data['imageUrls'] = myAd.downloadURLS;
     data['emails'] = myAd.emailAddressUser;
     data['favAd'] = myAd.favAd;
+    data['verifiedAd'] = myAd.verifiedAd;
+
 
     // update data to Firebase
     documentReference.update(data).whenComplete(() => print('updated'));
   }
-
-
 
   Future<String> uploadImage(XFile image) async {
     Reference db = FirebaseStorage.instance.ref(getImageName(image));

@@ -12,6 +12,7 @@ class ads {
   List<dynamic> downloadURLS;
   String emailAddressUser;
   bool favAd;
+  bool verifiedAd;
 
   ads({
     required this.title,
@@ -23,6 +24,7 @@ class ads {
     required this.downloadURLS,
     required this.emailAddressUser,
     required this.favAd,
+    required this.verifiedAd,
     this.docID = "",
   });
 
@@ -35,8 +37,10 @@ class ads {
       category: json['category'],
       downloadURLS: json['imageUrls'],
       emailAddressUser: json['emails'],
-      // favAd: json['favAd']
-      favAd: false);
+      favAd: json['favAd'],
+      // favAd: false
+
+      verifiedAd: json['verifiedAd']);
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
@@ -49,6 +53,8 @@ class ads {
     data['imageUrls'] = downloadURLS;
     data['emails'] = emailAddressUser;
     data['favAd'] = favAd;
+    data['verifiedAd'] = verifiedAd;
+
     return data;
   }
 }
