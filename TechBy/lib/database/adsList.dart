@@ -109,6 +109,25 @@ class adsList extends ChangeNotifier {
     }
     return _path;
   }
+  updateFavAd({required ads myAd}){
+    DocumentReference documentReference =
+    FirebaseFirestore.instance.collection('PostedAds').doc(myAd.docID);
+    final Map<String, dynamic> data = {};
+    data['title'] = myAd.title;
+    data['description'] = myAd.description;
+    data['location'] = myAd.location;
+    data['uploadDate'] = myAd.uploadDate.toIso8601String();
+    data['price'] = myAd.price;
+    data['category'] = myAd.category;
+    data['imageUrls'] = myAd.downloadURLS;
+    data['emails'] = myAd.emailAddressUser;
+    data['favAd'] = myAd.favAd;
+
+    // update data to Firebase
+    documentReference.update(data).whenComplete(() => print('updated'));
+  }
+
+
 
   Future<String> uploadImage(XFile image) async {
     Reference db = FirebaseStorage.instance.ref(getImageName(image));
