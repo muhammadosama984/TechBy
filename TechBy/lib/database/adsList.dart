@@ -111,7 +111,7 @@ class adsList extends ChangeNotifier {
     return _path;
   }
 
-  updateFavAd({required ads myAd}) {
+  updateAd({required ads myAd}) {
     DocumentReference documentReference =
         FirebaseFirestore.instance.collection('PostedAds').doc(myAd.docID);
     final Map<String, dynamic> data = {};

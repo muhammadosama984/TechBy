@@ -77,7 +77,7 @@ class _ListState extends State<Lists> {
 class Heart extends StatefulWidget {
   final ads comingAd;
 
-  Heart( {Key? key, required this.comingAd}) : super(key: key);
+  Heart({Key? key, required this.comingAd}) : super(key: key);
 
   @override
   State<Heart> createState() => _HeartState();
@@ -95,8 +95,10 @@ class _HeartState extends State<Heart> with SingleTickerProviderStateMixin {
     _controller =
         AnimationController(duration: Duration(milliseconds: 400), vsync: this);
 
-    _colorAnimation = ColorTween(begin: Colors.grey[400], end: Colors.red)
-        .animate(_controller);
+    _colorAnimation = ColorTween(
+      begin: !widget.comingAd.favAd ? Colors.grey[400] : Colors.red,
+      end: !widget.comingAd.favAd ? Colors.red : Colors.grey[400],
+    ).animate(_controller);
 
     _sizeAnimation = TweenSequence(<TweenSequenceItem<double>>[
       TweenSequenceItem<double>(
@@ -113,16 +115,20 @@ class _HeartState extends State<Heart> with SingleTickerProviderStateMixin {
       print(_controller.value);
       print(_colorAnimation.value);
     });
-    _controller.addStatusListener((status) {
+    _controller.addStatusListener((status)async {
       if (status == AnimationStatus.completed) {
-        setState(() {
-          isFav = true;
-        });
+        //if(!widget.comingAd.favAd)
+        widget.comingAd.favAd = true;
+        isFav = true;
+        await context.read<adsList>().updateAd(myAd: widget.comingAd);
+        setState(() {});
       }
       if (status == AnimationStatus.dismissed) {
-        setState(() {
-          isFav = false;
-        });
+        //if(widget.comingAd.favAd)
+        widget.comingAd.favAd = false;
+        isFav = false;
+        await context.read<adsList>().updateAd(myAd: widget.comingAd);
+        setState(() {});
       }
     });
   }
