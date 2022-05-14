@@ -20,7 +20,6 @@ class More_screen extends StatefulWidget {
 List<String> data = ["My Favorite", "FAQS", "Contact Us", "Logout"];
 
 class _More_screenState extends State<More_screen> {
-
   late googleUser userDetails;
 
   void getURL() async {
@@ -29,12 +28,14 @@ class _More_screenState extends State<More_screen> {
     String email = await context.read<GoogleSingInProvider>().emailAddress();
     userDetails = googleUser(email: email, userName: name, profilePic: photo);
   }
+
   @override
   void initState() {
     // TODO: implement initState
     getURL();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,11 +46,11 @@ class _More_screenState extends State<More_screen> {
         child: Column(
           children: <Widget>[
             SizedBox(
-              height: 30,
+              height: 80,
             ),
             _topPart(),
             SizedBox(
-              height: 50,
+              height: 80,
             ),
             _lowerPart(),
           ],
@@ -67,8 +68,6 @@ class _topPart extends StatefulWidget {
 }
 
 class _topPartState extends State<_topPart> {
-
-
   void printThings() async {
     print(await Provider.of<GoogleSingInProvider>(context, listen: false)
         .emailAddress());
@@ -98,8 +97,10 @@ class _topPartState extends State<_topPart> {
               // Provider.of<GoogleSingInProvider>(context, listen: false)
               //     .photoUrl()
               //     .toString()
-              Provider.of<GoogleSingInProvider>(context, listen: false).userDetails.profilePic.toString()
-              ),
+              Provider.of<GoogleSingInProvider>(context, listen: false)
+                  .userDetails
+                  .profilePic
+                  .toString()),
           // backgroundColor: Colors.transparent,
         ),
         SizedBox(
@@ -108,28 +109,31 @@ class _topPartState extends State<_topPart> {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(Provider.of<GoogleSingInProvider>(context, listen: false).userDetails.userName.toString()),
+            Text(Provider.of<GoogleSingInProvider>(context, listen: false)
+                .userDetails
+                .userName
+                .toString()),
             SizedBox(
               height: 10,
             ),
-            Container(
-              alignment: Alignment(1.0, 0.0),
-              // padding: EdgeInsets.only(top: 15.0, left: 20.0),
-              child: InkWell(
-                child: Text(
-                  "View Profile >",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Montserrat',
-                    // decoration: TextDecoration.underline,
-                  ),
-                ),
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => Profile_screen()));
-                },
-              ),
-            ),
+            // Container(
+            //   alignment: Alignment(1.0, 0.0),
+            //   // padding: EdgeInsets.only(top: 15.0, left: 20.0),
+            //   child: InkWell(
+            //     child: Text(
+            //       "View Profile >",
+            //       style: TextStyle(
+            //         fontWeight: FontWeight.bold,
+            //         fontFamily: 'Montserrat',
+            //         // decoration: TextDecoration.underline,
+            //       ),
+            //     ),
+            //     onTap: () {
+            //       Navigator.of(context).push(MaterialPageRoute(
+            //           builder: (context) => Profile_screen()));
+            //     },
+            //   ),
+            // ),
           ],
         )
       ],
@@ -138,24 +142,32 @@ class _topPartState extends State<_topPart> {
 }
 
 class _lowerPart extends StatelessWidget {
-  const _lowerPart({Key? key}) : super(key: key);
 
+
+  _lowerPart({Key? key}) : super(key: key);
+  double i=6.0;
   @override
   Widget build(BuildContext context) {
     return Expanded(
         child: ListView(
       children: [
         Card(
+            margin: EdgeInsets.all(i),
+            shadowColor: Colors.blue,
             child: ListTile(
-                leading: Icon(Icons.favorite),
+                tileColor: Colors.grey[300],
+                leading: Icon(Icons.favorite, color: Colors.red),
                 title: Text("My Favorite"),
                 onTap: () {
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) => MyFav()));
                 })),
         Card(
+          margin: EdgeInsets.all(i),
+          shadowColor: Colors.blue,
           child: ListTile(
-              leading: Icon(Icons.question_answer_rounded),
+              tileColor: Colors.grey[300],
+              leading: Icon(Icons.question_answer_rounded, color: Colors.blue),
               title: Text("FAQs"),
               onTap: () {
                 Navigator.of(context).push(
@@ -163,32 +175,38 @@ class _lowerPart extends StatelessWidget {
               }),
         ),
         Card(
+            margin: EdgeInsets.all(i),
+            shadowColor: Colors.blue,
             child: ListTile(
-                leading: Icon(Icons.message_sharp),
+                tileColor: Colors.grey[300],
+                leading: Icon(Icons.message_sharp, color: Colors.blue),
                 title: Text("Contact  Us"),
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => ContactUs_scrren()));
                 })),
         Card(
+            margin: EdgeInsets.all(i),
+            shadowColor: Colors.blue,
             child: ListTile(
-          leading: Icon(
-            Icons.logout_outlined,
-            color: Colors.red,
-          ),
-          title: Text(
-            "Logout",
-            style: TextStyle(color: Colors.red),
-          ),
-          onTap: () {
-            Provider.of<GoogleSingInProvider>(context, listen: false)
-                .googleSignOut();
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => OpeningPage()));
-          },
-        )),
+              tileColor: Colors.grey[300],
+              leading: Icon(
+                Icons.logout_outlined,
+                color: Colors.red,
+              ),
+              title: Text(
+                "Logout",
+                style: TextStyle(color: Colors.red),
+              ),
+              onTap: () {
+                Provider.of<GoogleSingInProvider>(context, listen: false)
+                    .googleSignOut();
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => OpeningPage()));
+              },
+            )),
       ],
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(8),
     ));
   }
 }
