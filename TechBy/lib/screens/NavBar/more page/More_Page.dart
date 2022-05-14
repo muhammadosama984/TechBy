@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:techby/Sign%20_In/googleUser.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
 
 import 'package:techby/screens/signIn%20pages/OpeningPage.dart';
@@ -8,7 +9,6 @@ import 'package:techby/screens/Profile_Page.dart';
 import 'widgets and routes/ContactUs_Page.dart';
 import 'widgets and routes/FAQs_Page.dart';
 import 'widgets and routes/MyFav.dart';
-
 
 class More_screen extends StatefulWidget {
   const More_screen({Key? key}) : super(key: key);
@@ -20,6 +20,21 @@ class More_screen extends StatefulWidget {
 List<String> data = ["My Favorite", "FAQS", "Contact Us", "Logout"];
 
 class _More_screenState extends State<More_screen> {
+
+  late googleUser userDetails;
+
+  void getURL() async {
+    String photo = await context.read<GoogleSingInProvider>().photoUrl();
+    String name = await context.read<GoogleSingInProvider>().userName();
+    String email = await context.read<GoogleSingInProvider>().emailAddress();
+    userDetails = googleUser(email: email, userName: name, profilePic: photo);
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    getURL();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,8 +59,32 @@ class _More_screenState extends State<More_screen> {
   }
 }
 
-class _topPart extends StatelessWidget {
+class _topPart extends StatefulWidget {
   const _topPart({Key? key}) : super(key: key);
+
+  @override
+  State<_topPart> createState() => _topPartState();
+}
+
+class _topPartState extends State<_topPart> {
+
+
+  void printThings() async {
+    print(await Provider.of<GoogleSingInProvider>(context, listen: false)
+        .emailAddress());
+    print(await Provider.of<GoogleSingInProvider>(context, listen: false)
+        .userName());
+
+    print(await Provider.of<GoogleSingInProvider>(context, listen: false)
+        .photoUrl());
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    // printThings();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +95,11 @@ class _topPart extends StatelessWidget {
         CircleAvatar(
           radius: 30,
           backgroundImage: NetworkImage(
-              'https://cdn.pixabay.com/photo/2016/08/31/11/54/user-1633249_960_720.png'),
+              // Provider.of<GoogleSingInProvider>(context, listen: false)
+              //     .photoUrl()
+              //     .toString()
+              Provider.of<GoogleSingInProvider>(context, listen: false).userDetails.profilePic.toString()
+              ),
           // backgroundColor: Colors.transparent,
         ),
         SizedBox(
@@ -65,7 +108,7 @@ class _topPart extends StatelessWidget {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text("User 123"),
+            Text(Provider.of<GoogleSingInProvider>(context, listen: false).userDetails.userName.toString()),
             SizedBox(
               height: 10,
             ),

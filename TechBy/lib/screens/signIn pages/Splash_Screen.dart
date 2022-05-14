@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:techby/Sign%20_In/googleUser.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
 import 'package:techby/screens/signIn%20pages/OpeningPage.dart';
 import '../NavBar/navBarNavigation.dart';
@@ -24,9 +25,22 @@ class _SplashState extends State<Splash> {
 
     final signin = await auth.currentUser;
     if (signin != null) {
-
-      // print(await Provider.of<GoogleSingInProvider>(context, listen: false)
-      //     .emailAddress());
+      // var userName =
+      //
+      // await Provider.of<GoogleSingInProvider>(context, listen: false)
+      //         .userName();
+      // var email =
+      //     await Provider.of<GoogleSingInProvider>(context, listen: false)
+      //         .emailAddress();
+      // var photoUrl =
+      //     await Provider.of<GoogleSingInProvider>(context, listen: false)
+      //         .photoUrl();
+      print(await signin.photoURL!.toString());
+      Provider.of<GoogleSingInProvider>(context, listen: false).userDetails =
+          googleUser(email: await signin.email!, userName: await signin.displayName!, profilePic:await signin.photoURL!);
+      print(await Provider.of<GoogleSingInProvider>(context, listen: false)
+          .userDetails
+          .userName.toString());
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => navBarNavigation()));
     } else {

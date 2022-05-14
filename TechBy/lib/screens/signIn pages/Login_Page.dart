@@ -10,6 +10,8 @@ import 'package:techby/screens/ForgetPassword_Page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
 
+import '../../Sign _In/googleUser.dart';
+
 class Login_screen extends StatefulWidget {
   const Login_screen({Key? key}) : super(key: key);
 
@@ -403,6 +405,37 @@ class _googleSignInState extends State<googleSignIn> {
         await Provider.of<GoogleSingInProvider>(context, listen: false)
             .googleLogin();
         if (context.read<GoogleSingInProvider>().signInDone) {
+          // print(await Provider.of<GoogleSingInProvider>(context, listen: false)
+          //     .emailAddress());
+         //
+          // print(await Provider.of<GoogleSingInProvider>(context, listen: false)
+          //     .photoUrl());
+          // await context.read<GoogleSingInProvider>()
+          //     .googleUserDetails();
+          // print(await Provider.of<GoogleSingInProvider>(context, listen: false)
+          //     .userDetails.userName);
+          // print(await Provider.of<GoogleSingInProvider>(context, listen: false)
+          //     .userDetails.email);
+          // print(await Provider.of<GoogleSingInProvider>(context, listen: false)
+          //     .userDetails.profilePic);
+          var userName =
+              await Provider.of<GoogleSingInProvider>(context, listen: false)
+                  .userName();
+          var email =
+              await Provider.of<GoogleSingInProvider>(context, listen: false)
+                  .emailAddress();
+          var photoUrl =
+              await Provider.of<GoogleSingInProvider>(context, listen: false)
+                  .photoUrl();
+
+          Provider.of<GoogleSingInProvider>(context, listen: false)
+                  .userDetails =
+              googleUser(
+                  email: email, userName: userName, profilePic: photoUrl);
+
+          // print(await Provider.of<GoogleSingInProvider>(context, listen: false)
+          //     .userDetails.profilePic);
+
           Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => navBarNavigation()));
         }
