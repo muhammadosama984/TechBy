@@ -112,7 +112,7 @@ class _topPartState extends State<_topPart> {
             Text(Provider.of<GoogleSingInProvider>(context, listen: false)
                 .userDetails
                 .userName
-                .toString()),
+                .toString(),style: TextStyle(fontSize: 24, color: Colors.black,fontWeight: FontWeight.bold,fontFamily: 'Microsoft YaHei')),
             SizedBox(
               height: 10,
             ),
