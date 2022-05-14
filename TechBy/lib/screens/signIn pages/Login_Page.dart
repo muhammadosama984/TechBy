@@ -10,8 +10,6 @@ import 'package:techby/screens/ForgetPassword_Page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
 
-import '../../Sign _In/googleUser.dart';
-
 class Login_screen extends StatefulWidget {
   const Login_screen({Key? key}) : super(key: key);
 
@@ -38,16 +36,17 @@ class _Login_screenState extends State<Login_screen> {
       body: Center(
         // child: SingleChildScrollView(
         child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 18),
+          padding: const EdgeInsets.symmetric(horizontal: 18),
           children: <Widget>[
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(height: 180),
-                _topPart(),
-                SizedBox(height: 0),
+                const SizedBox(height: 130),
+                const _topPart(),
+                const SizedBox(height: 0),
                 Container(
-                  padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
+                  padding:
+                  const EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
                   child: Column(
                     children: <Widget>[
                       //_username(),
@@ -58,9 +57,11 @@ class _Login_screenState extends State<Login_screen> {
                       //SizedBox(height: 35),
                       //_login_button(),
                       //SizedBox(height: 35),
-                      googleSignIn(),
-                      SizedBox(height: 35),
+
+                      const googleSignIn(),
+                      const SizedBox(height: 35),
                       //SocialMediaSignIn(),
+                      //_login_btn_temp(),
                     ],
                   ),
                 ),
@@ -89,22 +90,42 @@ class _topPartState extends State<_topPart> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-          height: 20,
+        const SizedBox(
+          height: 0,
         ),
         Container(
-            // width: 80, child: Image(image: AssetImage('assets/TBicon.jpeg'))),
+          // width: 80, child: Image(image: AssetImage('assets/TBicon.jpeg'))),
             width: 250,
-            margin: EdgeInsets.only(left: 0, right: 10),
-            child: Image(image: AssetImage('assets/TBiconLong.png'))),
-        SizedBox(
+            margin: const EdgeInsets.only(left: 0, right: 10),
+            child:
+            const Image(image: const AssetImage('assets/TBiconLong.png'))),
+        const SizedBox(
           height: 40,
         ),
+        const CircleAvatar(
+          radius: 61,
+          backgroundColor: Colors.white,
+          backgroundImage: AssetImage('assets/googleRounded.png'),
+          child: CircleAvatar(
+            backgroundColor: Color(0xffE6E6E6),
+            radius: 58,
+            //child: Image(image: const AssetImage('assets/google.png')),
+            child: Icon(
+              Icons.person,
+              size: 80,
+              color: Color(0xffCCCCCC),
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 40,
+        ),
+
         Center(
           child: Text(
-            "Sign In to TechBy",
+            "Enter in to the world of Tech",
             style: GoogleFonts.roboto(
-              fontSize: 25,
+              fontSize: 18,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -182,6 +203,7 @@ class _topPartState extends State<_topPart> {
     );
   }
 }
+
 //
 // class _username extends StatelessWidget {
 //   const _username({Key? key}) : super(key: key);
@@ -337,7 +359,28 @@ class _topPartState extends State<_topPart> {
 //     // //ahmed
 //   }
 // }
-//
+class _login_btn_temp extends StatefulWidget {
+  const _login_btn_temp({Key? key}) : super(key: key);
+
+  @override
+  State<_login_btn_temp> createState() => _login_btn_tempState();
+}
+
+class _login_btn_tempState extends State<_login_btn_temp> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => navBarNavigation()));
+        },
+        child: Text('Temp'),
+      ),
+    );
+  }
+}
+
 // class _login_button extends StatelessWidget {
 //   const _login_button({Key? key}) : super(key: key);
 //
@@ -405,68 +448,56 @@ class _googleSignInState extends State<googleSignIn> {
         await Provider.of<GoogleSingInProvider>(context, listen: false)
             .googleLogin();
         if (context.read<GoogleSingInProvider>().signInDone) {
-          // print(await Provider.of<GoogleSingInProvider>(context, listen: false)
-          //     .emailAddress());
-         //
-          // print(await Provider.of<GoogleSingInProvider>(context, listen: false)
-          //     .photoUrl());
-          // await context.read<GoogleSingInProvider>()
-          //     .googleUserDetails();
-          // print(await Provider.of<GoogleSingInProvider>(context, listen: false)
-          //     .userDetails.userName);
-          // print(await Provider.of<GoogleSingInProvider>(context, listen: false)
-          //     .userDetails.email);
-          // print(await Provider.of<GoogleSingInProvider>(context, listen: false)
-          //     .userDetails.profilePic);
-          var userName =
-              await Provider.of<GoogleSingInProvider>(context, listen: false)
-                  .userName();
-          var email =
-              await Provider.of<GoogleSingInProvider>(context, listen: false)
-                  .emailAddress();
-          var photoUrl =
-              await Provider.of<GoogleSingInProvider>(context, listen: false)
-                  .photoUrl();
-
-          Provider.of<GoogleSingInProvider>(context, listen: false)
-                  .userDetails =
-              googleUser(
-                  email: email, userName: userName, profilePic: photoUrl);
-
-          // print(await Provider.of<GoogleSingInProvider>(context, listen: false)
-          //     .userDetails.profilePic);
-
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => navBarNavigation()));
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const navBarNavigation()));
         }
       },
       child: Container(
-        width: 300,
-        height: 60,
-        margin: EdgeInsets.only(top: 10),
-        decoration: BoxDecoration(
-            border: Border.all(color: Colors.black, width: 1),
-            borderRadius: BorderRadius.circular(35)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            CircleAvatar(
-                backgroundColor: Colors.white,
-                radius: 16,
-                child: Image(image: AssetImage('assets/google.png'))),
-            SizedBox(width: 10),
-            Text(
-              "Continue with Google",
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-                fontFamily: 'Microsoft YaHei',
+              width: 280,
+              height: 60,
+              margin: const EdgeInsets.only(top: 20),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(
+                  color: Colors.black,
+                      width: 1),
+                  borderRadius: BorderRadius.circular(35)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 16,
+                      child: Image(image: AssetImage('assets/google.png'))),
+                  SizedBox(width: 10),
+                  Text(
+                    "Continue with Google",
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: 'roboto',
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
     );
   }
 }
+// Container(
+// width: 360,
+// height: 65,
+// margin: const EdgeInsets.only(top: 10),
+// decoration: BoxDecoration(
+//
+// image: DecorationImage(
+// image: AssetImage('assets/googleBtn.png'),
+// fit: BoxFit.fill,
+// ),
+// //color: Colors.black,
+// //border: Border.all(color: Colors.pink, width: 3),
+// borderRadius: BorderRadius.circular(35)),
+// child: Align(
+// alignment: Alignment.center,
+// child:
