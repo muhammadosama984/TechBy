@@ -61,7 +61,7 @@ class _Login_screenState extends State<Login_screen> {
                       const googleSignIn(),
                       const SizedBox(height: 35),
                       //SocialMediaSignIn(),
-                      //_login_btn_temp(),
+                      _login_btn_temp(),
                     ],
                   ),
                 ),
