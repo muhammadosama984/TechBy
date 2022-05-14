@@ -27,7 +27,7 @@ class _OpeningPageState extends State<OpeningPage> {
 
   void onClick(String? payload) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => Signup_screen()));
+        .push(MaterialPageRoute(builder: (context) => const Signup_screen()));
   }
 
   @override
@@ -36,13 +36,13 @@ class _OpeningPageState extends State<OpeningPage> {
       body: SingleChildScrollView(
         child: Center(
             child: Column(
-          children: [
-            SizedBox(height: 40,),
-            techByLogo(),
-            //login_Signup()
-            getStart_btn(),
-          ],
-        )),
+              children: const [
+                //SizedBox(height: 0,),
+                techByLogo(),
+                //login_Signup()
+                getStart_btn(),
+              ],
+            )),
       ),
     );
   }
@@ -55,11 +55,11 @@ class techByLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: 300,
-        margin: EdgeInsets.only(bottom: 23, top: 290, left: 0, right: 13),
-        child: Column(children: [
+        margin: const EdgeInsets.only(bottom: 23, top: 260, left: 0, right: 13),
+        child: Column(children: const [
           Image(image: AssetImage('assets/TBiconLong.png')),
           SizedBox(
-            height: 170,
+            height: 150,
           ),
 
         ]));
@@ -77,16 +77,16 @@ class _getStart_btnState extends State<getStart_btn> {
   Widget build(BuildContext context) {
     return InkWell(onTap: () {
       Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => Login_screen()));
+          MaterialPageRoute(builder: (context) => const Login_screen()));
     },
       child: Container(
           width: 250,
           height: 60,
-          margin: EdgeInsets.only(top: 10),
+          margin: const EdgeInsets.only(top: 10),
           decoration: BoxDecoration(
-              color: Color.fromRGBO(30, 159, 217, 1),
+              color: const Color.fromRGBO(30, 159, 217, 1),
               // border: Border.all(color: Colors.black, width: 2),
-              borderRadius: BorderRadius.circular(25)),
+              borderRadius: BorderRadius.circular(35)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
