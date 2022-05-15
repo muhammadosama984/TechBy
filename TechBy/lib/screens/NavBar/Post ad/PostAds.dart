@@ -1,10 +1,12 @@
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:techby/Models/ListOfProducts.dart';
 import 'package:techby/Models/product.dart';
 import 'package:techby/database/adsList.dart';
+import 'package:techby/screens/NavBar/Home/mainPage.dart';
 
 import '../../../Sign _In/google_sign_in.dart';
 
@@ -309,6 +311,22 @@ class _postButton extends StatelessWidget {
             emailAddressUser_f:
                 (await Provider.of<GoogleSingInProvider>(context, listen: false)
                     .emailAddress()));
+
+        bool isLogout = false;
+        isLogout = await showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (context) => AlertDialog(
+                  title: const Text('Task Added'),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => MyHomePage()));
+                        },
+                        child: Text('OK')),
+                  ],
+                ));
       },
       child: Text("  Post  ", style: TextStyle(fontSize: 20)),
       textColor: Colors.white,
