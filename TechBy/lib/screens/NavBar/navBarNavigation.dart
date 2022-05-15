@@ -28,9 +28,20 @@ class _navBarNavigationState extends State<navBarNavigation> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens[currentIndex],
-      bottomNavigationBar: bottomNavBar(onPressed: (receivedIndex) {
-        currentIndex = receivedIndex;
-        setState(() {});
+      // floatingActionButton: new FloatingActionButton(
+      //   splashColor: Color.fromRGBO(30, 159, 217, 1),
+      //   onPressed: (){},
+      //   backgroundColor: Color.fromRGBO(30, 159, 217, 1),
+      //   child: new Icon(Icons.add),
+      //   elevation: 2.0,
+      // ),
+      // floatingActionButtonLocation:
+      // FloatingActionButtonLocation.centerDocked,
+
+      bottomNavigationBar: bottomNavBar(
+            onPressed: (receivedIndex) {
+            currentIndex = receivedIndex;
+            setState(() {});
       }),
     );
   }

@@ -76,7 +76,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   browseProduct(),
                   categories(),
                   SizedBox(
-                    height: 30,
+                    height: 20,
+                  ),
+                  suggestedProdText(),
+                  SizedBox(
+                    height: 20,
                   ),
                   Grid(),
                 ],
@@ -750,6 +754,30 @@ class _container_1_categories extends StatelessWidget {
   }
 }
 
+class suggestedProdText extends StatefulWidget {
+  const suggestedProdText({Key? key}) : super(key: key);
+
+  @override
+  State<suggestedProdText> createState() => _suggestedProdTextState();
+}
+
+class _suggestedProdTextState extends State<suggestedProdText> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+      child: Text(
+        "Browse Products",
+        style: TextStyle(
+            fontSize: 16,
+            fontFamily: "montserrat",
+            color: Colors.black,
+            fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+}
+
 class Grid extends StatefulWidget {
   const Grid({Key? key}) : super(key: key);
 
@@ -769,7 +797,9 @@ class _GridState extends State<Grid> {
         gridDelegate:
             new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (BuildContext context, int index) {
-          return Card(
+          return Container(
+              child: Card(
+            margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
             child: InkWell(
               onTap: (() {
                 Navigator.of(context).push(MaterialPageRoute(
@@ -797,7 +827,7 @@ class _GridState extends State<Grid> {
                 ),
               ),
             ),
-          );
+          ));
         }
         //),
         );

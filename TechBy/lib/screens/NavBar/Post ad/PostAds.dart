@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'dart:math';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -80,7 +81,8 @@ class _PostAdsState extends State<PostAds> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Post Ads"),
+        title: Text("  Post an Ad"),
+        backgroundColor: Color.fromRGBO(30, 159, 217, 1),
         automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
@@ -88,7 +90,64 @@ class _PostAdsState extends State<PostAds> {
           key: _formKey,
           child: Column(
             children: [
-              SizedBox(height: 100),
+              SizedBox(
+                height: 30,
+              ),
+              Container(
+                width: 250,
+                height: 59,
+                //color: Color.fromRGBO(30, 159, 217, 1),
+                // decoration:
+                //     BoxDecoration(
+                //         border: Border.all(color: Colors.black)
+                //
+                //     ),
+                child: DropdownButtonFormField(
+                  focusColor: Colors.white70,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black, width: 1),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black, width: 1),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white70,
+                  ),
+
+                  // Initial Value
+                  value: valueOfCategory,
+                  hint: Text(
+                    "  Select Category",
+                    style: TextStyle(color: Colors.black87, fontSize: 15),
+                  ),
+                  // Down Arrow Icon
+
+                  icon: const Icon(
+                    Icons.keyboard_arrow_down,
+                    color: Colors.black,
+                  ),
+
+                  // Array list of items
+                  items: items.map((String items) {
+                    return DropdownMenuItem(
+                      value: items,
+                      child: Text(items),
+                    );
+                  }).toList(),
+                  // After selecting the desired option,it will
+                  // change button value to selected value
+                  onChanged: (value) {
+                    setState(() {
+                      valueOfCategory = value.toString();
+                      categoryMain.text = valueOfCategory!;
+                    });
+                  },
+                ),
+              ),
+              SizedBox(height: 20),
               _titleField(titleController: titleMain),
               SizedBox(
                 height: 50,
@@ -114,59 +173,38 @@ class _PostAdsState extends State<PostAds> {
               SizedBox(
                 height: 20,
               ),
-              Container(
+              SizedBox(
                 height: 30,
-                decoration:
-                    BoxDecoration(border: Border.all(color: Colors.black)),
-                child: DropdownButton(
-                  // Initial Value
-                  value: valueOfCategory,
-                  hint: Text("Select Category"),
-                  // Down Arrow Icon
-                  icon: const Icon(Icons.keyboard_arrow_down),
-
-                  // Array list of items
-                  items: items.map((String items) {
-                    return DropdownMenuItem(
-                      value: items,
-                      child: Text(items),
-                    );
-                  }).toList(),
-                  // After selecting the desired option,it will
-                  // change button value to selected value
-                  onChanged: (value) {
-                    setState(() {
-                      valueOfCategory = value.toString();
-                      categoryMain.text = valueOfCategory!;
-                    });
-                  },
-                ),
               ),
-              SizedBox(height: 20),
               Wrap(
                 children: multipleImages
                     .map((e) => Image.file(
                           File(e.path),
-                          width: 200,
+                          width: 100,
+                          height: 100,
                         ))
                     .toList(),
               ),
-              RaisedButton(
-                onPressed: () async {
-                  // _openImagePicker();
-                  multipleImages = await multiImagePicker();
-                  if (multipleImages.isNotEmpty) {
-                    setState(() {});
-                  }
-                },
-                child:
-                    const Text('Pick Images', style: TextStyle(fontSize: 20)),
-                color: Colors.blue,
-                textColor: Colors.white,
-                elevation: 5,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                  side: BorderSide(color: Colors.black),
+              Container(
+                width: 300,
+                height: 50,
+                child: RaisedButton(
+                  onPressed: () async {
+                    // _openImagePicker();
+                    multipleImages = await multiImagePicker();
+                    if (multipleImages.isNotEmpty) {
+                      setState(() {});
+                    }
+                  },
+                  child: const Text('Pick Images',
+                      style: TextStyle(fontSize: 15, color: Colors.black)),
+                  color: Colors.white,
+                  textColor: Colors.white,
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    side: BorderSide(color: Colors.black),
+                  ),
                 ),
               ),
               SizedBox(height: 20),
@@ -181,6 +219,9 @@ class _PostAdsState extends State<PostAds> {
                 //img: _image,
                 multiImages: multipleImages,
               ),
+              SizedBox(
+                height: 20,
+              )
             ],
           ),
         ),
@@ -208,7 +249,7 @@ class _description extends StatelessWidget {
             hintText: "Description",
             fillColor: Colors.white,
             filled: true,
-            contentPadding: const EdgeInsets.fromLTRB(12, 2, 12, 10),
+            contentPadding: const EdgeInsets.fromLTRB(1, 2, 12, 10),
             focusedBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: Colors.white, width: 2.0),
             )),
@@ -276,63 +317,69 @@ class _postButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-      color: Colors.blue,
-      onPressed: () async {
-        // if (val != null) {
-        //   CategoryController.text = val.toString();
-        // }
-        //String URL = img as String;
-        // Provider.of<ListofProduct>(context, listen: false).addProduct(Product(
-        //     Image: img,
-        //     imgURL: URL,
-        //     title: titleController.text,
-        //     description: descriptionController.text,
-        //     location: locationController.text,
-        //     uploadDate: DateTime.now()));
-        //print(CategoryController.text);
-        List<String> urls = await Provider.of<adsList>(context, listen: false)
-            .multiImageUploader(multiImages) as List<String>;
-        print(titleController.text +
-            descriptionController.text +
-            CategoryController.text +
-            priceController.text +
-            locationController.text +
-            " " +
-            urls[0]);
-        Provider.of<adsList>(context, listen: false).postAds(
-            title_f: titleController.text,
-            description_f: descriptionController.text,
-            location_f: locationController.text,
-            uploadDate_f: DateTime.now(),
-            price_f: priceController.text,
-            category_f: CategoryController.text.toString(),
-            downloadURLS_f: urls,
-            emailAddressUser_f:
-                (await Provider.of<GoogleSingInProvider>(context, listen: false)
-                    .emailAddress()));
+    return Container(
+      width: 300,
+      height: 50,
+      child: RaisedButton(
+        color: Color.fromRGBO(30, 159, 217, 1),
+        onPressed: () async {
+          // if (val != null) {
+          //   CategoryController.text = val.toString();
+          // }
+          //String URL = img as String;
+          // Provider.of<ListofProduct>(context, listen: false).addProduct(Product(
+          //     Image: img,
+          //     imgURL: URL,
+          //     title: titleController.text,
+          //     description: descriptionController.text,
+          //     location: locationController.text,
+          //     uploadDate: DateTime.now()));
+          //print(CategoryController.text);
+          List<String> urls = await Provider.of<adsList>(context, listen: false)
+              .multiImageUploader(multiImages) as List<String>;
+          print(titleController.text +
+              descriptionController.text +
+              CategoryController.text +
+              priceController.text +
+              locationController.text +
+              " " +
+              urls[0]);
+          Provider.of<adsList>(context, listen: false).postAds(
+              title_f: titleController.text,
+              description_f: descriptionController.text,
+              location_f: locationController.text,
+              uploadDate_f: DateTime.now(),
+              price_f: priceController.text,
+              category_f: CategoryController.text.toString(),
+              downloadURLS_f: urls,
+              emailAddressUser_f: (await Provider.of<GoogleSingInProvider>(
+                      context,
+                      listen: false)
+                  .emailAddress()));
 
-        bool isLogout = false;
-        isLogout = await showDialog(
-            barrierDismissible: false,
-            context: context,
-            builder: (context) => AlertDialog(
-                  title: const Text('Task Added'),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => MyHomePage()));
-                        },
-                        child: Text('OK')),
-                  ],
-                ));
-      },
-      child: Text("  Post  ", style: TextStyle(fontSize: 20)),
-      textColor: Colors.white,
-      shape: RoundedRectangleBorder(
+          bool isLogout = false;
+          isLogout = await showDialog(
+              barrierDismissible: false,
+              context: context,
+              builder: (context) => AlertDialog(
+                    title: const Text('Task Added'),
+                    actions: [
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => MyHomePage()));
+                          },
+                          child: Text('OK')),
+                    ],
+                  ));
+        },
+        child: Text("Post Now", style: TextStyle(fontSize: 15)),
+        textColor: Colors.white,
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.0),
-          side: BorderSide(color: Colors.black)),
+          //side: BorderSide(color: Colors.black)
+        ),
+      ),
     );
   }
 }
