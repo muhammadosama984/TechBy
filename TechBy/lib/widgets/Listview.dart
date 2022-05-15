@@ -1,7 +1,9 @@
 import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:techby/Sign%20_In/google_sign_in.dart';
 import 'package:techby/database/adsList.dart';
+import 'package:techby/database/savedAdsList.dart';
 import 'package:techby/screens/ProductDetail.dart';
 
 import '../database/ads.dart';
@@ -115,11 +117,20 @@ class _HeartState extends State<Heart> with SingleTickerProviderStateMixin {
       print(_controller.value);
       print(_colorAnimation.value);
     });
-    _controller.addStatusListener((status)async {
+    _controller.addStatusListener((status) async {
       if (status == AnimationStatus.completed) {
         //if(!widget.comingAd.favAd)
         widget.comingAd.favAd = true;
         isFav = true;
+        String emailAddress =
+            Provider.of<GoogleSingInProvider>(context, listen: false)
+                .userDetails
+                .email
+                .toString();
+        print(emailAddress);
+        await context
+            .read<savedAdsList>()
+            .addSavedAd(email: emailAddress, Ad: widget.comingAd);
         await context.read<adsList>().updateAd(myAd: widget.comingAd);
         setState(() {});
       }
