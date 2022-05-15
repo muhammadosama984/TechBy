@@ -75,7 +75,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: <Widget>[
                   browseProduct(),
                   categories(),
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 20,
+                  ),
                   suggestedProdText(),
                   SizedBox(
                     height: 20,
@@ -764,12 +766,17 @@ class _suggestedProdTextState extends State<suggestedProdText> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
-      child: Text("Browse Products",
-      style: TextStyle(fontSize: 16, fontFamily: "montserrat", color: Colors.black, fontWeight: FontWeight.bold), ),
+      child: Text(
+        "Browse Products",
+        style: TextStyle(
+            fontSize: 16,
+            fontFamily: "montserrat",
+            color: Colors.black,
+            fontWeight: FontWeight.bold),
+      ),
     );
   }
 }
-
 
 class Grid extends StatefulWidget {
   const Grid({Key? key}) : super(key: key);
@@ -790,8 +797,9 @@ class _GridState extends State<Grid> {
         gridDelegate:
             new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (BuildContext context, int index) {
-          return Card(
-            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+          return Container(
+              child: Card(
+            margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
             child: InkWell(
               onTap: (() {
                 Navigator.of(context).push(MaterialPageRoute(
@@ -819,7 +827,7 @@ class _GridState extends State<Grid> {
                 ),
               ),
             ),
-          );
+          ));
         }
         //),
         );

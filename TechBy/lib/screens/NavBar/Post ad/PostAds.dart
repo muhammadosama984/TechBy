@@ -18,7 +18,6 @@ class PostAds extends StatefulWidget {
 
 class _PostAdsState extends State<PostAds> {
   List<String> items1 = ['Category'];
-  List<bool> _selections = [false, false,false, false,false, false,];
   List<String> items = [
     'Desktop',
     'Mobile',
@@ -151,44 +150,7 @@ class _PostAdsState extends State<PostAds> {
                 ),
               ),
 
-              SizedBox(height: 30,),
 
-              Wrap(
-
-                children: multipleImages
-                    .map((e) => Image.file(
-                  File(e.path),
-                  width: 100,
-                  height: 100,
-                ))
-                    .toList(),
-              ),
-
-              Container(
-                width: 250,
-                  height: 60,
-                  child: RaisedButton(
-
-
-                    onPressed: () async {
-                      // _openImagePicker();
-                      multipleImages = await multiImagePicker();
-                      if (multipleImages.isNotEmpty) {
-                        setState(() {});
-                      }
-                    },
-                    child:
-                    const Text('Pick Images', style: TextStyle(fontSize: 15)),
-
-                    color: Color.fromRGBO(30, 159, 217, 1),
-                    textColor: Colors.white,
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                      //side: BorderSide(color: Colors.black),
-                    ),
-                  ),
-              ),
 
               SizedBox(height: 20),
               _titleField(titleController: titleMain),
@@ -218,7 +180,45 @@ class _PostAdsState extends State<PostAds> {
                 height: 20,
               ),
 
-              SizedBox(height: 20),
+              SizedBox(height: 30,),
+
+              Wrap(
+
+                children: multipleImages
+                    .map((e) => Image.file(
+                  File(e.path),
+
+                  width: 100,
+                  height: 100,
+                ))
+                    .toList(),
+              ),
+
+              Container(
+                width: 300,
+                height: 50,
+                child: RaisedButton(
+
+
+                  onPressed: () async {
+                    // _openImagePicker();
+                    multipleImages = await multiImagePicker();
+                    if (multipleImages.isNotEmpty) {
+                      setState(() {});
+                    }
+                  },
+                  child:
+                  const Text('Pick Images', style: TextStyle(fontSize: 15, color: Colors.black)),
+
+                  color: Colors.white,
+                  textColor: Colors.white,
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    side: BorderSide(color: Colors.black),
+                  ),
+                ),
+              ),
 
               SizedBox(height: 20),
               _postButton(
@@ -260,7 +260,7 @@ class _description extends StatelessWidget {
             hintText: "Description",
             fillColor: Colors.white,
             filled: true,
-            contentPadding: const EdgeInsets.fromLTRB(12, 2, 12, 10),
+            contentPadding: const EdgeInsets.fromLTRB(1, 2, 12, 10),
             focusedBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: Colors.white, width: 2.0),
             )),

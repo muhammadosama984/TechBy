@@ -15,6 +15,7 @@ class _bottomNavBarState extends State<bottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      selectedItemColor: Color.fromRGBO(30, 159, 217, 1),
       type: BottomNavigationBarType.fixed,
       //backgroundColor: ,
       //selectedItemColor: ,
@@ -30,23 +31,23 @@ class _bottomNavBarState extends State<bottomNavBar> {
         BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: "Home",
-            backgroundColor: Colors.blue),
+            backgroundColor: Color.fromRGBO(30, 159, 217, 1)),
         BottomNavigationBarItem(
             icon: Icon(Icons.my_library_books),
             label: "My Ads",
-            backgroundColor: Colors.blue),
+            backgroundColor: Color.fromRGBO(30, 159, 217, 1)),
         BottomNavigationBarItem(
             icon: Icon(Icons.my_library_add),
             label: "Sell Now",
-            backgroundColor: Colors.blue),
+            backgroundColor: Color.fromRGBO(30, 159, 217, 1)),
         BottomNavigationBarItem(
             icon: Icon(Icons.chat),
             label: "Chats",
-            backgroundColor: Colors.blue),
+            backgroundColor: Color.fromRGBO(30, 159, 217, 1)),
         BottomNavigationBarItem(
             icon: Icon(Icons.more_horiz),
             label: "More",
-            backgroundColor: Colors.blue),
+            backgroundColor: Color.fromRGBO(30, 159, 217, 1)),
       ],
     );
   }
