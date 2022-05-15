@@ -6,6 +6,7 @@ import 'package:techby/widgets/Search.dart';
 
 import '../../../database/adsList.dart';
 import '../../ProductDetail.dart';
+import '../../signIn pages/notification_api.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -46,7 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
           actions: [
             IconButton(
               onPressed: () {
-                //new screen navigate
+                NotificationApi.showNotification(
+                    title: 'Osama', body: 'This is body', payload: '');
               },
               icon: Icon(Icons.notifications),
             ),
@@ -798,10 +800,9 @@ class _GridState extends State<Grid> {
             new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (BuildContext context, int index) {
           return Card(
-                elevation: 5,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10)
-            ),
+            elevation: 5,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
             child: InkWell(
               onTap: (() {
@@ -830,7 +831,6 @@ class _GridState extends State<Grid> {
                 ),
               ),
             ),
-
           );
         }
         //),

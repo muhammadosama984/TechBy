@@ -126,9 +126,25 @@ class adsList extends ChangeNotifier {
     data['favAd'] = myAd.favAd;
     data['verifiedAd'] = myAd.verifiedAd;
 
-
     // update data to Firebase
     documentReference.update(data).whenComplete(() => print('updated'));
+  }
+
+  Future<void> remove(ads tt) async {
+    ListOfMyAds.remove(tt);
+    await deleteProduct(tt);
+
+    notifyListeners();
+  }
+
+  deleteProduct(ads product) async {
+    await FirebaseFirestore.instance
+        .collection('PostedAds')
+        .doc(product.docID)
+        .delete()
+        .catchError((e) {
+      print(e);
+    }).whenComplete(() => print('deleted'));
   }
 
   Future<String> uploadImage(XFile image) async {

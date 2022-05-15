@@ -111,10 +111,17 @@ class _topPartState extends State<_topPart> {
           children: <Widget>[
             Container(
               margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-              child: Text(Provider.of<GoogleSingInProvider>(context, listen: false)
-                .userDetails
-                .userName
-                .toString(),style: TextStyle(fontSize: 24, color: Colors.black,fontWeight: FontWeight.bold,fontFamily: 'Montserrat',)),
+              child: Text(
+                  Provider.of<GoogleSingInProvider>(context, listen: false)
+                      .userDetails
+                      .userName
+                      .toString(),
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Montserrat',
+                  )),
             ),
             // SizedBox(
             //   height: 10,
@@ -145,10 +152,8 @@ class _topPartState extends State<_topPart> {
 }
 
 class _lowerPart extends StatelessWidget {
-
-
   _lowerPart({Key? key}) : super(key: key);
-  double i=6.0;
+  double i = 6.0;
   double j = 4.0;
   @override
   Widget build(BuildContext context) {
@@ -156,7 +161,7 @@ class _lowerPart extends StatelessWidget {
         child: ListView(
       children: [
         Card(
-          elevation: j,
+            elevation: j,
             margin: EdgeInsets.all(i),
             shadowColor: Colors.black,
             child: ListTile(
@@ -173,7 +178,8 @@ class _lowerPart extends StatelessWidget {
           shadowColor: Colors.black,
           child: ListTile(
               tileColor: Colors.white,
-              leading: Icon(Icons.question_answer_rounded, color: Color.fromRGBO(30, 159, 217, 1)),
+              leading: Icon(Icons.question_answer_rounded,
+                  color: Color.fromRGBO(30, 159, 217, 1)),
               title: Text("FAQs"),
               onTap: () {
                 Navigator.of(context).push(
@@ -181,19 +187,20 @@ class _lowerPart extends StatelessWidget {
               }),
         ),
         Card(
-          elevation: j,
+            elevation: j,
             margin: EdgeInsets.all(i),
             shadowColor: Colors.black,
             child: ListTile(
                 tileColor: Colors.white,
-                leading: Icon(Icons.message_sharp, color: Color.fromRGBO(30, 159, 217, 1)),
+                leading: Icon(Icons.message_sharp,
+                    color: Color.fromRGBO(30, 159, 217, 1)),
                 title: Text("Contact  Us"),
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => ContactUs_scrren()));
                 })),
         Card(
-          elevation: j,
+            elevation: j,
             margin: EdgeInsets.all(i),
             shadowColor: Colors.black,
             child: ListTile(
@@ -206,11 +213,30 @@ class _lowerPart extends StatelessWidget {
                 "Logout",
                 style: TextStyle(color: Colors.red),
               ),
-              onTap: () {
-                Provider.of<GoogleSingInProvider>(context, listen: false)
-                    .googleSignOut();
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => OpeningPage()));
+              onTap: () async {
+                bool isLogout = false;
+                isLogout = await showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (context) => AlertDialog(
+                          title: const Text('You want to LogOut'),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  Provider.of<GoogleSingInProvider>(context,
+                                          listen: false)
+                                      .googleSignOut();
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => OpeningPage()));
+                                },
+                                child: Text('Yes')),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop(false);
+                                },
+                                child: Text('No')),
+                          ],
+                        ));
               },
             )),
       ],

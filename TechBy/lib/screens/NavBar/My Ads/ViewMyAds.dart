@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
+import 'package:techby/database/ads.dart';
 import 'package:techby/database/adsList.dart';
 import 'package:techby/screens/ProductDetail.dart';
 
@@ -37,7 +38,6 @@ class _adsListState extends State<_adsList> {
     // TODO: implement initState
     super.initState();
     getMyads();
-
   }
 
   getMyads() async {
@@ -79,6 +79,41 @@ class _adsListState extends State<_adsList> {
                         "\nLocation: " +
                         context.watch<adsList>().ListOfMyAds[index].location,
                   ),
+                  trailing: IconButton(
+                      onPressed: () async {
+                        bool isLogout = false;
+                        isLogout = await showDialog(
+                            barrierDismissible: false,
+                            context: context,
+                            builder: (context) => AlertDialog(
+                                  title: const Text('Do you want remove task'),
+                                  content: const Text(
+                                      'This will remove task from list'),
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () {
+                                          context.read<adsList>().remove(context
+                                              .read<adsList>()
+                                              .ListOfMyAds[index]);
+
+                                          setState(() {});
+                                          Navigator.of(context).pop(false);
+
+                                          // initState();
+                                        },
+                                        child: Text('Yes')),
+                                    TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop(false);
+                                        },
+                                        child: Text('No')),
+                                  ],
+                                ));
+                      },
+                      icon: Icon(
+                        Icons.delete,
+                        size: 34,
+                      )),
                 ),
               ),
             ),
