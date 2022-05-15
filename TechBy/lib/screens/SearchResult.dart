@@ -41,8 +41,10 @@ class _ParticularProductState extends State<ParticularProduct> {
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               InkWell(
                 onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => filter()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => filter(
+                            filterList: widget.categoryList,
+                          )));
                 },
                 child: Container(
                   width: 70,
