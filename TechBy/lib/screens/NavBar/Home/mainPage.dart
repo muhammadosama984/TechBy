@@ -5,6 +5,7 @@ import 'package:techby/screens/SearchResult.dart';
 import 'package:techby/widgets/Search.dart';
 
 import '../../../database/adsList.dart';
+import '../../ProductDetail.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -105,11 +106,11 @@ class browseProduct extends StatelessWidget {
       children: <Widget>[
         SizedBox(height: 25),
         Container(
-            width: 300,
-            child: Image(
-              image: AssetImage('assets/TBiconLong.png'),
-            ),
+          width: 300,
+          child: Image(
+            image: AssetImage('assets/TBiconLong.png'),
           ),
+        ),
 
         SizedBox(height: 40),
         Container(
@@ -148,7 +149,6 @@ class categories extends StatefulWidget {
   @override
   _categoriesState createState() => _categoriesState();
 }
-
 
 // class _categoriesState extends State<categories> {
 //   @override
@@ -214,7 +214,9 @@ class _categoriesState extends State<categories> {
           physics: ClampingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           children: <Widget>[
-            SizedBox(width: 5,),
+            SizedBox(
+              width: 5,
+            ),
             Card(
               color: Colors.white70,
               child: Center(
@@ -330,9 +332,9 @@ class _categoriesState extends State<categories> {
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => ParticularProduct(
-                        categoryList: context.read<adsList>().categoryAds(
-                            context.read<adsList>().ListOfAds, "Camera"),
-                      )));
+                            categoryList: context.read<adsList>().categoryAds(
+                                context.read<adsList>().ListOfAds, "Camera"),
+                          )));
                 },
                 child: Container(
                   margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
@@ -365,9 +367,9 @@ class _categoriesState extends State<categories> {
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => ParticularProduct(
-                        categoryList: context.read<adsList>().categoryAds(
-                            context.read<adsList>().ListOfAds, "Monitor"),
-                      )));
+                            categoryList: context.read<adsList>().categoryAds(
+                                context.read<adsList>().ListOfAds, "Monitor"),
+                          )));
                 },
                 child: Container(
                   margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
@@ -400,9 +402,9 @@ class _categoriesState extends State<categories> {
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => ParticularProduct(
-                        categoryList: context.read<adsList>().categoryAds(
-                            context.read<adsList>().ListOfAds, "Speaker"),
-                      )));
+                            categoryList: context.read<adsList>().categoryAds(
+                                context.read<adsList>().ListOfAds, "Speaker"),
+                          )));
                 },
                 child: Container(
                   margin: EdgeInsets.fromLTRB(10, 15, 0, 0),
@@ -426,10 +428,12 @@ class _categoriesState extends State<categories> {
                   //     style: TextStyle(color: Colors.black),
                   //   ),
                   // ),
-      ),
+                ),
               ),
             ),
-            SizedBox(width: 5,),
+            SizedBox(
+              width: 5,
+            ),
           ]
           //listItem(context, index),
           ),
@@ -761,21 +765,36 @@ class _GridState extends State<Grid> {
 //      child: GridView.builder(
         physics: ScrollPhysics(),
         shrinkWrap: true,
-        itemCount: 5,
+        itemCount: context.read<adsList>().ListOfAds.length,
         gridDelegate:
             new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (BuildContext context, int index) {
           return Card(
             child: InkWell(
-              onTap: (() {}),
+              onTap: (() {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ProductDetail(
+                          Ads: context.read<adsList>().ListOfAds[index],
+                        )));
+              }),
               child: GridTile(
                 footer: Container(
-                  color: Colors.red,
+                  // decoration:
+                  //     BoxDecoration(border: Border.all(color: Colors.black)),
+                  color: Colors.white,
                   child: ListTile(
-                    leading: Text("Leading"),
+                    title: Text(
+                      context.read<adsList>().ListOfAds[index].title,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle:
+                        Text(context.read<adsList>().ListOfAds[index].price),
                   ),
                 ),
-                child: Text("Grid Child"),
+                child: Image.network(
+                  context.read<adsList>().ListOfAds[index].downloadURLS[0],
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
           );
