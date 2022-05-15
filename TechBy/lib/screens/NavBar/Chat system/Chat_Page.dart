@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import '../../../Sign _In/google_sign_in.dart';
 
+
 class Chat_screen extends StatefulWidget {
   String docid;
    Chat_screen({ required this.docid});
@@ -21,7 +22,7 @@ class Chat_screen extends StatefulWidget {
 class _Chat_screenState extends State<Chat_screen> {
 
   Timer? timer;
-
+  String other_email = "";
   void initState() {
     super.initState();
     // print(widget.docid);
@@ -36,6 +37,14 @@ class _Chat_screenState extends State<Chat_screen> {
   void deactivate() {
     timer?.cancel();
     super.deactivate();
+  }
+
+  @override
+  void activate() {
+    getChat();
+
+    timer = Timer.periodic(Duration(seconds: 5), (Timer t) => getChatRuntime());
+    super.activate();
   }
 
   // Future<void> socketSetup() async {
@@ -56,60 +65,82 @@ class _Chat_screenState extends State<Chat_screen> {
   //   );
   // }
 
+  void messagecreation(List<dynamic> room, String email) async {
+    for (var messagedoc in room) {
+      await FirebaseFirestore.instance.collection('Rooms').doc(messagedoc).get()
+          .then((DocumentSnapshot documentSnapshot) {
+
+        var message = documentSnapshot.data() as Map;
+        if (email == message["sender"])
+          data.add(ChatMessage(message: message["message"],
+              messagetype: "sender",
+              sender: message["sender"],
+              docid: documentSnapshot.id));
+        else
+          data.add(ChatMessage(message: message["message"],
+              messagetype: "reciever",
+              sender: message["sender"],
+              docid: documentSnapshot.id));
+
+      });
+    }
+    if(mounted)
+      setState(() {
+
+      });
+  }
+
   void  getChatRuntime() async {
     String email = await Provider.of<GoogleSingInProvider>(context, listen: false).emailAddress();
+
+
     await FirebaseFirestore.instance.collection('Userrooms').doc(widget.docid).get()
         .then((DocumentSnapshot documentSnapshot) {
       var useroomMap = documentSnapshot.data() as Map;
       List<dynamic> room = useroomMap["room"];
-      bool flag = false;
-      String lastId = data.last.docid;
-      room.forEach((messagedoc) async {
-        await FirebaseFirestore.instance.collection('Rooms').doc(messagedoc).get()
-            .then((DocumentSnapshot documentSnapshot) {
 
-          if(flag) {
-            var message = documentSnapshot.data() as Map;
-            print(message);
-            if (email == message["sender"])
-              data.add(ChatMessage(message: message["message"],
-                  messagetype: "sender",
-                  sender: message["sender"],
-                  docid: documentSnapshot.id));
-            else
-              data.add(ChatMessage(message: message["message"],
-                  messagetype: "reciever",
-                  sender: message["sender"],
-                  docid: documentSnapshot.id));
-            setState(() {});
-          }
-          if(lastId == documentSnapshot.id) flag = true;
+      print(room);
 
-          });
-        });
-      });}
+      data.clear();
+
+      messagecreation(room, email);
+
+      // room.forEach((messagedoc) async {
+      //   await FirebaseFirestore.instance.collection('Rooms').doc(messagedoc).get()
+      //       .then((DocumentSnapshot documentSnapshot) {
+      //
+      //       var message = documentSnapshot.data() as Map;
+      //       if (email == message["sender"])
+      //         data.add(ChatMessage(message: message["message"],
+      //             messagetype: "sender",
+      //             sender: message["sender"],
+      //             docid: documentSnapshot.id));
+      //       else
+      //         data.add(ChatMessage(message: message["message"],
+      //             messagetype: "reciever",
+      //             sender: message["sender"],
+      //             docid: documentSnapshot.id));
+      //
+      //     });
+      //   });
+      });
+
+  }
 
   void  getChat() async {
-    data.clear();
     String email = await Provider.of<GoogleSingInProvider>(context, listen: false).emailAddress();
     await FirebaseFirestore.instance.collection('Userrooms').doc(widget.docid).get()
         .then((DocumentSnapshot documentSnapshot) {
       var useroomMap = documentSnapshot.data() as Map;
       List<dynamic> room = useroomMap["room"];
-      room.forEach((messagedoc) async {
-        await FirebaseFirestore.instance.collection('Rooms').doc(messagedoc).get()
-            .then((DocumentSnapshot documentSnapshot) {
-          var message = documentSnapshot.data() as Map;
-          print(message);
-          if(email == message["sender"])
-            data.add(ChatMessage(message: message["message"], messagetype: "sender", sender: message["sender"], docid: documentSnapshot.id));
-          else
-            data.add(ChatMessage(message: message["message"], messagetype: "reciever", sender: message["sender"], docid: documentSnapshot.id));
-          setState(() {
+      if(email == useroomMap["buyerid"])
+        other_email = useroomMap["sellerid"];
+      else
+        other_email = useroomMap["buyerid"];
 
-          });
-        });
-  });});}
+      messagecreation(room, email);
+
+        });}
   //
   // IO.Socket socket = IO.io('http://localhost:5000');
   //
@@ -136,7 +167,7 @@ class _Chat_screenState extends State<Chat_screen> {
     _scrolltobottom();
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ashar"),
+        title: Text(other_email),
       ),
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
@@ -231,16 +262,19 @@ class _Chat_screenState extends State<Chat_screen> {
     final XFile? pickedImage =
     await _picker.pickImage(source: ImageSource.gallery);
     if (pickedImage != null) {
-      setState(() {
-        _image = File(pickedImage.path);
-      });
+      if(mounted)
+        setState(() {
+          _image = File(pickedImage.path);
+        });
     }
   }
+
   addMessage(String input) async {
     String email = await Provider.of<GoogleSingInProvider>(context, listen: false).emailAddress();
     _message.text = "";
+
     ChatMessage obj = ChatMessage(message: input, messagetype: "sender", sender: email, docid: '');
-    data.add(obj);
+
     await FirebaseFirestore.instance.collection('Rooms').add(obj.toJson())
         .then((value) async {
           obj.docid = value.id;
@@ -249,9 +283,6 @@ class _Chat_screenState extends State<Chat_screen> {
     });
     });
 
-
-
-    setState(() {});
   }
 
   _scrolltobottom() {

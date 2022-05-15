@@ -42,15 +42,15 @@ class _ChatMain_screenState extends State<ChatMain_screen> {
     String email = await Provider.of<GoogleSingInProvider>(context, listen: false).emailAddress();
     await FirebaseFirestore.instance.collection('Users').where('email', isEqualTo: email).get()
         .then((QuerySnapshot querySnapshot) {
-      querySnapshot.docs.forEach((doc) {
+      querySnapshot.docs.forEach((doc) async {
         //List<String> rooms = doc.data['rooms'] as;
        var userMap = doc.data() as Map;
        List<dynamic> rooms = userMap["rooms"];
-       rooms.forEach((room) async {
+       for (var room in rooms) {
          await FirebaseFirestore.instance.collection('Userrooms').doc(room).get()
              .then((DocumentSnapshot documentSnapshot) {
            var useroomMap = documentSnapshot.data() as Map;
-           //print(useroomMap);
+           // print(useroomMap);
            if(useroomMap["buyerid"].toString() == email)
               data.add(ChatUser(name: useroomMap["sellerid"], product: useroomMap["Product"], image_name: useroomMap["Image"], doc_id: documentSnapshot.id));
             // data.add(abc);
@@ -62,7 +62,7 @@ class _ChatMain_screenState extends State<ChatMain_screen> {
            });
            //print(data);
              });
-       });
+       }
         // ads temp = ads.fromJson(doc.data() as Map<String, dynamic>);
         // temp.docID = doc.id;
 
@@ -112,7 +112,10 @@ class _ChatMain_screenState extends State<ChatMain_screen> {
                       children: <Widget>[
                         ListTile(
                           leading:
-                              Image(image: AssetImage(data[index].image_name)),
+                              Image.network(
+                                data[index].image_name,
+                                fit: BoxFit.cover,
+                              ),
                           title: Text(data[index].name),
                           subtitle: Text(data[index].product),
                           trailing: Column(
