@@ -109,13 +109,16 @@ class _topPartState extends State<_topPart> {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(Provider.of<GoogleSingInProvider>(context, listen: false)
+            Container(
+              margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+              child: Text(Provider.of<GoogleSingInProvider>(context, listen: false)
                 .userDetails
                 .userName
-                .toString(),style: TextStyle(fontSize: 24, color: Colors.black,fontWeight: FontWeight.bold,fontFamily: 'Microsoft YaHei')),
-            SizedBox(
-              height: 10,
+                .toString(),style: TextStyle(fontSize: 24, color: Colors.black,fontWeight: FontWeight.bold,fontFamily: 'Montserrat',)),
             ),
+            // SizedBox(
+            //   height: 10,
+            // ),
             // Container(
             //   alignment: Alignment(1.0, 0.0),
             //   // padding: EdgeInsets.only(top: 15.0, left: 20.0),
@@ -146,16 +149,18 @@ class _lowerPart extends StatelessWidget {
 
   _lowerPart({Key? key}) : super(key: key);
   double i=6.0;
+  double j = 4.0;
   @override
   Widget build(BuildContext context) {
     return Expanded(
         child: ListView(
       children: [
         Card(
+          elevation: j,
             margin: EdgeInsets.all(i),
-            shadowColor: Colors.blue,
+            shadowColor: Colors.black,
             child: ListTile(
-                tileColor: Colors.grey[300],
+                tileColor: Colors.white,
                 leading: Icon(Icons.favorite, color: Colors.red),
                 title: Text("My Favorite"),
                 onTap: () {
@@ -163,11 +168,12 @@ class _lowerPart extends StatelessWidget {
                       .push(MaterialPageRoute(builder: (context) => MyFav()));
                 })),
         Card(
+          elevation: j,
           margin: EdgeInsets.all(i),
-          shadowColor: Colors.blue,
+          shadowColor: Colors.black,
           child: ListTile(
-              tileColor: Colors.grey[300],
-              leading: Icon(Icons.question_answer_rounded, color: Colors.blue),
+              tileColor: Colors.white,
+              leading: Icon(Icons.question_answer_rounded, color: Color.fromRGBO(30, 159, 217, 1)),
               title: Text("FAQs"),
               onTap: () {
                 Navigator.of(context).push(
@@ -175,21 +181,23 @@ class _lowerPart extends StatelessWidget {
               }),
         ),
         Card(
+          elevation: j,
             margin: EdgeInsets.all(i),
-            shadowColor: Colors.blue,
+            shadowColor: Colors.black,
             child: ListTile(
-                tileColor: Colors.grey[300],
-                leading: Icon(Icons.message_sharp, color: Colors.blue),
+                tileColor: Colors.white,
+                leading: Icon(Icons.message_sharp, color: Color.fromRGBO(30, 159, 217, 1)),
                 title: Text("Contact  Us"),
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => ContactUs_scrren()));
                 })),
         Card(
+          elevation: j,
             margin: EdgeInsets.all(i),
-            shadowColor: Colors.blue,
+            shadowColor: Colors.black,
             child: ListTile(
-              tileColor: Colors.grey[300],
+              tileColor: Colors.white,
               leading: Icon(
                 Icons.logout_outlined,
                 color: Colors.red,
