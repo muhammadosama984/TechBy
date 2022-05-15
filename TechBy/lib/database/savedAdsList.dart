@@ -26,11 +26,11 @@ class savedAdsList extends ChangeNotifier {
     });
   }
 
-  Future<void> addSavedAd({required String email, required ads Ad}) async {
-    Ad.favAd=true;
+  Future<void> addSavedAd({required String email, required String doc_ID}) async {
+    //doc_ID.favAd=true;
     CollectionReference adReference =
         FirebaseFirestore.instance.collection('savedAds');
-    final savedAdObj = savedAds(email: email, Ad: Ad);
+    final savedAdObj = savedAds(email: email, doc_ID: doc_ID);
     adReference
         .add(savedAdObj.toJson())
         .then((value) => print("Ad Posted"))

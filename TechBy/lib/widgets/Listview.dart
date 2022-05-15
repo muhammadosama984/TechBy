@@ -130,7 +130,7 @@ class _HeartState extends State<Heart> with SingleTickerProviderStateMixin {
         print(emailAddress);
         await context
             .read<savedAdsList>()
-            .addSavedAd(email: emailAddress, Ad: widget.comingAd);
+            .addSavedAd(email: emailAddress, doc_ID: widget.comingAd.docID);
         await context.read<adsList>().updateAd(myAd: widget.comingAd);
         setState(() {});
       }
