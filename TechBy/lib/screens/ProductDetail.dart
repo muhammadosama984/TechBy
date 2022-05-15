@@ -31,14 +31,13 @@ class _ProductDetailState extends State<ProductDetail> {
         docid = doc.id;
       });
     });
-    print("abc");
+
     if(!userexists) {
       await FirebaseFirestore.instance.collection(
           'Userrooms').where('sellerid', isEqualTo: email)
           .where('buyerid',
           isEqualTo: widget.Ads.emailAddressUser).get()
-          .
-      then((QuerySnapshot querySnapshot) {
+          .then((QuerySnapshot querySnapshot) {
         querySnapshot.docs.forEach((doc) {
           userexists = true;
           docid = doc.id;
@@ -46,14 +45,10 @@ class _ProductDetailState extends State<ProductDetail> {
       });
     }
 
-    List<DocumentReference> roomsArr = [];
-    if(userexists){
-      print("Chat already exists");
-    }
-    else{
+    if(!userexists){
       final Map<String, dynamic> data = {};
-      data['buyer_id'] = email;
-      data['seller_id'] = widget.Ads.emailAddressUser;
+      data['buyerid'] = email;
+      data['sellerid'] = widget.Ads.emailAddressUser;
       data['room'] = [];
       data['Image'] = widget.Ads.downloadURLS[0];
       data['Product'] = widget.Ads.title;
@@ -65,21 +60,25 @@ class _ProductDetailState extends State<ProductDetail> {
         String buyerdoc = "";
         String sellerdoc = "";
 
-        await FirebaseFirestore.instance.collection('Userd').where('email', isEqualTo: email)
+        await FirebaseFirestore.instance.collection('Users').where('email', isEqualTo: email)
             .get()
             .then((QuerySnapshot querySnapshot) {
-          querySnapshot.docs.forEach((doc) {
-            buyerdoc = doc.id;
+            querySnapshot.docs.forEach((doc) {
+              buyerdoc = doc.id;
           });
         });
 
-        await FirebaseFirestore.instance.collection('Userd').where('email', isEqualTo: widget.Ads.emailAddressUser)
+        // print(buyerdoc);
+
+        await FirebaseFirestore.instance.collection('Users').where('email', isEqualTo: widget.Ads.emailAddressUser)
             .get()
             .then((QuerySnapshot querySnapshot) {
           querySnapshot.docs.forEach((doc) {
             sellerdoc = doc.id;
           });
         });
+
+        // print(sellerdoc);
 
 
         await FirebaseFirestore.instance.collection("Users").doc(buyerdoc).update({
