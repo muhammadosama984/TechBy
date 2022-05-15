@@ -200,7 +200,7 @@ class _PostAdsState extends State<PostAds> {
                       style: TextStyle(fontSize: 15, color: Colors.black)),
                   color: Colors.white,
                   textColor: Colors.white,
-                  elevation: 5,
+                  elevation: 1,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5.0),
                     side: BorderSide(color: Colors.black),
