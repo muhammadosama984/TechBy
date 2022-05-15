@@ -13,6 +13,8 @@ class savedAds {
     final Map<String, dynamic> data = {};
     data['ads'] = Ad;
     data['email'] = email;
+
     return data;
+
   }
 }
