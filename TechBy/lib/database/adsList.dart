@@ -7,6 +7,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:techby/database/ads.dart';
+import 'package:techby/database/savedAds.dart';
+import 'package:techby/database/savedAdsList.dart';
 
 import '../Sign _In/google_sign_in.dart';
 
@@ -24,6 +26,7 @@ class adsList extends ChangeNotifier {
         ads temp = ads.fromJson(doc.data() as Map<String, dynamic>);
         // temp.favAd=false;
         temp.docID = doc.id;
+        temp.favAd = false;
         print(doc.id);
         // if(temp.done==true)
         //   temp.completion_dateTime=DateTime.parse(doc.get("Completion Date"));
@@ -31,6 +34,15 @@ class adsList extends ChangeNotifier {
         //  print(tasks[0].title);
       });
     });
+  }
+
+  Future<void> get_savedAds_ads(List<savedAds> listOfSaved) async {
+    await adsList();
+    for (int i = 0; i < listOfSaved.length; i++) {
+      int x = ListOfMyAds.indexWhere(
+          (element) => element.docID == listOfSaved[i].doc_ID);
+      ListOfAds[x].favAd = true;
+    }
   }
 
   Future<List<ads>> myAds(String email) async {

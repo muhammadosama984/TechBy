@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
 import 'package:techby/database/ads.dart';
 import 'package:techby/database/adsList.dart';
+import 'package:techby/database/savedAdsList.dart';
 import 'package:techby/screens/ProductDetail.dart';
 
 class ViewMyAds extends StatefulWidget {
@@ -44,6 +45,8 @@ class _adsListState extends State<_adsList> {
     String email =
         await Provider.of<GoogleSingInProvider>(context, listen: false)
             .emailAddress();
+    await context.read<savedAdsList>().getMyAds(emailAddress: email);
+    context.read<savedAdsList>().printList();
     await context.read<adsList>().myAds(email);
     setState(() {});
   }
