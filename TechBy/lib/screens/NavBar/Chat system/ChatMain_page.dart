@@ -10,7 +10,6 @@ import 'package:techby/Sign _In/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'Chat_Page.dart';
 
-
 class ChatMain_screen extends StatefulWidget {
   const ChatMain_screen({Key? key}) : super(key: key);
 
@@ -31,48 +30,59 @@ class _ChatMain_screenState extends State<ChatMain_screen> {
   void initState() {
     super.initState();
     getChats();
-
   }
+
   //
   // Static String fromJson(Map<String, dynamic> json) =>
   //     title: json['title']);
   // Future<List<ChatUser>>
-  void  getChats() async {
+  void getChats() async {
     data.clear();
-    String email = await Provider.of<GoogleSingInProvider>(context, listen: false).emailAddress();
-    await FirebaseFirestore.instance.collection('Users').where('email', isEqualTo: email).get()
+    String email =
+        await Provider.of<GoogleSingInProvider>(context, listen: false)
+            .emailAddress();
+    await FirebaseFirestore.instance
+        .collection('Users')
+        .where('email', isEqualTo: email)
+        .get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) async {
         //List<String> rooms = doc.data['rooms'] as;
-       var userMap = doc.data() as Map;
-       List<dynamic> rooms = userMap["rooms"];
-       for (var room in rooms) {
-         await FirebaseFirestore.instance.collection('Userrooms').doc(room).get()
-             .then((DocumentSnapshot documentSnapshot) {
-           var useroomMap = documentSnapshot.data() as Map;
-           // print(useroomMap);
-           if(useroomMap["buyerid"].toString() == email)
-              data.add(ChatUser(name: useroomMap["sellerid"], product: useroomMap["Product"], image_name: useroomMap["Image"], doc_id: documentSnapshot.id));
+        var userMap = doc.data() as Map;
+        List<dynamic> rooms = userMap["rooms"];
+        for (var room in rooms) {
+          await FirebaseFirestore.instance
+              .collection('Userrooms')
+              .doc(room)
+              .get()
+              .then((DocumentSnapshot documentSnapshot) {
+            var useroomMap = documentSnapshot.data() as Map;
+            // print(useroomMap);
+            if (useroomMap["buyerid"].toString() == email)
+              data.add(ChatUser(
+                  name: useroomMap["sellerid"],
+                  product: useroomMap["Product"],
+                  image_name: useroomMap["Image"],
+                  doc_id: documentSnapshot.id));
             // data.add(abc);
-           else{
-             data.add(ChatUser(name: useroomMap["buyerid"], product: useroomMap["Product"], image_name: useroomMap["Image"], doc_id: documentSnapshot.id));
-           }
-           setState(() {
-
-           });
-           //print(data);
-             });
-       }
+            else {
+              data.add(ChatUser(
+                  name: useroomMap["buyerid"],
+                  product: useroomMap["Product"],
+                  image_name: useroomMap["Image"],
+                  doc_id: documentSnapshot.id));
+            }
+            setState(() {});
+            //print(data);
+          });
+        }
         // ads temp = ads.fromJson(doc.data() as Map<String, dynamic>);
         // temp.docID = doc.id;
-
 
         // data.add(temp);
         //  print(tasks[0].title);
       });
     });
-
-
 
     // List<DocumentReference> rooms = await current_user.rooms;
   }
@@ -84,10 +94,10 @@ class _ChatMain_screenState extends State<ChatMain_screen> {
         title: Text("Chats"),
         automaticallyImplyLeading: false,
         actions: [
-          IconButton(
-              onPressed: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => SearchPage())),
-              icon: Icon(Icons.search))
+          // IconButton(
+          //     onPressed: () => Navigator.of(context)
+          //         .push(MaterialPageRoute(builder: (_) => SearchPage())),
+          //     icon: Icon(Icons.search))
         ],
       ),
       backgroundColor: Colors.white,
@@ -103,19 +113,20 @@ class _ChatMain_screenState extends State<ChatMain_screen> {
                 return Card(
                     child: GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => Chat_screen(docid: data[index].doc_id,)));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => Chat_screen(
+                              docid: data[index].doc_id,
+                            )));
                   },
                   child: Container(
                     height: 120,
                     child: Column(
                       children: <Widget>[
                         ListTile(
-                          leading:
-                              Image.network(
-                                data[index].image_name,
-                                fit: BoxFit.cover,
-                              ),
+                          leading: Image.network(
+                            data[index].image_name,
+                            fit: BoxFit.cover,
+                          ),
                           title: Text(data[index].name),
                           subtitle: Text(data[index].product),
                           trailing: Column(
@@ -158,7 +169,10 @@ class ChatUser {
   String doc_id;
 
   ChatUser(
-      {required this.name, required this.product, required this.image_name, required this.doc_id});
+      {required this.name,
+      required this.product,
+      required this.image_name,
+      required this.doc_id});
 }
 
 class _topPart extends StatelessWidget {

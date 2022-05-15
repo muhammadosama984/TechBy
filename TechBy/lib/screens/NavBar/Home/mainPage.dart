@@ -50,15 +50,15 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               icon: Icon(Icons.notifications),
             ),
-            IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => SearchPage()));
-                setState(() {});
-                //new screen navigate
-              },
-              icon: Icon(Icons.search),
-            ),
+            // IconButton(
+            //   onPressed: () {
+            //     Navigator.of(context).push(
+            //         MaterialPageRoute(builder: (context) => SearchPage()));
+            //     setState(() {});
+            //     //new screen navigate
+            //   },
+            //   icon: Icon(Icons.search),
+            // ),
           ],
         ),
         body: Padding(

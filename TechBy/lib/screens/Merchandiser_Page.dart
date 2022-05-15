@@ -20,21 +20,21 @@ class _Merchandiser_screenState extends State<Merchandiser_screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Merchandiser List"),
+      appBar: AppBar(title: Text("Merchandiser List"),
           // automaticallyImplyLeading: false,
           actions: [
-          IconButton(
-          onPressed: () {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => SearchPage()));
-    setState(() {});
-    //new screen navigate
-    },
-      icon: Icon(Icons.search),
-    ),
-    ]
-      ),
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => SearchPage(
+                          searchList: [],
+                        )));
+                setState(() {});
+                //new screen navigate
+              },
+              icon: Icon(Icons.search),
+            ),
+          ]),
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       body: Center(
@@ -52,9 +52,10 @@ class _Merchandiser_screenState extends State<Merchandiser_screen> {
                         title: Text(data[index].name),
                         // subtitle: Text(data[index].complain),
                         trailing: Icon(Icons.arrow_forward_ios),
-                        onTap: (){
-                          Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) => MerchandiserProfile_screen()));
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  MerchandiserProfile_screen()));
                         },
                       ),
                     );
@@ -66,7 +67,8 @@ class _Merchandiser_screenState extends State<Merchandiser_screen> {
     );
   }
 }
-class Merchandiser{
+
+class Merchandiser {
   String name;
   String id;
   Merchandiser({required this.name, required this.id});

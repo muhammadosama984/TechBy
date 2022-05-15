@@ -25,8 +25,10 @@ class _ParticularProductState extends State<ParticularProduct> {
         title: Text("List"),
         actions: [
           IconButton(
-              onPressed: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => SearchPage())),
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => SearchPage(
+                        searchList: widget.categoryList,
+                      ))),
               icon: Icon(Icons.search))
         ],
       ),

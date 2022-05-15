@@ -1,7 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:techby/widgets/Listview.dart';
 
-class SearchPage extends StatelessWidget {
-  const SearchPage({Key? key}) : super(key: key);
+import '../database/ads.dart';
+
+class SearchPage extends StatefulWidget {
+  List<ads> searchList;
+  SearchPage({Key? key, required this.searchList}) : super(key: key);
+
+  @override
+  State<SearchPage> createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
+  List<ads> newList = [];
+  void searchResult(String val) {
+    List<ads> newList = [];
+    for (int i = 0; i < widget.searchList.length; i++) {
+      if (widget.searchList[i].title == val) {
+        newList.add(widget.searchList[i]);
+      }
+    }
+    widget.searchList = newList;
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    newList = widget.searchList;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +42,12 @@ class SearchPage extends StatelessWidget {
             color: Colors.white, borderRadius: BorderRadius.circular(5)),
         child: Center(
           child: TextField(
-            onChanged: (value) {},
+            onChanged: (value) {
+              newList = widget.searchList
+                  .where(((element) => (element.title.contains(value))))
+                  .toList();
+              setState(() {});
+            },
             decoration: InputDecoration(
                 prefixIcon: Icon(Icons.search),
                 suffixIcon: IconButton(
@@ -29,6 +61,7 @@ class SearchPage extends StatelessWidget {
           ),
         ),
       )),
+      body: Lists(comingList: newList),
     );
   }
 }
