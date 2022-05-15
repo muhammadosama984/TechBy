@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -17,6 +18,7 @@ class PostAds extends StatefulWidget {
 
 class _PostAdsState extends State<PostAds> {
   List<String> items1 = ['Category'];
+  List<bool> _selections = [false, false,false, false,false, false,];
   List<String> items = [
     'Desktop',
     'Mobile',
@@ -78,21 +80,124 @@ class _PostAdsState extends State<PostAds> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Post Ads"),
+        title: Text("  Post an Ad"),
+        backgroundColor: Color.fromRGBO(30, 159, 217, 1),
         automaticallyImplyLeading: false,
+
       ),
+
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
           child: Column(
+
             children: [
-              SizedBox(height: 100),
+
+              SizedBox(height: 30,),
+
+              Container(
+                width: 250,
+                height: 59,
+                //color: Color.fromRGBO(30, 159, 217, 1),
+                // decoration:
+                //     BoxDecoration(
+                //         border: Border.all(color: Colors.black)
+                //
+                //     ),
+                child: DropdownButtonFormField(
+                  focusColor: Colors.white70,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black, width: 1),
+                      borderRadius: BorderRadius.circular(5),
+
+
+                    ),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black, width: 1),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white70,
+                  ),
+
+                  // Initial Value
+                  value: valueOfCategory,
+                  hint: Text("  Select Category",
+                    style: TextStyle(color: Colors.black87,
+                    fontSize: 15),
+                  ),
+                  // Down Arrow Icon
+
+                  icon: const Icon(Icons.keyboard_arrow_down,
+                    color: Colors.black,),
+
+
+                  // Array list of items
+                  items: items.map((String items) {
+                    return DropdownMenuItem(
+                      value: items,
+                      child: Text(items),
+                    );
+                  }).toList(),
+                  // After selecting the desired option,it will
+                  // change button value to selected value
+                  onChanged: (value) {
+                    setState(() {
+                      valueOfCategory = value.toString();
+                      categoryMain.text = valueOfCategory!;
+                    });
+                  },
+                ),
+              ),
+
+              SizedBox(height: 30,),
+
+              Wrap(
+
+                children: multipleImages
+                    .map((e) => Image.file(
+                  File(e.path),
+                  width: 100,
+                  height: 100,
+                ))
+                    .toList(),
+              ),
+
+              Container(
+                width: 250,
+                  height: 60,
+                  child: RaisedButton(
+
+
+                    onPressed: () async {
+                      // _openImagePicker();
+                      multipleImages = await multiImagePicker();
+                      if (multipleImages.isNotEmpty) {
+                        setState(() {});
+                      }
+                    },
+                    child:
+                    const Text('Pick Images', style: TextStyle(fontSize: 15)),
+
+                    color: Color.fromRGBO(30, 159, 217, 1),
+                    textColor: Colors.white,
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      //side: BorderSide(color: Colors.black),
+                    ),
+                  ),
+              ),
+
+              SizedBox(height: 20),
               _titleField(titleController: titleMain),
               SizedBox(
                 height: 50,
               ),
               _description(descriptionController: descriptionMain),
               _priceField(priceController: priceMain),
+
               SizedBox(
                 height: 50,
               ),
@@ -112,61 +217,9 @@ class _PostAdsState extends State<PostAds> {
               SizedBox(
                 height: 20,
               ),
-              Container(
-                height: 30,
-                decoration:
-                    BoxDecoration(border: Border.all(color: Colors.black)),
-                child: DropdownButton(
-                  // Initial Value
-                  value: valueOfCategory,
-                  hint: Text("Select Category"),
-                  // Down Arrow Icon
-                  icon: const Icon(Icons.keyboard_arrow_down),
 
-                  // Array list of items
-                  items: items.map((String items) {
-                    return DropdownMenuItem(
-                      value: items,
-                      child: Text(items),
-                    );
-                  }).toList(),
-                  // After selecting the desired option,it will
-                  // change button value to selected value
-                  onChanged: (value) {
-                    setState(() {
-                      valueOfCategory = value.toString();
-                      categoryMain.text = valueOfCategory!;
-                    });
-                  },
-                ),
-              ),
               SizedBox(height: 20),
-              Wrap(
-                children: multipleImages
-                    .map((e) => Image.file(
-                          File(e.path),
-                          width: 200,
-                        ))
-                    .toList(),
-              ),
-              RaisedButton(
-                onPressed: () async {
-                  // _openImagePicker();
-                  multipleImages = await multiImagePicker();
-                  if (multipleImages.isNotEmpty) {
-                    setState(() {});
-                  }
-                },
-                child:
-                    const Text('Pick Images', style: TextStyle(fontSize: 20)),
-                color: Colors.blue,
-                textColor: Colors.white,
-                elevation: 5,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                  side: BorderSide(color: Colors.black),
-                ),
-              ),
+
               SizedBox(height: 20),
               _postButton(
                 //val: valueOfCategory,
@@ -179,6 +232,7 @@ class _PostAdsState extends State<PostAds> {
                 //img: _image,
                 multiImages: multipleImages,
               ),
+              SizedBox(height: 20,)
             ],
           ),
         ),
@@ -274,8 +328,12 @@ class _postButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-      color: Colors.blue,
+    return Container(
+      width: 300,
+      height: 50,
+      child: RaisedButton(
+
+      color: Color.fromRGBO(30, 159, 217, 1),
       onPressed: () async {
         // if (val != null) {
         //   CategoryController.text = val.toString();
@@ -310,11 +368,14 @@ class _postButton extends StatelessWidget {
                 (await Provider.of<GoogleSingInProvider>(context, listen: false)
                     .emailAddress()));
       },
-      child: Text("  Post  ", style: TextStyle(fontSize: 20)),
+      child: Text("Post Now", style: TextStyle(fontSize: 15)),
+
       textColor: Colors.white,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.0),
-          side: BorderSide(color: Colors.black)),
+          //side: BorderSide(color: Colors.black)
+      ),
+    ),
     );
   }
 }
