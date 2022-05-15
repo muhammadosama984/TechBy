@@ -149,20 +149,6 @@ class categories extends StatefulWidget {
   _categoriesState createState() => _categoriesState();
 }
 
-Widget listItem(BuildContext context, int index) {
-  return Card(
-    child: Row(
-      children: <Widget>[
-        _desktop(),
-        _mobile(),
-        _laptop(),
-        _camera(),
-        _monitor(),
-        _speaker(),
-      ],
-    ),
-  );
-}
 
 // class _categoriesState extends State<categories> {
 //   @override
@@ -228,7 +214,9 @@ class _categoriesState extends State<categories> {
           physics: ClampingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           children: <Widget>[
+            SizedBox(width: 5,),
             Card(
+              color: Colors.white70,
               child: Center(
                 child: GestureDetector(
                   onTap: () async {
@@ -242,7 +230,7 @@ class _categoriesState extends State<categories> {
                   },
                   child: Center(
                     child: Container(
-                      margin: EdgeInsets.fromLTRB(10, 10, 0, 0),
+                      margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                       height: 120.0,
                       width: 120.0,
                       decoration: BoxDecoration(
@@ -268,6 +256,7 @@ class _categoriesState extends State<categories> {
               //Center(child: Text('Dummy Card Text')),
             ),
             Card(
+              color: Colors.white70,
               child: GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -277,7 +266,7 @@ class _categoriesState extends State<categories> {
                           )));
                 },
                 child: Container(
-                  margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  margin: EdgeInsets.fromLTRB(05, 10, 05, 10),
                   height: 120.0,
                   width: 120.0,
                   decoration: BoxDecoration(
@@ -302,6 +291,7 @@ class _categoriesState extends State<categories> {
               ),
             ),
             Card(
+              color: Colors.white70,
               child: GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
@@ -335,6 +325,7 @@ class _categoriesState extends State<categories> {
                   )),
             ),
             Card(
+              color: Colors.white70,
               child: GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -344,7 +335,7 @@ class _categoriesState extends State<categories> {
                       )));
                 },
                 child: Container(
-                  margin: EdgeInsets.fromLTRB(10, 10, 0, 0),
+                  margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
                   height: 120.0,
                   width: 120.0,
                   decoration: BoxDecoration(
@@ -369,6 +360,7 @@ class _categoriesState extends State<categories> {
               ),
             ),
             Card(
+              color: Colors.white70,
               child: GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -378,7 +370,7 @@ class _categoriesState extends State<categories> {
                       )));
                 },
                 child: Container(
-                  margin: EdgeInsets.fromLTRB(10, 10, 0, 0),
+                  margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
                   height: 120.0,
                   width: 120.0,
                   decoration: BoxDecoration(
@@ -403,6 +395,7 @@ class _categoriesState extends State<categories> {
               ),
             ),
             Card(
+              color: Colors.white70,
               child: GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -436,6 +429,7 @@ class _categoriesState extends State<categories> {
       ),
               ),
             ),
+            SizedBox(width: 5,),
           ]
           //listItem(context, index),
           ),
