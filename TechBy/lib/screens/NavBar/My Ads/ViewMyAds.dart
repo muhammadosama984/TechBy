@@ -98,8 +98,6 @@ class _adsListState extends State<_adsList> {
 
                                           setState(() {});
                                           Navigator.of(context).pop(false);
-
-                                          // initState();
                                         },
                                         child: Text('Yes')),
                                     TextButton(

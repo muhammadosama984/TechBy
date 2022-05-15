@@ -293,7 +293,7 @@ class _priceField extends StatelessWidget {
   }
 }
 
-class _postButton extends StatelessWidget {
+class _postButton extends StatefulWidget {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController locationController = TextEditingController();
@@ -316,6 +316,12 @@ class _postButton extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<_postButton> createState() => _postButtonState();
+}
+
+class _postButtonState extends State<_postButton> {
+  bool isPosted = false;
+  @override
   Widget build(BuildContext context) {
     return Container(
       width: 300,
@@ -335,27 +341,35 @@ class _postButton extends StatelessWidget {
           //     location: locationController.text,
           //     uploadDate: DateTime.now()));
           //print(CategoryController.text);
+          setState(() {
+            isPosted = true;
+          });
+
           List<String> urls = await Provider.of<adsList>(context, listen: false)
-              .multiImageUploader(multiImages) as List<String>;
-          print(titleController.text +
-              descriptionController.text +
-              CategoryController.text +
-              priceController.text +
-              locationController.text +
+              .multiImageUploader(widget.multiImages) as List<String>;
+          print(widget.titleController.text +
+              widget.descriptionController.text +
+              widget.CategoryController.text +
+              widget.priceController.text +
+              widget.locationController.text +
               " " +
               urls[0]);
           Provider.of<adsList>(context, listen: false).postAds(
-              title_f: titleController.text,
-              description_f: descriptionController.text,
-              location_f: locationController.text,
+              title_f: widget.titleController.text,
+              description_f: widget.descriptionController.text,
+              location_f: widget.locationController.text,
               uploadDate_f: DateTime.now(),
-              price_f: priceController.text,
-              category_f: CategoryController.text.toString(),
+              price_f: widget.priceController.text,
+              category_f: widget.CategoryController.text.toString(),
               downloadURLS_f: urls,
               emailAddressUser_f: (await Provider.of<GoogleSingInProvider>(
                       context,
                       listen: false)
                   .emailAddress()));
+
+          setState(() {
+            isPosted = false;
+          });
 
           bool isLogout = false;
           isLogout = await showDialog(
@@ -373,8 +387,17 @@ class _postButton extends StatelessWidget {
                     ],
                   ));
         },
-        child: Text("Post Now", style: TextStyle(fontSize: 15)),
-        textColor: Colors.white,
+        child: !isPosted
+            ? Text("Post Now",
+                style: TextStyle(fontSize: 15, color: Colors.white))
+            : const SizedBox(
+                width: 16,
+                height: 16,
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                  strokeWidth: 1.5,
+                )),
+        //textColor: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.0),
           //side: BorderSide(color: Colors.black)
