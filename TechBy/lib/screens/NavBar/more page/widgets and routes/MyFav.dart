@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:techby/database/adsList.dart';
 import 'package:techby/widgets/Listview.dart';
 
 class MyFav extends StatelessWidget {
@@ -10,7 +12,13 @@ class MyFav extends StatelessWidget {
       appBar: AppBar(
         title: Text("My Favourites Items"),
       ),
-      // body: Lists(),
+      body: Column(
+        children: [
+          Expanded(
+            child: Lists(comingList: context.read<adsList>().ListOfMyFav),
+          ),
+        ],
+      ),
     );
   }
 }

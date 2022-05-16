@@ -15,7 +15,7 @@ import '../Sign _In/google_sign_in.dart';
 class adsList extends ChangeNotifier {
   List<ads> ListOfAds = [];
   List<ads> ListOfMyAds = [];
-
+  List<ads> ListOfMyFav = [];
   Future<void> getAds() async {
     ListOfAds.clear();
     await FirebaseFirestore.instance
@@ -37,7 +37,9 @@ class adsList extends ChangeNotifier {
   }
 
   Future<void> get_savedAds_ads(List<savedAds> listOfSaved) async {
+    ListOfMyFav.clear();
     await adsList();
+
     for (int i = 0; i < listOfSaved.length; i++) {
       int x=-1;
        x = ListOfAds.indexWhere(
@@ -45,8 +47,10 @@ class adsList extends ChangeNotifier {
       print("");
       print(x);
       print("");
-      if(x!=-1)
-      ListOfAds[x].favAd = true;
+      if(x!=-1) {
+        ListOfAds[x].favAd = true;
+        ListOfMyFav.add(ListOfAds[x]);
+      }
     }
   }
 
