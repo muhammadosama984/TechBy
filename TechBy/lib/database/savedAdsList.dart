@@ -16,7 +16,7 @@ class savedAdsList extends ChangeNotifier {
       querySnapshot.docs.forEach((doc) {
         savedAds temp = savedAds.fromJson(doc.data() as Map<String, dynamic>);
         // temp.favAd=false;
-        //temp.docID = doc.id;
+        temp.DB_docID = doc.id;
         print(doc.id);
         // if(temp.done==true)
         //   temp.completion_dateTime=DateTime.parse(doc.get("Completion Date"));
@@ -26,15 +26,47 @@ class savedAdsList extends ChangeNotifier {
     });
   }
 
-  Future<void> addSavedAd({required String email, required String doc_ID}) async {
-    //doc_ID.favAd=true;
-    CollectionReference adReference =
-        FirebaseFirestore.instance.collection('savedAds');
-    final savedAdObj = savedAds(email: email, doc_ID: doc_ID);
-    adReference
-        .add(savedAdObj.toJson())
-        .then((value) => print("Ad Posted"))
-        .catchError((error) => print("Failed to add user: $error"));
+  Future<void> addSavedAd(
+      {required String email, required String doc_ID}) async {
+    QuerySnapshot adExist = await FirebaseFirestore.instance
+        .collection('savedAds')
+        .where('doc_ID', isEqualTo: doc_ID)
+        .where('email', isEqualTo: email)
+        .get();
+    if (adExist.docs.isNotEmpty) {
+      print("Ad already exists");
+    } else {
+      CollectionReference adReference =
+          FirebaseFirestore.instance.collection('savedAds');
+      final savedAdObj = savedAds(email: email, doc_ID: doc_ID);
+      adReference
+          .add(savedAdObj.toJson())
+          .then((value) => print("Ad Posted"))
+          .catchError((error) => print("Failed to add user: $error"));
+    }
+    await getMyAds(emailAddress: email);
+  }
+
+  Future<void> deleteSavedAd({required String dataBase_doc_ID}) async {
+    String id="";
+
+      int x = ListOfsavedAds.indexWhere(
+              (element) => element.doc_ID.toString() == dataBase_doc_ID.toString());
+      print("");
+      print(x);
+      print("");
+      if(x!=-1) {
+        id=ListOfsavedAds[x].DB_docID;
+      }
+
+    await FirebaseFirestore.instance
+        .collection('savedAds')
+        .doc(id)
+        .delete()
+        .catchError((e) {
+      print(e);
+    }).whenComplete(() => print('deleted'));
+
   }
 
   void printList() {

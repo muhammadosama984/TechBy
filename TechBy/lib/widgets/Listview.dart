@@ -138,6 +138,10 @@ class _HeartState extends State<Heart> with SingleTickerProviderStateMixin {
         //if(widget.comingAd.favAd)
         widget.comingAd.favAd = false;
         isFav = false;
+        await context
+            .read<savedAdsList>()
+            .deleteSavedAd(dataBase_doc_ID: widget.comingAd.docID);
+
         await context.read<adsList>().updateAd(myAd: widget.comingAd);
         setState(() {});
       }
