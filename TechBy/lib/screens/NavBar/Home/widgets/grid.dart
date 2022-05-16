@@ -37,17 +37,37 @@ class _GridState extends State<Grid> {
                 footer: Container(
                   color: Colors.white,
                   child: ListTile(
-                    title: Text(
+                    title: Row(
+                      //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                       children: [
+                         Flexible(
+                         child: Container(
+                         width: 110,
+                           child: Text(
                       context.read<adsList>().ListOfAds[index].title,
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
                     ),
+                ),
+                         ),
+                         //Spacer(),
+                         Align(
+                           alignment: Alignment.topRight,
+                           child: Icon(Icons.verified,
+                           color: Color.fromRGBO(30, 159, 217, 1),
+                         size: 18,
+                         ),
+                         ),
+
+                ],
+                ),
                     subtitle:
-                    Text(context.read<adsList>().ListOfAds[index].price),
+                    Text('Rs ${context.read<adsList>().ListOfAds[index].price}'),
                   ),
                 ),
                 child: Image.network(
                   context.read<adsList>().ListOfAds[index].downloadURLS[0],
-                  fit: BoxFit.fill,
+                  fit: BoxFit.contain,
+
                 ),
               ),
             ),
