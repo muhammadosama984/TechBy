@@ -14,7 +14,7 @@ class _ViewMyAdsState extends State<ViewMyAds> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(30, 159, 217, 1),
-        title: Text("My Ads"),
+        title: Text(" My Ads"),
 
         automaticallyImplyLeading: false,
       ),

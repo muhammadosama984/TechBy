@@ -51,7 +51,9 @@ class _ListState extends State<Lists> {
                             )));
                   },
                   child: Container(
+
                     //height: 100,
+
                     child: ListTile(
                       leading: Container(
                         width: 60,
@@ -117,7 +119,8 @@ class _ListState extends State<Lists> {
                             Heart(comingAd: widget.comingList[index]),
 
                     ),
-                  )),
+                  ),
+              ),
             );
           })),
     );
