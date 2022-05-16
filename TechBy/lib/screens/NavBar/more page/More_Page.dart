@@ -6,9 +6,12 @@ import 'package:techby/Sign%20_In/google_sign_in.dart';
 import 'package:techby/screens/signIn%20pages/OpeningPage.dart';
 import 'package:techby/screens/Profile_Page.dart';
 
-import 'widgets and routes/ContactUs_Page.dart';
-import 'widgets and routes/FAQs_Page.dart';
-import 'widgets and routes/MyFav.dart';
+import 'widgets/lowerpart.dart';
+import 'widgets/topPart.dart';
+
+
+
+
 
 class More_screen extends StatefulWidget {
   const More_screen({Key? key}) : super(key: key);
@@ -48,11 +51,11 @@ class _More_screenState extends State<More_screen> {
             SizedBox(
               height: 80,
             ),
-            _topPart(),
+            topPart(),
             SizedBox(
               height: 80,
             ),
-            _lowerPart(),
+            lowerPart(),
           ],
         ),
       ),
@@ -60,169 +63,3 @@ class _More_screenState extends State<More_screen> {
   }
 }
 
-class _topPart extends StatefulWidget {
-  const _topPart({Key? key}) : super(key: key);
-
-  @override
-  State<_topPart> createState() => _topPartState();
-}
-
-class _topPartState extends State<_topPart> {
-  void printThings() async {
-    print(await Provider.of<GoogleSingInProvider>(context, listen: false)
-        .emailAddress());
-    print(await Provider.of<GoogleSingInProvider>(context, listen: false)
-        .userName());
-    print(await Provider.of<GoogleSingInProvider>(context, listen: false)
-        .photoUrl());
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        CircleAvatar(
-          radius: 30,
-          backgroundImage: NetworkImage(
-            Provider.of<GoogleSingInProvider>(context, listen: false)
-                .userDetails
-                .profilePic
-                .toString(),
-          ),
-        ),
-        SizedBox(
-          width: 10,
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-              child: Text(
-                  Provider.of<GoogleSingInProvider>(context, listen: false)
-                      .userDetails
-                      .userName
-                      .toString(),
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Montserrat',
-                  )),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-}
-
-class _lowerPart extends StatelessWidget {
-  _lowerPart({Key? key}) : super(key: key);
-  double i = 6.0;
-  double j = 4.0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-        child: ListView(
-      children: [
-        Card(
-          elevation: j,
-          margin: EdgeInsets.all(i),
-          shadowColor: Colors.black,
-          child: ListTile(
-            tileColor: Colors.white,
-            leading: Icon(Icons.favorite, color: Colors.red),
-            title: Text("My Favorite"),
-            onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => MyFav()));
-            },
-          ),
-        ),
-        Card(
-          elevation: j,
-          margin: EdgeInsets.all(i),
-          shadowColor: Colors.black,
-          child: ListTile(
-            tileColor: Colors.white,
-            leading: Icon(Icons.question_answer_rounded,
-                color: Color.fromRGBO(30, 159, 217, 1)),
-            title: Text("FAQs"),
-            onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => FAQs_screen()));
-            },
-          ),
-        ),
-        Card(
-          elevation: j,
-          margin: EdgeInsets.all(i),
-          shadowColor: Colors.black,
-          child: ListTile(
-            tileColor: Colors.white,
-            leading: Icon(Icons.message_sharp,
-                color: Color.fromRGBO(30, 159, 217, 1)),
-            title: Text("Contact  Us"),
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => ContactUs_scrren()));
-            },
-          ),
-        ),
-        Card(
-          elevation: j,
-          margin: EdgeInsets.all(i),
-          shadowColor: Colors.black,
-          child: ListTile(
-            tileColor: Colors.white,
-            leading: Icon(
-              Icons.logout_outlined,
-              color: Colors.red,
-            ),
-            title: Text(
-              "Logout",
-              style: TextStyle(color: Colors.red),
-            ),
-            onTap: () async {
-              bool isLogout = false;
-              isLogout = await showDialog(
-                  barrierDismissible: false,
-                  context: context,
-                  builder: (context) => AlertDialog(
-                        title: const Text('You want to LogOut'),
-                        actions: [
-                          TextButton(
-                              onPressed: () {
-                                Provider.of<GoogleSingInProvider>(context,
-                                        listen: false)
-                                    .googleSignOut();
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => OpeningPage()));
-                              },
-                              child: Text('Yes')),
-                          TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop(false);
-                              },
-                              child: Text('No')),
-                        ],
-                      ));
-            },
-          ),
-        ),
-      ],
-      padding: EdgeInsets.all(8),
-    ));
-  }
-}
