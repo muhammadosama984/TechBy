@@ -39,8 +39,13 @@ class adsList extends ChangeNotifier {
   Future<void> get_savedAds_ads(List<savedAds> listOfSaved) async {
     await adsList();
     for (int i = 0; i < listOfSaved.length; i++) {
-      int x = ListOfMyAds.indexWhere(
-          (element) => element.docID == listOfSaved[i].doc_ID);
+      int x=-1;
+       x = ListOfAds.indexWhere(
+          (element) => element.docID.toString() == listOfSaved[i].doc_ID.toString());
+      print("");
+      print(x);
+      print("");
+      if(x!=-1)
       ListOfAds[x].favAd = true;
     }
   }
@@ -56,7 +61,10 @@ class adsList extends ChangeNotifier {
     return ListOfMyAds;
   }
 
-  List<ads> categoryAds(List<ads> Ads, String category) {
+  Future<List<ads>> categoryAds(List<ads> Ads, String category,List<savedAds> listOfSaved) async {
+
+    await get_savedAds_ads(listOfSaved);
+
     List<ads> categoryList = [];
     for (int i = 0; i < Ads.length; i++) {
       if (Ads[i].category == category) {

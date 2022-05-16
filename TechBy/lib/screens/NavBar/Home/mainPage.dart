@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:techby/Sign%20_In/google_sign_in.dart';
+import 'package:techby/database/ads.dart';
+import 'package:techby/database/savedAdsList.dart';
 import 'package:techby/screens/SearchResult.dart';
 import 'package:techby/widgets/Search.dart';
 
@@ -17,6 +20,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool isLoading = true;
+  String email = "";
+
   void initState() {
     // TODO: implement initState
 
@@ -28,6 +33,13 @@ class _MyHomePageState extends State<MyHomePage> {
     isLoading = true;
     setState(() {});
     await context.read<adsList>().getAds();
+    email = await Provider.of<GoogleSingInProvider>(context, listen: false)
+        .emailAddress();
+    await context.read<savedAdsList>().getMyAds(emailAddress: email);
+    await context
+        .read<adsList>()
+        .get_savedAds_ads(context.read<savedAdsList>().ListOfsavedAds);
+
     isLoading = false;
     setState(() {});
   }
@@ -228,13 +240,19 @@ class _categoriesState extends State<categories> {
               child: Center(
                 child: GestureDetector(
                   onTap: () async {
-                    await context.read<adsList>().getAds();
-
-                    Navigator.of(context).push(MaterialPageRoute(
+                    List<ads> passingAd = await context
+                        .read<adsList>()
+                        .categoryAds(
+                            context.read<adsList>().ListOfAds,
+                            "Desktop",
+                            context.read<savedAdsList>().ListOfsavedAds);
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
                         builder: (context) => ParticularProduct(
-                              categoryList: context.read<adsList>().categoryAds(
-                                  context.read<adsList>().ListOfAds, "Desktop"),
-                            )));
+                          categoryList: passingAd,
+                        ),
+                      ),
+                    );
                   },
                   child: Center(
                     child: Container(
@@ -266,12 +284,18 @@ class _categoriesState extends State<categories> {
             Card(
               color: Colors.white70,
               child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
+                onTap: () async {
+                  List<ads> passingAd = await context
+                      .read<adsList>()
+                      .categoryAds(context.read<adsList>().ListOfAds, "Mobile",
+                          context.read<savedAdsList>().ListOfsavedAds);
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
                       builder: (context) => ParticularProduct(
-                            categoryList: context.read<adsList>().categoryAds(
-                                context.read<adsList>().ListOfAds, "Mobile"),
-                          )));
+                        categoryList: passingAd,
+                      ),
+                    ),
+                  );
                 },
                 child: Container(
                   margin: EdgeInsets.fromLTRB(05, 10, 05, 10),
@@ -301,12 +325,20 @@ class _categoriesState extends State<categories> {
             Card(
               color: Colors.white70,
               child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
+                  onTap: () async {
+                    List<ads> passingAd = await context
+                        .read<adsList>()
+                        .categoryAds(
+                            context.read<adsList>().ListOfAds,
+                            "Laptop",
+                            context.read<savedAdsList>().ListOfsavedAds);
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
                         builder: (context) => ParticularProduct(
-                              categoryList: context.read<adsList>().categoryAds(
-                                  context.read<adsList>().ListOfAds, "Laptop"),
-                            )));
+                          categoryList: passingAd,
+                        ),
+                      ),
+                    );
                   },
                   child: Container(
                     margin: EdgeInsets.fromLTRB(10, 10, 0, 0),
@@ -335,12 +367,18 @@ class _categoriesState extends State<categories> {
             Card(
               color: Colors.white70,
               child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
+                onTap: () async {
+                  List<ads> passingAd = await context
+                      .read<adsList>()
+                      .categoryAds(context.read<adsList>().ListOfAds, "Camera",
+                          context.read<savedAdsList>().ListOfsavedAds);
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
                       builder: (context) => ParticularProduct(
-                            categoryList: context.read<adsList>().categoryAds(
-                                context.read<adsList>().ListOfAds, "Camera"),
-                          )));
+                        categoryList: passingAd,
+                      ),
+                    ),
+                  );
                 },
                 child: Container(
                   margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
@@ -370,12 +408,18 @@ class _categoriesState extends State<categories> {
             Card(
               color: Colors.white70,
               child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
+                onTap: () async {
+                  List<ads> passingAd = await context
+                      .read<adsList>()
+                      .categoryAds(context.read<adsList>().ListOfAds, "Monitor",
+                          context.read<savedAdsList>().ListOfsavedAds);
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
                       builder: (context) => ParticularProduct(
-                            categoryList: context.read<adsList>().categoryAds(
-                                context.read<adsList>().ListOfAds, "Monitor"),
-                          )));
+                        categoryList: passingAd,
+                      ),
+                    ),
+                  );
                 },
                 child: Container(
                   margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
@@ -405,12 +449,18 @@ class _categoriesState extends State<categories> {
             Card(
               color: Colors.white70,
               child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
+                onTap: () async {
+                  List<ads> passingAd = await context
+                      .read<adsList>()
+                      .categoryAds(context.read<adsList>().ListOfAds, "Speaker",
+                          context.read<savedAdsList>().ListOfsavedAds);
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
                       builder: (context) => ParticularProduct(
-                            categoryList: context.read<adsList>().categoryAds(
-                                context.read<adsList>().ListOfAds, "Speaker"),
-                          )));
+                        categoryList: passingAd,
+                      ),
+                    ),
+                  );
                 },
                 child: Container(
                   margin: EdgeInsets.fromLTRB(10, 15, 0, 0),
@@ -461,13 +511,17 @@ class _desktop extends StatelessWidget {
           Card(
             child: GestureDetector(
               onTap: () async {
-                await context.read<adsList>().getAds();
-
-                Navigator.of(context).push(MaterialPageRoute(
+                List<ads> passingAd = await context.read<adsList>().categoryAds(
+                    context.read<adsList>().ListOfAds,
+                    "Desktop",
+                    context.read<savedAdsList>().ListOfsavedAds);
+                Navigator.of(context).push(
+                  MaterialPageRoute(
                     builder: (context) => ParticularProduct(
-                          categoryList: context.read<adsList>().categoryAds(
-                              context.read<adsList>().ListOfAds, "Desktop"),
-                        )));
+                      categoryList: passingAd,
+                    ),
+                  ),
+                );
               },
               child: Container(
                 height: 100.0,
@@ -510,12 +564,18 @@ class _mobile extends StatelessWidget {
         children: <Widget>[
           Card(
             child: GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
+              onTap: () async {
+                List<ads> passingAd = await context.read<adsList>().categoryAds(
+                    context.read<adsList>().ListOfAds,
+                    "Mobile",
+                    context.read<savedAdsList>().ListOfsavedAds);
+                Navigator.of(context).push(
+                  MaterialPageRoute(
                     builder: (context) => ParticularProduct(
-                          categoryList: context.read<adsList>().categoryAds(
-                              context.read<adsList>().ListOfAds, "Mobile"),
-                        )));
+                      categoryList: passingAd,
+                    ),
+                  ),
+                );
               },
               child: Container(
                 height: 100.0,
@@ -558,12 +618,18 @@ class _laptop extends StatelessWidget {
         children: <Widget>[
           Card(
             child: GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
+              onTap: () async {
+                List<ads> passingAd = await context.read<adsList>().categoryAds(
+                    context.read<adsList>().ListOfAds,
+                    "Laptop",
+                    context.read<savedAdsList>().ListOfsavedAds);
+                Navigator.of(context).push(
+                  MaterialPageRoute(
                     builder: (context) => ParticularProduct(
-                          categoryList: context.read<adsList>().categoryAds(
-                              context.read<adsList>().ListOfAds, "Laptop"),
-                        )));
+                      categoryList: passingAd,
+                    ),
+                  ),
+                );
               },
               child: Container(
                 height: 100.0,
@@ -605,11 +671,14 @@ class _camera extends StatelessWidget {
         children: <Widget>[
           Card(
             child: GestureDetector(
-              onTap: () {
+              onTap: () async {
+                List<ads> passingAd = await context.read<adsList>().categoryAds(
+                    context.read<adsList>().ListOfAds,
+                    "Camera",
+                    context.read<savedAdsList>().ListOfsavedAds);
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => ParticularProduct(
-                          categoryList: context.read<adsList>().categoryAds(
-                              context.read<adsList>().ListOfAds, "Camera"),
+                          categoryList: passingAd,
                         )));
               },
               child: Container(
@@ -652,11 +721,14 @@ class _monitor extends StatelessWidget {
         children: <Widget>[
           Card(
             child: GestureDetector(
-              onTap: () {
+              onTap: () async {
+                List<ads> passingAd = await context.read<adsList>().categoryAds(
+                    context.read<adsList>().ListOfAds,
+                    "Monitor",
+                    context.read<savedAdsList>().ListOfsavedAds);
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => ParticularProduct(
-                          categoryList: context.read<adsList>().categoryAds(
-                              context.read<adsList>().ListOfAds, "Monitor"),
+                          categoryList: passingAd,
                         )));
               },
               child: Container(
@@ -699,11 +771,14 @@ class _speaker extends StatelessWidget {
         children: <Widget>[
           Card(
             child: GestureDetector(
-              onTap: () {
+              onTap: () async {
+                List<ads> passingAd = await context.read<adsList>().categoryAds(
+                    context.read<adsList>().ListOfAds,
+                    "Speaker",
+                    context.read<savedAdsList>().ListOfsavedAds);
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => ParticularProduct(
-                          categoryList: context.read<adsList>().categoryAds(
-                              context.read<adsList>().ListOfAds, "Speaker"),
+                          categoryList: passingAd,
                         )));
               },
               child: Container(
