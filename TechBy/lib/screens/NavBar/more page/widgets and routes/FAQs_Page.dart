@@ -22,56 +22,69 @@ class _FAQs_screenState extends State<FAQs_screen> {
         child: Column(
           children: [
             Expanded(
-                child: ListView(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => FAQ_Detail()));
-                  },
-                  child: Card(
+              child: ListView(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => FAQ_Detail(),
+                        ),
+                      );
+                    },
+                    child: Card(
                       child: ListTile(
-                    leading: Icon(Icons.question_answer_outlined),
-                    title: Text("What are the methods of payment?"),
-                  )),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => FAQ_Detail()));
-                  },
-                  child: Card(
+                        leading: Icon(Icons.question_answer_outlined),
+                        title: Text("What are the methods of payment?"),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => FAQ_Detail(),
+                        ),
+                      );
+                    },
+                    child: Card(
                       child: ListTile(
-                    leading: Icon(Icons.question_answer_outlined),
-                    title: Text("Why my account is banned?"),
-                  )),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => FAQ_Detail()));
-                  },
-                  child: Card(
+                        leading: Icon(Icons.question_answer_outlined),
+                        title: Text("Why my account is banned?"),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => FAQ_Detail(),
+                        ),
+                      );
+                    },
+                    child: Card(
+                        child: ListTile(
+                      leading: Icon(Icons.question_answer_outlined),
+                      title: Text(
+                          "How to contact seller/buyer through email or sms?"),
+                    )),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => FAQ_Detail()));
+                    },
+                    child: Card(
                       child: ListTile(
-                    leading: Icon(Icons.question_answer_outlined),
-                    title: Text(
-                        "How to contact seller/buyer through email or sms?"),
-                  )),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => FAQ_Detail()));
-                  },
-                  child: Card(
-                      child: ListTile(
-                    leading: Icon(Icons.question_answer_outlined),
-                    title: Text("MWhy am I not seeing my ads?"),
-                  )),
-                ),
-              ],
-              padding: EdgeInsets.all(10),
-            )),
+                        leading: Icon(Icons.question_answer_outlined),
+                        title: Text("MWhy am I not seeing my ads?"),
+                      ),
+                    ),
+                  ),
+                ],
+                padding: EdgeInsets.all(10),
+              ),
+            ),
           ],
         ),
       ),

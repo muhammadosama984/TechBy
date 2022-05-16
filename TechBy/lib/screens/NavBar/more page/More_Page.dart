@@ -73,7 +73,6 @@ class _topPartState extends State<_topPart> {
         .emailAddress());
     print(await Provider.of<GoogleSingInProvider>(context, listen: false)
         .userName());
-
     print(await Provider.of<GoogleSingInProvider>(context, listen: false)
         .photoUrl());
   }
@@ -81,7 +80,7 @@ class _topPartState extends State<_topPart> {
   @override
   void initState() {
     // TODO: implement initState
-    // printThings();
+
     super.initState();
   }
 
@@ -94,14 +93,11 @@ class _topPartState extends State<_topPart> {
         CircleAvatar(
           radius: 30,
           backgroundImage: NetworkImage(
-              // Provider.of<GoogleSingInProvider>(context, listen: false)
-              //     .photoUrl()
-              //     .toString()
-              Provider.of<GoogleSingInProvider>(context, listen: false)
-                  .userDetails
-                  .profilePic
-                  .toString()),
-          // backgroundColor: Colors.transparent,
+            Provider.of<GoogleSingInProvider>(context, listen: false)
+                .userDetails
+                .profilePic
+                .toString(),
+          ),
         ),
         SizedBox(
           width: 10,
@@ -123,29 +119,8 @@ class _topPartState extends State<_topPart> {
                     fontFamily: 'Montserrat',
                   )),
             ),
-            // SizedBox(
-            //   height: 10,
-            // ),
-            // Container(
-            //   alignment: Alignment(1.0, 0.0),
-            //   // padding: EdgeInsets.only(top: 15.0, left: 20.0),
-            //   child: InkWell(
-            //     child: Text(
-            //       "View Profile >",
-            //       style: TextStyle(
-            //         fontWeight: FontWeight.bold,
-            //         fontFamily: 'Montserrat',
-            //         // decoration: TextDecoration.underline,
-            //       ),
-            //     ),
-            //     onTap: () {
-            //       Navigator.of(context).push(MaterialPageRoute(
-            //           builder: (context) => Profile_screen()));
-            //     },
-            //   ),
-            // ),
           ],
-        )
+        ),
       ],
     );
   }
@@ -155,90 +130,97 @@ class _lowerPart extends StatelessWidget {
   _lowerPart({Key? key}) : super(key: key);
   double i = 6.0;
   double j = 4.0;
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
         child: ListView(
       children: [
         Card(
-            elevation: j,
-            margin: EdgeInsets.all(i),
-            shadowColor: Colors.black,
-            child: ListTile(
-                tileColor: Colors.white,
-                leading: Icon(Icons.favorite, color: Colors.red),
-                title: Text("My Favorite"),
-                onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => MyFav()));
-                })),
+          elevation: j,
+          margin: EdgeInsets.all(i),
+          shadowColor: Colors.black,
+          child: ListTile(
+            tileColor: Colors.white,
+            leading: Icon(Icons.favorite, color: Colors.red),
+            title: Text("My Favorite"),
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => MyFav()));
+            },
+          ),
+        ),
         Card(
           elevation: j,
           margin: EdgeInsets.all(i),
           shadowColor: Colors.black,
           child: ListTile(
-              tileColor: Colors.white,
-              leading: Icon(Icons.question_answer_rounded,
-                  color: Color.fromRGBO(30, 159, 217, 1)),
-              title: Text("FAQs"),
-              onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => FAQs_screen()));
-              }),
+            tileColor: Colors.white,
+            leading: Icon(Icons.question_answer_rounded,
+                color: Color.fromRGBO(30, 159, 217, 1)),
+            title: Text("FAQs"),
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => FAQs_screen()));
+            },
+          ),
         ),
         Card(
-            elevation: j,
-            margin: EdgeInsets.all(i),
-            shadowColor: Colors.black,
-            child: ListTile(
-                tileColor: Colors.white,
-                leading: Icon(Icons.message_sharp,
-                    color: Color.fromRGBO(30, 159, 217, 1)),
-                title: Text("Contact  Us"),
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ContactUs_scrren()));
-                })),
+          elevation: j,
+          margin: EdgeInsets.all(i),
+          shadowColor: Colors.black,
+          child: ListTile(
+            tileColor: Colors.white,
+            leading: Icon(Icons.message_sharp,
+                color: Color.fromRGBO(30, 159, 217, 1)),
+            title: Text("Contact  Us"),
+            onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => ContactUs_scrren()));
+            },
+          ),
+        ),
         Card(
-            elevation: j,
-            margin: EdgeInsets.all(i),
-            shadowColor: Colors.black,
-            child: ListTile(
-              tileColor: Colors.white,
-              leading: Icon(
-                Icons.logout_outlined,
-                color: Colors.red,
-              ),
-              title: Text(
-                "Logout",
-                style: TextStyle(color: Colors.red),
-              ),
-              onTap: () async {
-                bool isLogout = false;
-                isLogout = await showDialog(
-                    barrierDismissible: false,
-                    context: context,
-                    builder: (context) => AlertDialog(
-                          title: const Text('You want to LogOut'),
-                          actions: [
-                            TextButton(
-                                onPressed: () {
-                                  Provider.of<GoogleSingInProvider>(context,
-                                          listen: false)
-                                      .googleSignOut();
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => OpeningPage()));
-                                },
-                                child: Text('Yes')),
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop(false);
-                                },
-                                child: Text('No')),
-                          ],
-                        ));
-              },
-            )),
+          elevation: j,
+          margin: EdgeInsets.all(i),
+          shadowColor: Colors.black,
+          child: ListTile(
+            tileColor: Colors.white,
+            leading: Icon(
+              Icons.logout_outlined,
+              color: Colors.red,
+            ),
+            title: Text(
+              "Logout",
+              style: TextStyle(color: Colors.red),
+            ),
+            onTap: () async {
+              bool isLogout = false;
+              isLogout = await showDialog(
+                  barrierDismissible: false,
+                  context: context,
+                  builder: (context) => AlertDialog(
+                        title: const Text('You want to LogOut'),
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                Provider.of<GoogleSingInProvider>(context,
+                                        listen: false)
+                                    .googleSignOut();
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => OpeningPage()));
+                              },
+                              child: Text('Yes')),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop(false);
+                              },
+                              child: Text('No')),
+                        ],
+                      ));
+            },
+          ),
+        ),
       ],
       padding: EdgeInsets.all(8),
     ));
