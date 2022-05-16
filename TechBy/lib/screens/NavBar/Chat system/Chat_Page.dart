@@ -8,19 +8,16 @@ import 'package:provider/provider.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import '../../../Sign _In/google_sign_in.dart';
 
-
 class Chat_screen extends StatefulWidget {
   String docid;
-   Chat_screen({ required this.docid});
-  
+  Chat_screen({required this.docid});
+
   // Chat_screen(){required this.docid};
   @override
   State<Chat_screen> createState() => _Chat_screenState();
 }
 
-
 class _Chat_screenState extends State<Chat_screen> {
-
   Timer? timer;
   String other_email = "";
   void initState() {
@@ -29,9 +26,7 @@ class _Chat_screenState extends State<Chat_screen> {
     getChat();
 
     timer = Timer.periodic(Duration(seconds: 5), (Timer t) => getChatRuntime());
-
   }
-
 
   @override
   void deactivate() {
@@ -67,34 +62,38 @@ class _Chat_screenState extends State<Chat_screen> {
 
   void messagecreation(List<dynamic> room, String email) async {
     for (var messagedoc in room) {
-      await FirebaseFirestore.instance.collection('Rooms').doc(messagedoc).get()
+      await FirebaseFirestore.instance
+          .collection('Rooms')
+          .doc(messagedoc)
+          .get()
           .then((DocumentSnapshot documentSnapshot) {
-
         var message = documentSnapshot.data() as Map;
         if (email == message["sender"])
-          data.add(ChatMessage(message: message["message"],
+          data.add(ChatMessage(
+              message: message["message"],
               messagetype: "sender",
               sender: message["sender"],
               docid: documentSnapshot.id));
         else
-          data.add(ChatMessage(message: message["message"],
+          data.add(ChatMessage(
+              message: message["message"],
               messagetype: "reciever",
               sender: message["sender"],
               docid: documentSnapshot.id));
-
       });
     }
-    if(mounted)
-      setState(() {
-
-      });
+    if (mounted) setState(() {});
   }
 
-  void  getChatRuntime() async {
-    String email = await Provider.of<GoogleSingInProvider>(context, listen: false).emailAddress();
+  void getChatRuntime() async {
+    String email =
+        await Provider.of<GoogleSingInProvider>(context, listen: false)
+            .emailAddress();
 
-
-    await FirebaseFirestore.instance.collection('Userrooms').doc(widget.docid).get()
+    await FirebaseFirestore.instance
+        .collection('Userrooms')
+        .doc(widget.docid)
+        .get()
         .then((DocumentSnapshot documentSnapshot) {
       var useroomMap = documentSnapshot.data() as Map;
       List<dynamic> room = useroomMap["room"];
@@ -123,24 +122,28 @@ class _Chat_screenState extends State<Chat_screen> {
       //
       //     });
       //   });
-      });
-
+    });
   }
 
-  void  getChat() async {
-    String email = await Provider.of<GoogleSingInProvider>(context, listen: false).emailAddress();
-    await FirebaseFirestore.instance.collection('Userrooms').doc(widget.docid).get()
+  void getChat() async {
+    String email =
+        await Provider.of<GoogleSingInProvider>(context, listen: false)
+            .emailAddress();
+    await FirebaseFirestore.instance
+        .collection('Userrooms')
+        .doc(widget.docid)
+        .get()
         .then((DocumentSnapshot documentSnapshot) {
       var useroomMap = documentSnapshot.data() as Map;
       List<dynamic> room = useroomMap["room"];
-      if(email == useroomMap["buyerid"])
+      if (email == useroomMap["buyerid"])
         other_email = useroomMap["sellerid"];
       else
         other_email = useroomMap["buyerid"];
 
       messagecreation(room, email);
-
-        });}
+    });
+  }
   //
   // IO.Socket socket = IO.io('http://localhost:5000');
   //
@@ -239,7 +242,11 @@ class _Chat_screenState extends State<Chat_screen> {
           )),
           Row(
             children: [
-              IconButton(onPressed: (){_openImagePicker();}, icon: Icon(Icons.attachment)),
+              IconButton(
+                  onPressed: () {
+                    _openImagePicker();
+                  },
+                  icon: Icon(Icons.attachment)),
               FloatingActionButton(
                   onPressed: () {
                     addMessage(_message.text);
@@ -251,18 +258,18 @@ class _Chat_screenState extends State<Chat_screen> {
                   ))
             ],
           ),
-
         ],
       ),
     );
   }
+
   Future<void> _openImagePicker() async {
     File? _image;
     final _picker = ImagePicker();
     final XFile? pickedImage =
-    await _picker.pickImage(source: ImageSource.gallery);
+        await _picker.pickImage(source: ImageSource.gallery);
     if (pickedImage != null) {
-      if(mounted)
+      if (mounted)
         setState(() {
           _image = File(pickedImage.path);
         });
@@ -270,23 +277,30 @@ class _Chat_screenState extends State<Chat_screen> {
   }
 
   addMessage(String input) async {
-    String email = await Provider.of<GoogleSingInProvider>(context, listen: false).emailAddress();
+    String email =
+        await Provider.of<GoogleSingInProvider>(context, listen: false)
+            .emailAddress();
     _message.text = "";
 
-    ChatMessage obj = ChatMessage(message: input, messagetype: "sender", sender: email, docid: '');
+    ChatMessage obj = ChatMessage(
+        message: input, messagetype: "sender", sender: email, docid: '');
 
-    await FirebaseFirestore.instance.collection('Rooms').add(obj.toJson())
+    await FirebaseFirestore.instance
+        .collection('Rooms')
+        .add(obj.toJson())
         .then((value) async {
-          obj.docid = value.id;
-    await FirebaseFirestore.instance.collection("Userrooms").doc(widget.docid).update({
-    "room": FieldValue.arrayUnion([value.id]),
+      obj.docid = value.id;
+      await FirebaseFirestore.instance
+          .collection("Userrooms")
+          .doc(widget.docid)
+          .update({
+        "room": FieldValue.arrayUnion([value.id]),
+      });
     });
-    });
-
   }
 
   _scrolltobottom() {
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (_scrollController.hasClients) {
         _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
       }
@@ -301,7 +315,11 @@ class ChatMessage {
   String docid;
   DateTime dt = DateTime.now();
 
-  ChatMessage({ required this.message, required this.messagetype, required this.sender, required this.docid});
+  ChatMessage(
+      {required this.message,
+      required this.messagetype,
+      required this.sender,
+      required this.docid});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
@@ -317,7 +335,8 @@ class ChatMessage {
     data['sender'] = this.sender;
     data['messagetype'] = "reciever";
     return data;
-  }}
+  }
+}
 
 //   static ChatMessage fromJson(Map<String, dynamic> json) => ChatMessage(
 //       message: json['message'],

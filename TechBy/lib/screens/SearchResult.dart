@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:techby/general%20widgets/Search.dart';
 
 import 'package:techby/screens/Filter.dart';
+import 'package:techby/screens/Price.dart';
 
 import '../database/ads.dart';
 import '../general widgets/Listview.dart';
@@ -45,10 +46,10 @@ class _ParticularProductState extends State<ParticularProduct> {
                           )));
                 },
                 child: Container(
-                  width: 70,
+                  width: 110,
                   child: Center(
                     child: Text(
-                      "Filter",
+                      "Location",
                       style: TextStyle(fontSize: 19),
                     ),
                   ),
@@ -61,7 +62,12 @@ class _ParticularProductState extends State<ParticularProduct> {
                 width: 40,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Price(
+                            priceList: widget.categoryList,
+                          )));
+                },
                 child: Container(
                   width: 70,
                   child: Center(
@@ -78,21 +84,21 @@ class _ParticularProductState extends State<ParticularProduct> {
               SizedBox(
                 width: 40,
               ),
-              InkWell(
-                onTap: () {},
-                child: Container(
-                  width: 70,
-                  child: Center(
-                    child: Text(
-                      "Brand",
-                      style: TextStyle(fontSize: 19),
-                    ),
-                  ),
-                  decoration: BoxDecoration(
-                      borderRadius: new BorderRadius.circular(16.0),
-                      color: Colors.grey),
-                ),
-              ),
+              // InkWell(
+              //   onTap: () {},
+              //   child: Container(
+              //     width: 70,
+              //     child: Center(
+              //       child: Text(
+              //         "Brand",
+              //         style: TextStyle(fontSize: 19),
+              //       ),
+              //     ),
+              //     decoration: BoxDecoration(
+              //         borderRadius: new BorderRadius.circular(16.0),
+              //         color: Colors.grey),
+              //   ),
+              // ),
             ]),
           ),
           SizedBox(
