@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:techby/general%20widgets/Search.dart';
 import 'package:techby/screens/MerchandiserProfile_Page.dart';
-import 'package:techby/widgets/Search.dart';
 
 class Merchandiser_screen extends StatefulWidget {
   const Merchandiser_screen({Key? key}) : super(key: key);

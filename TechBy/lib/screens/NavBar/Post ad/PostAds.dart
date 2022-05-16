@@ -1,14 +1,12 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
-import 'dart:math';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:techby/Models/ListOfProducts.dart';
-import 'package:techby/Models/product.dart';
 import 'package:techby/database/adsList.dart';
+import 'package:techby/general%20widgets/bottomBar.dart';
 import 'package:techby/screens/NavBar/Home/mainPage.dart';
-
+import 'package:techby/screens/NavBar/navBarNavigation.dart';
 import '../../../Sign _In/google_sign_in.dart';
 
 class PostAds extends StatefulWidget {
@@ -329,18 +327,6 @@ class _postButtonState extends State<_postButton> {
       child: RaisedButton(
         color: Color.fromRGBO(30, 159, 217, 1),
         onPressed: () async {
-          // if (val != null) {
-          //   CategoryController.text = val.toString();
-          // }
-          //String URL = img as String;
-          // Provider.of<ListofProduct>(context, listen: false).addProduct(Product(
-          //     Image: img,
-          //     imgURL: URL,
-          //     title: titleController.text,
-          //     description: descriptionController.text,
-          //     location: locationController.text,
-          //     uploadDate: DateTime.now()));
-          //print(CategoryController.text);
           setState(() {
             isPosted = true;
           });
@@ -382,6 +368,7 @@ class _postButtonState extends State<_postButton> {
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => MyHomePage()));
+
                           },
                           child: Text('OK')),
                     ],

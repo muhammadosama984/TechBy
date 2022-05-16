@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
 import 'package:techby/screens/NavBar/more%20page/Screens/ContactUs_Page.dart';
-import 'package:techby/screens/signIn%20pages/OpeningPage.dart';
+import 'package:techby/screens/signIn%20pages/signInScreens/OpeningPage.dart';
 
 import '../Screens/FAQs_Page.dart';
 import '../Screens/MyFav.dart';

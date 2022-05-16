@@ -7,7 +7,7 @@ import 'package:techby/Sign%20_In/google_sign_in.dart';
 import 'package:techby/database/adsList.dart';
 import 'package:techby/database/savedAdsList.dart';
 
-import 'package:techby/screens/signIn%20pages/Splash_Screen.dart';
+import 'package:techby/screens/signIn%20pages/signInScreens/Splash_Screen.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();

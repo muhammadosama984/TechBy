@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:techby/Sign%20_In/googleUser.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
 
-import 'package:techby/screens/signIn%20pages/OpeningPage.dart';
+import 'package:techby/screens/signIn%20pages/signInScreens/OpeningPage.dart';
 import 'package:techby/screens/Profile_Page.dart';
 
 import 'widgets/lowerpart.dart';

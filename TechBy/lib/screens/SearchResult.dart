@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:techby/database/adsList.dart';
-import 'package:techby/widgets/Listview.dart';
-import 'package:techby/widgets/Search.dart';
+import 'package:techby/general%20widgets/Search.dart';
+
 import 'package:techby/screens/Filter.dart';
-import 'package:provider/provider.dart';
 
 import '../database/ads.dart';
+import '../general widgets/Listview.dart';
 
 class ParticularProduct extends StatefulWidget {
   final List<ads> categoryList;

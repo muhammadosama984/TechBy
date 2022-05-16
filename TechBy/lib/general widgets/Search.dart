@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:techby/widgets/Listview.dart';
 
 import '../database/ads.dart';
+import 'Listview.dart';
 
 class SearchPage extends StatefulWidget {
   List<ads> searchList;

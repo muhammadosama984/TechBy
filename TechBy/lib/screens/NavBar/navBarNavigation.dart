@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:techby/general%20widgets/bottomBar.dart';
 
-import '../../widgets/bottomBar.dart';
 import 'Chat system/ChatMain_page.dart';
 import 'Home/mainPage.dart';
 import 'Post ad/PostAds.dart';
 import 'My Ads/ViewMyAds.dart';
 import 'more page/More_Page.dart';
 
-class navBarNavigation extends StatefulWidget {
-  const navBarNavigation({Key? key}) : super(key: key);
+class navBarNavigation extends StatefulWidget with ChangeNotifier {
+   navBarNavigation({Key? key}) : super(key: key);
 
   @override
   _navBarNavigationState createState() => _navBarNavigationState();
@@ -28,15 +28,6 @@ class _navBarNavigationState extends State<navBarNavigation> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens[currentIndex],
-      // floatingActionButton: new FloatingActionButton(
-      //   splashColor: Color.fromRGBO(30, 159, 217, 1),
-      //   onPressed: (){},
-      //   backgroundColor: Color.fromRGBO(30, 159, 217, 1),
-      //   child: new Icon(Icons.add),
-      //   elevation: 2.0,
-      // ),
-      // floatingActionButtonLocation:
-      // FloatingActionButtonLocation.centerDocked,
 
       bottomNavigationBar: bottomNavBar(
             onPressed: (receivedIndex) {
