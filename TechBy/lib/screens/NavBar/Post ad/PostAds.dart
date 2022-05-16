@@ -158,6 +158,7 @@ class _PostAdsState extends State<PostAds> {
               Container(
                   margin: EdgeInsets.symmetric(horizontal: 60),
                   child: TextFormField(
+                    maxLength: 25,
                     controller: locationMain,
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -240,6 +241,7 @@ class _description extends StatelessWidget {
       height: 100,
       margin: EdgeInsets.symmetric(horizontal: 60),
       child: TextFormField(
+        //maxLength: 100,
         controller: descriptionController,
         keyboardType: TextInputType.multiline,
         maxLines: null,
@@ -266,6 +268,7 @@ class _titleField extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 60),
       child: TextFormField(
+        maxLength: 30,
         controller: titleController,
         decoration: InputDecoration(hintText: "Title"),
       ),
@@ -283,6 +286,7 @@ class _priceField extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 60),
       child: TextFormField(
+        maxLength: 7,
         keyboardType: TextInputType.number,
         controller: priceController,
         decoration: InputDecoration(hintText: "Price"),

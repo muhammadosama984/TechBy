@@ -42,7 +42,7 @@ class _Login_screenState extends State<Login_screen> {
                     children: <Widget>[
                     googleSignIn(),
                     SizedBox(height: 35),
-                      login_btn_temp(),
+                      //login_btn_temp(),
                     ],
                   ),
                 ),
