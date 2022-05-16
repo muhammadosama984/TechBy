@@ -13,7 +13,9 @@ class _ViewMyAdsState extends State<ViewMyAds> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("MyAds"),
+        backgroundColor: Color.fromRGBO(30, 159, 217, 1),
+        title: Text("My Ads"),
+
         automaticallyImplyLeading: false,
       ),
       body: myAds(),
