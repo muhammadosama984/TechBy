@@ -47,71 +47,63 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color.fromRGBO(30, 159, 217, 1),
-          title: Image.asset(
-            'assets/TBweb.png',
-            fit: BoxFit.cover,
-            color: Colors.white,
-            width: 100,
-          ),
-          automaticallyImplyLeading: false,
-          actions: [
-            IconButton(
-              onPressed: () {
-                NotificationApi.showNotification(
-                    title: 'Osama', body: 'This is body', payload: '');
-              },
-              icon: Icon(Icons.notifications),
-            ),
-            // IconButton(
-            //   onPressed: () {
-            //     Navigator.of(context).push(
-            //         MaterialPageRoute(builder: (context) => SearchPage()));
-            //     setState(() {});
-            //     //new screen navigate
-            //   },
-            //   icon: Icon(Icons.search),
-            // ),
-          ],
+      appBar: AppBar(
+        backgroundColor: Color.fromRGBO(30, 159, 217, 1),
+        title: Image.asset(
+          'assets/TBweb.png',
+          fit: BoxFit.cover,
+          color: Colors.white,
+          width: 100,
         ),
-        body: Padding(
-          padding: EdgeInsets.zero,
-          child: SingleChildScrollView(
-            physics: ClampingScrollPhysics(),
-            child: Card(
-              child: ListView(
-                physics: ClampingScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                //crossAxisAlignment: CrossAxisAlignment.start,
-                //mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  browseProduct(),
-                  categories(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  suggestedProdText(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Grid(),
-                ],
-              ),
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            onPressed: () {
+              NotificationApi.showNotification(
+                  title: 'Osama', body: 'This is body', payload: '');
+            },
+            icon: Icon(Icons.notifications),
+          ),
+          // IconButton(
+          //   onPressed: () {
+          //     Navigator.of(context).push(
+          //         MaterialPageRoute(builder: (context) => SearchPage()));
+          //     setState(() {});
+          //     //new screen navigate
+          //   },
+          //   icon: Icon(Icons.search),
+          // ),
+        ],
+      ),
+      body: Padding(
+        padding: EdgeInsets.zero,
+        child: SingleChildScrollView(
+          physics: ClampingScrollPhysics(),
+          child: Card(
+            child: ListView(
+              physics: ClampingScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              children: <Widget>[
+                browseProduct(),
+                categories(),
+                SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                suggestedProdText(),
+                SizedBox(
+                  height: 40,
+                ),
+                Grid(),
+              ],
             ),
           ),
-          // body: Column(
-          //   crossAxisAlignment: CrossAxisAlignment.start,
-          //   mainAxisAlignment: MainAxisAlignment.start,
-          //   children: <Widget>[
-          //     browseProduct(),
-          //     categories(),
-          //     Grid(),
-          //   ],
-          // ),
-          //bottomNavigationBar: bottomNavBar(),
-        ));
+        ),
+      ),
+    );
   }
 }
 
@@ -129,7 +121,6 @@ class browseProduct extends StatelessWidget {
             image: AssetImage('assets/TBiconLong.png'),
           ),
         ),
-
         SizedBox(height: 40),
         Container(
           margin: EdgeInsets.fromLTRB(0, 0, 180, 0),
@@ -143,19 +134,7 @@ class browseProduct extends StatelessWidget {
             ),
           ),
         ),
-
-        //
-        // SizedBox(height: 20),
-        // Text(
-        //   "     Categories",
-        //   style: TextStyle(
-        //     fontSize: 18,
-        //     color: Colors.blue,
-        //     fontFamily: 'Montserrat',
-        //   ),
-        // ),
         SizedBox(height: 15),
-        // Text("data"),
       ],
     );
   }
@@ -228,273 +207,24 @@ class _categoriesState extends State<categories> {
     return SizedBox(
       height: 125,
       child: ListView(
-          shrinkWrap: true,
-          physics: ClampingScrollPhysics(),
-          scrollDirection: Axis.horizontal,
-          children: <Widget>[
-            SizedBox(
-              width: 5,
-            ),
-            Card(
-              color: Colors.white70,
-              child: Center(
-                child: GestureDetector(
-                  onTap: () async {
-                    List<ads> passingAd = await context
-                        .read<adsList>()
-                        .categoryAds(
-                            context.read<adsList>().ListOfAds,
-                            "Desktop",
-                            context.read<savedAdsList>().ListOfsavedAds);
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => ParticularProduct(
-                          categoryList: passingAd,
-                        ),
-                      ),
-                    );
-                  },
-                  child: Center(
-                    child: Container(
-                      margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                      height: 120.0,
-                      width: 120.0,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/desktop.png'),
-                          fit: BoxFit.contain,
-                        ),
-                        shape: BoxShape.rectangle,
-                      ),
-                      // child: Padding(
-                      //   padding: EdgeInsets.only(
-                      //       left: 35,
-                      //       bottom: 0,
-                      //       right: 0,
-                      //       top: 95), //apply padding to some sides only
-                      //   child: Text("Desktop"),
-                      // ),
-                    ),
-                  ),
-                ),
-              ),
-              //child: listItem(context, index),
-              //Center(child: Text('Dummy Card Text')),
-            ),
-            Card(
-              color: Colors.white70,
-              child: GestureDetector(
-                onTap: () async {
-                  List<ads> passingAd = await context
-                      .read<adsList>()
-                      .categoryAds(context.read<adsList>().ListOfAds, "Mobile",
-                          context.read<savedAdsList>().ListOfsavedAds);
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => ParticularProduct(
-                        categoryList: passingAd,
-                      ),
-                    ),
-                  );
-                },
-                child: Container(
-                  margin: EdgeInsets.fromLTRB(05, 10, 05, 10),
-                  height: 120.0,
-                  width: 120.0,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/mobile.png'),
-                      fit: BoxFit.contain,
-                    ),
-                    shape: BoxShape.rectangle,
-                  ),
-                  // child: Padding(
-                  //   padding: EdgeInsets.only(
-                  //       left: 35,
-                  //       bottom: 0,
-                  //       right: 0,
-                  //       top: 95), //apply padding to some sides only
-                  //   child: Text(
-                  //     "Mobile",
-                  //     style: TextStyle(color: Colors.black),
-                  //   ),
-                  // ), //child: Text("Desktop"),
-                ),
-              ),
-            ),
-            Card(
-              color: Colors.white70,
-              child: GestureDetector(
-                  onTap: () async {
-                    List<ads> passingAd = await context
-                        .read<adsList>()
-                        .categoryAds(
-                            context.read<adsList>().ListOfAds,
-                            "Laptop",
-                            context.read<savedAdsList>().ListOfsavedAds);
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => ParticularProduct(
-                          categoryList: passingAd,
-                        ),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    margin: EdgeInsets.fromLTRB(10, 10, 0, 0),
-                    height: 120.0,
-                    width: 120.0,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/laptop.png'),
-                        fit: BoxFit.contain,
-                      ),
-                      shape: BoxShape.rectangle,
-                    ),
-                    // child: Padding(
-                    //   padding: EdgeInsets.only(
-                    //       left: 35,
-                    //       bottom: 0,
-                    //       right: 0,
-                    //       top: 95), //apply padding to some sides only
-                    //   child: Text(
-                    //     "Laptop",
-                    //     style: TextStyle(color: Colors.black),
-                    //   ),
-                    // ),
-                  )),
-            ),
-            Card(
-              color: Colors.white70,
-              child: GestureDetector(
-                onTap: () async {
-                  List<ads> passingAd = await context
-                      .read<adsList>()
-                      .categoryAds(context.read<adsList>().ListOfAds, "Camera",
-                          context.read<savedAdsList>().ListOfsavedAds);
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => ParticularProduct(
-                        categoryList: passingAd,
-                      ),
-                    ),
-                  );
-                },
-                child: Container(
-                  margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  height: 120.0,
-                  width: 120.0,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/camera.png'),
-                      fit: BoxFit.contain,
-                    ),
-                    shape: BoxShape.rectangle,
-                  ),
-                  // child: Padding(
-                  //   padding: EdgeInsets.only(
-                  //       left: 35,
-                  //       bottom: 0,
-                  //       right: 0,
-                  //       top: 95), //apply padding to some sides only
-                  //   child: Text(
-                  //     "Camera",
-                  //     style: TextStyle(color: Colors.black),
-                  //   ),
-                  // ),
-                ),
-              ),
-            ),
-            Card(
-              color: Colors.white70,
-              child: GestureDetector(
-                onTap: () async {
-                  List<ads> passingAd = await context
-                      .read<adsList>()
-                      .categoryAds(context.read<adsList>().ListOfAds, "Monitor",
-                          context.read<savedAdsList>().ListOfsavedAds);
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => ParticularProduct(
-                        categoryList: passingAd,
-                      ),
-                    ),
-                  );
-                },
-                child: Container(
-                  margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  height: 120.0,
-                  width: 120.0,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/monitor.png'),
-                      fit: BoxFit.contain,
-                    ),
-                    shape: BoxShape.rectangle,
-                  ),
-                  // child: Padding(
-                  //   padding: EdgeInsets.only(
-                  //       left: 35,
-                  //       bottom: 0,
-                  //       right: 0,
-                  //       top: 95), //apply padding to some sides only
-                  //   child: Text(
-                  //     "Monitor",
-                  //     style: TextStyle(color: Colors.black),
-                  //   ),
-                  // ),
-                ),
-              ),
-            ),
-            Card(
-              color: Colors.white70,
-              child: GestureDetector(
-                onTap: () async {
-                  List<ads> passingAd = await context
-                      .read<adsList>()
-                      .categoryAds(context.read<adsList>().ListOfAds, "Speaker",
-                          context.read<savedAdsList>().ListOfsavedAds);
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => ParticularProduct(
-                        categoryList: passingAd,
-                      ),
-                    ),
-                  );
-                },
-                child: Container(
-                  margin: EdgeInsets.fromLTRB(10, 15, 0, 0),
-                  height: 120.0,
-                  width: 120.0,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/speaker.png'),
-                      fit: BoxFit.contain,
-                    ),
-                    shape: BoxShape.rectangle,
-                  ),
-                  // child: Padding(
-                  //   padding: EdgeInsets.only(
-                  //       left: 35,
-                  //       bottom: 0,
-                  //       right: 0,
-                  //       top: 95), //apply padding to some sides only
-                  //   child: Text(
-                  //     "Speaker",
-                  //     style: TextStyle(color: Colors.black),
-                  //   ),
-                  // ),
-                ),
-              ),
-            ),
-            SizedBox(
-              width: 5,
-            ),
-          ]
-          //listItem(context, index),
+        shrinkWrap: true,
+        physics: ClampingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        children: <Widget>[
+          SizedBox(
+            width: 5,
           ),
-      //],
-      //  ),
+          _desktop(),
+          _mobile(),
+          _laptop(),
+          _camera(),
+          _monitor(),
+          _speaker(),
+          SizedBox(
+            width: 5,
+          ),
+        ],
+      ),
     );
   }
 }
@@ -504,50 +234,38 @@ class _desktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ListView(
-        children: <Widget>[
-          Card(
-            child: GestureDetector(
-              onTap: () async {
-                List<ads> passingAd = await context.read<adsList>().categoryAds(
-                    context.read<adsList>().ListOfAds,
-                    "Desktop",
-                    context.read<savedAdsList>().ListOfsavedAds);
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => ParticularProduct(
-                      categoryList: passingAd,
-                    ),
-                  ),
-                );
-              },
-              child: Container(
-                height: 100.0,
-                width: 100.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/desktop.png'),
-                    fit: BoxFit.contain,
-                  ),
-                  shape: BoxShape.rectangle,
+    return Card(
+      color: Colors.white70,
+      child: Center(
+        child: GestureDetector(
+          onTap: () async {
+            List<ads> passingAd = await context
+                .read<adsList>()
+                .categoryAds(context.read<adsList>().ListOfAds, "Desktop",
+                context.read<savedAdsList>().ListOfsavedAds);
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => ParticularProduct(
+                  categoryList: passingAd,
                 ),
-                //child: Text("Desktop"),
+              ),
+            );
+          },
+          child: Center(
+            child: Container(
+              margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+              height: 120.0,
+              width: 120.0,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/desktop.png'),
+                  fit: BoxFit.contain,
+                ),
+                shape: BoxShape.rectangle,
               ),
             ),
           ),
-          Text(
-            "Desktops",
-            style: TextStyle(
-              //color: Colors.blue,
-              //fontWeight: FontWeight.bold,
-              fontFamily: 'Montserrat',
-              fontSize: 18,
-              //decoration: TextDecoration.underline,
-            ),
-          )
-        ],
+        ),
       ),
     );
   }
@@ -558,50 +276,34 @@ class _mobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ListView(
-        children: <Widget>[
-          Card(
-            child: GestureDetector(
-              onTap: () async {
-                List<ads> passingAd = await context.read<adsList>().categoryAds(
-                    context.read<adsList>().ListOfAds,
-                    "Mobile",
-                    context.read<savedAdsList>().ListOfsavedAds);
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => ParticularProduct(
-                      categoryList: passingAd,
-                    ),
-                  ),
-                );
-              },
-              child: Container(
-                height: 100.0,
-                width: 100.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/smartphone.png'),
-                    fit: BoxFit.contain,
-                  ),
-                  shape: BoxShape.rectangle,
-                ),
-                //child: Text("Desktop"),
+    return Card(
+      color: Colors.white70,
+      child: GestureDetector(
+        onTap: () async {
+          List<ads> passingAd = await context.read<adsList>().categoryAds(
+              context.read<adsList>().ListOfAds,
+              "Mobile",
+              context.read<savedAdsList>().ListOfsavedAds);
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => ParticularProduct(
+                categoryList: passingAd,
               ),
             ),
-          ),
-          Text(
-            "Mobiles",
-            style: TextStyle(
-              //color: Colors.blue,
-              //fontWeight: FontWeight.bold,
-              fontFamily: 'Montserrat',
-              fontSize: 18,
-              //decoration: TextDecoration.underline,
+          );
+        },
+        child: Container(
+          margin: EdgeInsets.fromLTRB(05, 10, 05, 10),
+          height: 120.0,
+          width: 120.0,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/mobile.png'),
+              fit: BoxFit.contain,
             ),
-          )
-        ],
+            shape: BoxShape.rectangle,
+          ),
+        ),
       ),
     );
   }
@@ -612,50 +314,34 @@ class _laptop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ListView(
-        children: <Widget>[
-          Card(
-            child: GestureDetector(
-              onTap: () async {
-                List<ads> passingAd = await context.read<adsList>().categoryAds(
-                    context.read<adsList>().ListOfAds,
-                    "Laptop",
-                    context.read<savedAdsList>().ListOfsavedAds);
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => ParticularProduct(
-                      categoryList: passingAd,
-                    ),
-                  ),
-                );
-              },
-              child: Container(
-                height: 100.0,
-                width: 100.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/laptop.png'),
-                    fit: BoxFit.contain,
-                  ),
-                  shape: BoxShape.rectangle,
+    return Card(
+      color: Colors.white70,
+      child: GestureDetector(
+          onTap: () async {
+            List<ads> passingAd = await context
+                .read<adsList>()
+                .categoryAds(context.read<adsList>().ListOfAds, "Laptop",
+                context.read<savedAdsList>().ListOfsavedAds);
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => ParticularProduct(
+                  categoryList: passingAd,
                 ),
               ),
+            );
+          },
+          child: Container(
+            margin: EdgeInsets.fromLTRB(10, 10, 0, 0),
+            height: 120.0,
+            width: 120.0,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/laptop.png'),
+                fit: BoxFit.contain,
+              ),
+              shape: BoxShape.rectangle,
             ),
-          ),
-          Text(
-            "Laptop",
-            style: TextStyle(
-              //color: Colors.blue,
-              //fontWeight: FontWeight.bold,
-              fontFamily: 'Montserrat',
-              fontSize: 18,
-              //decoration: TextDecoration.underline,
-            ),
-          )
-        ],
-      ),
+          )),
     );
   }
 }
@@ -665,46 +351,34 @@ class _camera extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ListView(
-        children: <Widget>[
-          Card(
-            child: GestureDetector(
-              onTap: () async {
-                List<ads> passingAd = await context.read<adsList>().categoryAds(
-                    context.read<adsList>().ListOfAds,
-                    "Camera",
-                    context.read<savedAdsList>().ListOfsavedAds);
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ParticularProduct(
-                          categoryList: passingAd,
-                        )));
-              },
-              child: Container(
-                height: 100.0,
-                width: 100.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/camera.png'),
-                    fit: BoxFit.contain,
-                  ),
-                  shape: BoxShape.rectangle,
-                ),
+    return Card(
+      color: Colors.white70,
+      child: GestureDetector(
+        onTap: () async {
+          List<ads> passingAd = await context.read<adsList>().categoryAds(
+              context.read<adsList>().ListOfAds,
+              "Camera",
+              context.read<savedAdsList>().ListOfsavedAds);
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => ParticularProduct(
+                categoryList: passingAd,
               ),
             ),
-          ),
-          Text(
-            "Camera",
-            style: TextStyle(
-              //color: Colors.blue,
-              //fontWeight: FontWeight.bold,
-              fontFamily: 'Montserrat',
-              fontSize: 18,
-              //decoration: TextDecoration.underline,
+          );
+        },
+        child: Container(
+          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+          height: 120.0,
+          width: 120.0,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/camera.png'),
+              fit: BoxFit.contain,
             ),
-          )
-        ],
+            shape: BoxShape.rectangle,
+          ),
+        ),
       ),
     );
   }
@@ -715,46 +389,34 @@ class _monitor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ListView(
-        children: <Widget>[
-          Card(
-            child: GestureDetector(
-              onTap: () async {
-                List<ads> passingAd = await context.read<adsList>().categoryAds(
-                    context.read<adsList>().ListOfAds,
-                    "Monitor",
-                    context.read<savedAdsList>().ListOfsavedAds);
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ParticularProduct(
-                          categoryList: passingAd,
-                        )));
-              },
-              child: Container(
-                height: 100.0,
-                width: 100.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/monitor.png'),
-                    fit: BoxFit.contain,
-                  ),
-                  shape: BoxShape.rectangle,
-                ),
+    return Card(
+      color: Colors.white70,
+      child: GestureDetector(
+        onTap: () async {
+          List<ads> passingAd = await context.read<adsList>().categoryAds(
+              context.read<adsList>().ListOfAds,
+              "Monitor",
+              context.read<savedAdsList>().ListOfsavedAds);
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => ParticularProduct(
+                categoryList: passingAd,
               ),
             ),
-          ),
-          Text(
-            "Monitor",
-            style: TextStyle(
-              //color: Colors.blue,
-              //fontWeight: FontWeight.bold,
-              fontFamily: 'Montserrat',
-              fontSize: 18,
-              //decoration: TextDecoration.underline,
+          );
+        },
+        child: Container(
+          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+          height: 120.0,
+          width: 120.0,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/monitor.png'),
+              fit: BoxFit.contain,
             ),
-          )
-        ],
+            shape: BoxShape.rectangle,
+          ),
+        ),
       ),
     );
   }
@@ -765,66 +427,33 @@ class _speaker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ListView(
-        children: <Widget>[
-          Card(
-            child: GestureDetector(
-              onTap: () async {
-                List<ads> passingAd = await context.read<adsList>().categoryAds(
-                    context.read<adsList>().ListOfAds,
-                    "Speaker",
-                    context.read<savedAdsList>().ListOfsavedAds);
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ParticularProduct(
-                          categoryList: passingAd,
-                        )));
-              },
-              child: Container(
-                height: 100.0,
-                width: 100.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/speaker.png'),
-                    fit: BoxFit.contain,
-                  ),
-                  shape: BoxShape.rectangle,
-                ),
+    return Card(
+      color: Colors.white70,
+      child: GestureDetector(
+        onTap: () async {
+          List<ads> passingAd = await context.read<adsList>().categoryAds(
+              context.read<adsList>().ListOfAds,
+              "Speaker",
+              context.read<savedAdsList>().ListOfsavedAds);
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => ParticularProduct(
+                categoryList: passingAd,
               ),
             ),
-          ),
-          Text(
-            "Speaker",
-            style: TextStyle(
-              //color: Colors.blue,
-              //fontWeight: FontWeight.bold,
-              fontFamily: 'Montserrat',
-              fontSize: 18,
-              //decoration: TextDecoration.underline,
+          );
+        },
+        child: Container(
+          margin: EdgeInsets.fromLTRB(10, 15, 0, 0),
+          height: 120.0,
+          width: 120.0,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/speaker.png'),
+              fit: BoxFit.contain,
             ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class _container_1_categories extends StatelessWidget {
-  const _container_1_categories({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            _desktop(),
-            _mobile(),
-            _laptop(),
-          ],
+            shape: BoxShape.rectangle,
+          ),
         ),
       ),
     );
@@ -865,9 +494,7 @@ class Grid extends StatefulWidget {
 class _GridState extends State<Grid> {
   @override
   Widget build(BuildContext context) {
-    //return Expanded(
     return GridView.builder(
-//      child: GridView.builder(
         physics: ScrollPhysics(),
         shrinkWrap: true,
         itemCount: context.read<adsList>().ListOfAds.length,
@@ -888,8 +515,6 @@ class _GridState extends State<Grid> {
               }),
               child: GridTile(
                 footer: Container(
-                  // decoration:
-                  //     BoxDecoration(border: Border.all(color: Colors.black)),
                   color: Colors.white,
                   child: ListTile(
                     title: Text(
@@ -907,8 +532,6 @@ class _GridState extends State<Grid> {
               ),
             ),
           );
-        }
-        //),
-        );
+        });
   }
 }
