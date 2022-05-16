@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
@@ -6,7 +7,6 @@ import 'package:techby/Sign _In/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:techby/screens/ProductDetail.dart';
 import 'Chat_Page.dart';
-import 'dart:math' as math;
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class ChatMain_screen extends StatefulWidget {
@@ -208,7 +208,8 @@ class _ChatMain_screenState extends State<ChatMain_screen> {
                                       child:
                                       Icon(Icons.account_circle_sharp,
                                         size: 50,
-                                        color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
+                                        //color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
+                                        color: Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
                                       ),
 
                                       // Image.network(
