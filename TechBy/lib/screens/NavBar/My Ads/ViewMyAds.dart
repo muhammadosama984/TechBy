@@ -19,7 +19,6 @@ class _ViewMyAdsState extends State<ViewMyAds> {
         automaticallyImplyLeading: false,
       ),
       body: myAds(),
-
     );
   }
 }
