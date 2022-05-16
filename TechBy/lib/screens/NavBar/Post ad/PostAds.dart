@@ -166,7 +166,7 @@ class _PostAdsState extends State<PostAds> {
                         return null;
                       }
                     },
-                    decoration: InputDecoration(hintText: "Location"),
+                    decoration: InputDecoration(hintText: "City"),
                   )),
               SizedBox(
                 height: 20,

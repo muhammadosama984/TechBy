@@ -42,34 +42,82 @@ class _ListState extends State<Lists> {
           itemCount: widget.comingList.length,
           itemBuilder: ((context, index) {
             return Card(
+              elevation: 3,
               child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ProductDetail(
-                            Ads: widget.comingList[index],
-                          )));
-                },
-                child: Container(
-                  height: 130,
-                  child: ListTile(
-                      leading: Image.network(
-                        widget.comingList[index].downloadURLS[0],
-                        fit: BoxFit.fill,
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ProductDetail(
+                              Ads: widget.comingList[index],
+                            )));
+                  },
+                  child: Container(
+                    //height: 100,
+                    child: ListTile(
+                      leading: Container(
+                        width: 60,
+                        child: Image.network(
+                          widget.comingList[index].downloadURLS[0],
+                          fit: BoxFit.fill,
+                        ),
                       ),
-                      title: Text(
-                        widget.comingList[index].title,
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                      title: Row(
+                        children: [
+                          Flexible(
+                            child: Container(
+                              width: 130,
+                              child:Text(
+                            widget.comingList[index].title,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),),),
+                          Align(
+                            alignment: Alignment.topRight,
+                            child: Icon(Icons.verified,
+                              color: Color.fromRGBO(30, 159, 217, 1),
+                              size: 18,
+                            ),
+                          ),
+                        ],
                       ),
-                      subtitle: Text(
-                        "Price: " +
-                            widget.comingList[index].price +
-                            "\nLocation: " +
-                            widget.comingList[index].location,
-                      ),
-                      trailing: Heart(comingAd: widget.comingList[index])),
-                ),
-              ),
+
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                      Row(
+                      children: [
+                      Text("Price: Rs "),
+                      SizedBox(
+                        width: 105,
+                        child:
+                        Text(widget.comingList[index].price,
+                          maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,),
+                      )
+                      ],),
+
+                        // Text(
+                        // "Price: Rs " + widget.comingList[index].price,
+                        //   maxLines: 1,
+                        //   overflow: TextOverflow.ellipsis,
+                        //   softWrap: false,
+                        //   // "\nLocation: " +
+                        //     // widget.comingList[index].location,
+                        // ),
+                        Text("Location: " + widget.comingList[index].location,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: false,
+                        ),
+                      ],),
+                      trailing:
+                            Heart(comingAd: widget.comingList[index]),
+
+                    ),
+                  )),
             );
           })),
     );
