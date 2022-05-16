@@ -300,7 +300,7 @@ class _Chat_screenState extends State<Chat_screen> {
   }
 
   _scrolltobottom() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
       if (_scrollController.hasClients) {
         _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
       }
