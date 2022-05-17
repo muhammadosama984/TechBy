@@ -40,99 +40,93 @@ class _ListState extends State<Lists> {
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
-          itemCount: widget.comingList.length,
-          itemBuilder: ((context, index) {
-            return Card(
-              elevation: 3,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ProductDetail(
-                            Ads: widget.comingList[index],
-                          )));
-                },
-                child: Container(
-                  //height: 100,
+        itemCount: widget.comingList.length,
+        itemBuilder: ((context, index) {
+          return Card(
+            elevation: 3,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ProductDetail(
+                          Ads: widget.comingList[index],
+                        )));
+              },
+              child: Container(
+                //height: 100,
 
-                  child: ListTile(
-                    leading: Container(
-                      width: 60,
-                      child: Image.network(
-                        widget.comingList[index].downloadURLS[0],
-                        fit: BoxFit.fill,
-                      ),
+                child: ListTile(
+                  leading: Container(
+                    width: 60,
+                    child: Image.network(
+                      widget.comingList[index].downloadURLS[0],
+                      fit: BoxFit.fill,
                     ),
-                    title: Row(
-                      children: [
-                        Flexible(
-                          child: Container(
-                            width: 130,
+                  ),
+                  title: Row(
+                    children: [
+                      Flexible(
+                        child: Container(
+                          width: 130,
+                          child: Text(
+                            widget.comingList[index].title,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: widget.comingList[index].verifiedAd
+                            ? Icon(
+                                Icons.verified,
+                                color: Color.fromRGBO(30, 159, 217, 1),
+                                size: 18,
+                              )
+                            : null,
+                      ),
+                    ],
+                  ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text("Price: Rs "),
+                          SizedBox(
+                            width: 105,
                             child: Text(
-                              widget.comingList[index].title,
+                              widget.comingList[index].price,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               softWrap: false,
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
                             ),
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: Icon(
-                            Icons.verified,
-                            color: Color.fromRGBO(30, 159, 217, 1),
-                            size: 18,
-                          ),
-                        ),
-                      ],
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Text("Price: Rs "),
-                            SizedBox(
-                              width: 105,
-                              child: Text(
-                                widget.comingList[index].price,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                softWrap: false,
-                              ),
-                            )
-                          ],
-                        ),
-
-                        // Text(
-                        // "Price: Rs " + widget.comingList[index].price,
-                        //   maxLines: 1,
-                        //   overflow: TextOverflow.ellipsis,
-                        //   softWrap: false,
-                        //   // "\nLocation: " +
-                        //     // widget.comingList[index].location,
-                        // ),
-                        Text(
-                          "Location: " + widget.comingList[index].location,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          softWrap: false,
-                        ),
-                      ],
-                    ),
-                    trailing: Heart3(
-                      comingAd: widget.comingList[index],
-                      remove: (value) {
-                        widget.comingList.remove(value);
-                        setState(() {});
-                      },
-                    ),
+                          )
+                        ],
+                      ),
+                      Text(
+                        "Location: " + widget.comingList[index].location,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        softWrap: false,
+                      ),
+                    ],
+                  ),
+                  trailing: Heart3(
+                    comingAd: widget.comingList[index],
+                    remove: (value) {
+                      widget.comingList.remove(value);
+                      setState(() {});
+                    },
                   ),
                 ),
               ),
-            );
-          })),
+            ),
+          );
+        }),
+      ),
     );
   }
 }
@@ -237,6 +231,7 @@ class _HeartState extends State<Heart> with SingleTickerProviderStateMixin {
 
 class Heart2 extends StatefulWidget {
   final ads comingAd;
+
   const Heart2({Key? key, required this.comingAd}) : super(key: key);
 
   @override
@@ -308,6 +303,7 @@ typedef MyIntCallback(List);
 class Heart3 extends StatefulWidget {
   final MyIntCallback remove;
   final ads comingAd;
+
   const Heart3({Key? key, required this.comingAd, required this.remove})
       : super(key: key);
 
@@ -328,11 +324,6 @@ class _Heart3State extends State<Heart3> {
                   .email
                   .toString();
           if (_value) {
-            // String emailAddress =
-            //     Provider.of<GoogleSingInProvider>(context, listen: false)
-            //         .userDetails
-            //         .email
-            //         .toString();
             print(emailAddress);
 
             await context
