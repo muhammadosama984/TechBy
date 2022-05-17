@@ -356,6 +356,9 @@ class _postButtonState extends State<_postButton> {
                 widget.locationController.text +
                 " " +
                 urls[0]);
+            String email =
+                await Provider.of<GoogleSingInProvider>(context, listen: false)
+                    .emailAddress();
             Provider.of<adsList>(context, listen: false).postAds(
                 title_f: widget.titleController.text,
                 description_f: widget.descriptionController.text,
@@ -364,15 +367,10 @@ class _postButtonState extends State<_postButton> {
                 price_f: widget.priceController.text,
                 category_f: widget.CategoryController.text.toString(),
                 downloadURLS_f: urls,
-                emailAddressUser_f: (await Provider.of<GoogleSingInProvider>(
-                        context,
-                        listen: false)
-                    .emailAddress()),
-                verified: context.read<verifiedEmailsList>().checkverified(
-                    userEmail: await Provider.of<GoogleSingInProvider>(context,
-                            listen: false)
-                        .emailAddress()
-                        .toString()));
+                emailAddressUser_f: email,
+                verified: context
+                    .read<verifiedEmailsList>()
+                    .checkverified(userEmail: email.toString()));
 
             setState(() {
               isPosted = false;
