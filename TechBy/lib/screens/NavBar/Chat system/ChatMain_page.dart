@@ -3,8 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:techby/Sign _In/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:techby/screens/NavBar/more%20page/Animations/CustomPageRoute.dart';
 import 'dart:math';
+import 'Animations/CustomPageRoute.dart';
 import 'Chat_Page.dart';
 
 class ChatMain_screen extends StatefulWidget {
@@ -184,7 +184,8 @@ class ChatUser {
 
   ChatUser(
       {required this.name,
-      required this.product,
-      required this.image_name,
-      required this.doc_id});
+        required this.product,
+        required this.image_name,
+        required this.doc_id});
 }
+
