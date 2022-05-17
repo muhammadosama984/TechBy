@@ -21,13 +21,10 @@ class verifiedEmailsList extends ChangeNotifier {
   }
 
   bool checkverified({required userEmail}) {
-    print(userEmail);
-    //
-    // final verified=ListOfVerifiedEmails.where((element) => element.email.toString()==userEmail.toString());
-    //
+
     for (int i = 0; i < ListOfVerifiedEmails.length; i++) {
       if (ListOfVerifiedEmails[i].email.toString() == userEmail.toString()) {
-        print(ListOfVerifiedEmails[i].email.toString());
+        //print(ListOfVerifiedEmails[i].email.toString());
         return true;
       }
     }
