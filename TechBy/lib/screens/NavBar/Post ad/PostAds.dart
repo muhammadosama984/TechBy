@@ -332,60 +332,79 @@ class _postButtonState extends State<_postButton> {
       child: RaisedButton(
         color: Color.fromRGBO(30, 159, 217, 1),
         onPressed: () async {
-          setState(() {
-            isPosted = true;
-          });
+          if (widget.titleController.text.length == 0 &&
+              widget.descriptionController.text.length == 0 &&
+              widget.CategoryController.text.length == 0 &&
+              widget.priceController.text.length == 0 &&
+              widget.locationController.text.length == 0 &&
+              widget.multiImages.length == 0) {
+            setState(() {
+              isPosted = true;
+            });
 
-          List<String> urls = await Provider.of<adsList>(context, listen: false)
-              .multiImageUploader(widget.multiImages) as List<String>;
-          print(widget.titleController.text +
-              widget.descriptionController.text +
-              widget.CategoryController.text +
-              widget.priceController.text +
-              widget.locationController.text +
-              " " +
-              urls[0]);
-          Provider.of<adsList>(context, listen: false).postAds(
-              title_f: widget.titleController.text,
-              description_f: widget.descriptionController.text,
-              location_f: widget.locationController.text,
-              uploadDate_f: DateTime.now(),
-              price_f: widget.priceController.text,
-              category_f: widget.CategoryController.text.toString(),
-              downloadURLS_f: urls,
-              emailAddressUser_f: (await Provider.of<GoogleSingInProvider>(
-                      context,
-                      listen: false)
-                  .emailAddress()));
+            List<String> urls =
+                await Provider.of<adsList>(context, listen: false)
+                    .multiImageUploader(widget.multiImages) as List<String>;
+            print(widget.titleController.text +
+                widget.descriptionController.text +
+                widget.CategoryController.text +
+                widget.priceController.text +
+                widget.locationController.text +
+                " " +
+                urls[0]);
+            Provider.of<adsList>(context, listen: false).postAds(
+                title_f: widget.titleController.text,
+                description_f: widget.descriptionController.text,
+                location_f: widget.locationController.text,
+                uploadDate_f: DateTime.now(),
+                price_f: widget.priceController.text,
+                category_f: widget.CategoryController.text.toString(),
+                downloadURLS_f: urls,
+                emailAddressUser_f: (await Provider.of<GoogleSingInProvider>(
+                        context,
+                        listen: false)
+                    .emailAddress()));
 
-          setState(() {
-            isPosted = false;
-          });
+            setState(() {
+              isPosted = false;
+            });
 
-          bool isLogout = false;
-          isLogout = await showDialog(
-              barrierDismissible: false,
-              context: context,
-              builder: (context) => AlertDialog(
-                    title: const Text('Task Added'),
-                    actions: [
-                      TextButton(
-                          onPressed: () {
-                            // Navigator.of(context).push(MaterialPageRoute(
-                            //     builder: (context) => MyHomePage()));
+            bool isLogout = false;
+            isLogout = await showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (context) => AlertDialog(
+                      title: const Text('Task Added'),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              // Navigator.of(context).push(MaterialPageRoute(
+                              //     builder: (context) => MyHomePage()));
 
-                            
-                            context.read<indexChange>().currentIndex=0;
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>navBarNavigation()));
-                            setState(() {
-
-                            });
-
-                          },
-                          child: Text('OK')),
-                    ],
-                  ));
+                              context.read<indexChange>().currentIndex = 0;
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => navBarNavigation()));
+                              setState(() {});
+                            },
+                            child: Text('OK')),
+                      ],
+                    ));
+          } else {
+            bool isLogout = false;
+            isLogout = await showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (context) => AlertDialog(
+                      title: const Text('Please fill null fields'),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop(false);
+                            },
+                            child: Text('OK')),
+                      ],
+                    ));
+          }
         },
         child: !isPosted
             ? Text("Post Now",
