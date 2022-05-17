@@ -17,11 +17,8 @@ class savedAdsList extends ChangeNotifier {
         savedAds temp = savedAds.fromJson(doc.data() as Map<String, dynamic>);
         // temp.favAd=false;
         temp.DB_docID = doc.id;
-        print(doc.id);
-        // if(temp.done==true)
-        //   temp.completion_dateTime=DateTime.parse(doc.get("Completion Date"));
+        //print(doc.id);
         ListOfsavedAds.add(temp);
-        //  print(tasks[0].title);
       });
     });
   }
@@ -42,22 +39,22 @@ class savedAdsList extends ChangeNotifier {
       adReference
           .add(savedAdObj.toJson())
           .then((value) => print("Ad Posted"))
-          .catchError((error) => print("Failed to add user: $error"));
+          .catchError((error) => print("Failed to add ad: $error"));
     }
     await getMyAds(emailAddress: email);
   }
 
   Future<void> deleteSavedAd({required String dataBase_doc_ID}) async {
-    String id="";
+    String id = "";
 
-      int x = ListOfsavedAds.indexWhere(
-              (element) => element.doc_ID.toString() == dataBase_doc_ID.toString());
-      print("");
-      print(x);
-      print("");
-      if(x!=-1) {
-        id=ListOfsavedAds[x].DB_docID;
-      }
+    int x = ListOfsavedAds.indexWhere(
+        (element) => element.doc_ID.toString() == dataBase_doc_ID.toString());
+    // print("");
+    // print(x);
+    // print("");
+    if (x != -1) {
+      id = ListOfsavedAds[x].DB_docID;
+    }
 
     await FirebaseFirestore.instance
         .collection('savedAds')
@@ -66,7 +63,6 @@ class savedAdsList extends ChangeNotifier {
         .catchError((e) {
       print(e);
     }).whenComplete(() => print('deleted'));
-
   }
 
   void printList() {

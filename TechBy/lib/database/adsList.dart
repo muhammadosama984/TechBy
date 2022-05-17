@@ -12,6 +12,7 @@ class adsList extends ChangeNotifier {
   List<ads> ListOfAds = [];
   List<ads> ListOfMyAds = [];
   List<ads> ListOfMyFav = [];
+
   Future<void> getAds() async {
     ListOfAds.clear();
     await FirebaseFirestore.instance
@@ -23,11 +24,9 @@ class adsList extends ChangeNotifier {
         // temp.favAd=false;
         temp.docID = doc.id;
         temp.favAd = false;
-        print(doc.id);
-        // if(temp.done==true)
-        //   temp.completion_dateTime=DateTime.parse(doc.get("Completion Date"));
+        //print(doc.id);
         ListOfAds.add(temp);
-        //  print(tasks[0].title);
+
       });
     });
   }
@@ -40,9 +39,9 @@ class adsList extends ChangeNotifier {
       int x = -1;
       x = ListOfAds.indexWhere((element) =>
           element.docID.toString() == listOfSaved[i].doc_ID.toString());
-      print("");
-      print(x);
-      print("");
+      // print("");
+      // print(x);
+      // print("");
       if (x != -1) {
         ListOfAds[x].favAd = true;
         ListOfMyFav.add(ListOfAds[x]);
@@ -94,16 +93,16 @@ class adsList extends ChangeNotifier {
     return priceList;
   }
 
-  Future<void> postAds({
-    required String title_f,
-    required String description_f,
-    required String location_f,
-    required DateTime uploadDate_f,
-    required String price_f,
-    required String category_f,
-    required List<String> downloadURLS_f,
-    required String emailAddressUser_f,
-  required bool verified}) async {
+  Future<void> postAds(
+      {required String title_f,
+      required String description_f,
+      required String location_f,
+      required DateTime uploadDate_f,
+      required String price_f,
+      required String category_f,
+      required List<String> downloadURLS_f,
+      required String emailAddressUser_f,
+      required bool verified}) async {
     CollectionReference adReference =
         FirebaseFirestore.instance.collection('PostedAds');
     final ad_Obj = ads(
@@ -120,7 +119,7 @@ class adsList extends ChangeNotifier {
     adReference
         .add(ad_Obj.toJson())
         .then((value) => print("Ad Posted"))
-        .catchError((error) => print("Failed to add user: $error"));
+        .catchError((error) => print("Failed to post ad: $error"));
   }
 
   Future<List<String>> multiImageUploader(List<XFile> list) async {
