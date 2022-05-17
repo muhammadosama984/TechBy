@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:techby/screens/Merchandiser_Page.dart';
-
 
 class MerchandiserProfile_screen extends StatefulWidget {
   const MerchandiserProfile_screen({Key? key}) : super(key: key);
@@ -8,8 +6,6 @@ class MerchandiserProfile_screen extends StatefulWidget {
   @override
   State<MerchandiserProfile_screen> createState() => _MerchandiserProfile_screenState();
 }
-
-
 
 class _MerchandiserProfile_screenState extends State<MerchandiserProfile_screen> {
   @override

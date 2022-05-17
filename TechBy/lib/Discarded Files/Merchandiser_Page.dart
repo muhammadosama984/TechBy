@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:techby/general%20widgets/Search.dart';
-import 'package:techby/screens/MerchandiserProfile_Page.dart';
+
 
 class Merchandiser_screen extends StatefulWidget {
   const Merchandiser_screen({Key? key}) : super(key: key);
@@ -53,9 +53,9 @@ class _Merchandiser_screenState extends State<Merchandiser_screen> {
                         // subtitle: Text(data[index].complain),
                         trailing: Icon(Icons.arrow_forward_ios),
                         onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  MerchandiserProfile_screen()));
+                          // Navigator.of(context).push(MaterialPageRoute(
+                          //     builder: (context) =>
+                          //         MerchandiserProfile_screen()));
                         },
                       ),
                     );

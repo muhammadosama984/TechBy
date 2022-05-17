@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:techby/screens/Complaint_Page.dart';
-import 'package:techby/screens/Merchandiser_Page.dart';
 import 'package:techby/screens/signIn%20pages/signInScreens/OpeningPage.dart';
-
-import 'ApproveAds_Page.dart';
+import '../screens/ApproveAds_Page.dart';
 
 class Admin_screen extends StatefulWidget {
   const Admin_screen({Key? key}) : super(key: key);
@@ -47,7 +45,7 @@ class _Admin_screenState extends State<Admin_screen> {
                 child: RaisedButton(
                   disabledElevation: 8.0,
                   onPressed: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Merchandiser_screen()));
+                    // Navigator.of(context).push(MaterialPageRoute(builder: (context) => Merchandiser_screen()));
                   },
                   child: Text("Approve Merchant", style: TextStyle(fontSize: 20, color: Colors.white),),
                 )
