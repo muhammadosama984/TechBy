@@ -3,13 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
 import 'package:techby/database/savedAdsList.dart';
+import 'package:techby/screens/NavBar/Home/widgets/mainList.dart';
 import '../../../database/adsList.dart';
 import '../../../general widgets/Search.dart';
 import '../../signIn pages/signInScreens/notification_api.dart';
-import 'widgets/browseProduct.dart';
-import 'widgets/categories.dart';
-import 'widgets/grid.dart';
-import 'widgets/textWidgets.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -77,26 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: SingleChildScrollView(
           physics: ClampingScrollPhysics(),
           child: Card(
-            child: ListView(
-              physics: ClampingScrollPhysics(),
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              children: <Widget>[
-                browseProduct(),
-                categories(),
-                SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                suggestedProdText(),
-                SizedBox(
-                  height: 40,
-                ),
-                Grid(),
-              ],
-            ),
+            child: mainlist(),
           ),
         ),
       ),

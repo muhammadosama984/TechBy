@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:techby/Models/currentIndex.dart';
 import 'package:techby/general%20widgets/bottomBar.dart';
 
 import 'Chat system/ChatMain_page.dart';
@@ -27,11 +29,11 @@ class _navBarNavigationState extends State<navBarNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[currentIndex],
+      body: screens[context.read<indexChange>().currentIndex],
 
       bottomNavigationBar: bottomNavBar(
             onPressed: (receivedIndex) {
-            currentIndex = receivedIndex;
+              context.read<indexChange>().currentIndex = receivedIndex;
             setState(() {});
       }),
     );
