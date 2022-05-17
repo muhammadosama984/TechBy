@@ -116,10 +116,10 @@ class _ListState extends State<Lists> {
                   ),
                   trailing: Heart3(
                     comingAd: widget.comingList[index],
-                    remove: (value) {
-                      widget.comingList.remove(value);
-                      setState(() {});
-                    },
+                    // remove: (value) {
+                    //   widget.comingList.remove(value);
+                    //   setState(() {});
+                    // },
                   ),
                 ),
               ),
@@ -301,11 +301,9 @@ class _Heart2State extends State<Heart2> with SingleTickerProviderStateMixin {
 typedef MyIntCallback(List);
 
 class Heart3 extends StatefulWidget {
-  final MyIntCallback remove;
   final ads comingAd;
 
-  const Heart3({Key? key, required this.comingAd, required this.remove})
-      : super(key: key);
+  const Heart3({Key? key, required this.comingAd}) : super(key: key);
 
   @override
   State<Heart3> createState() => _Heart3State();
@@ -340,7 +338,6 @@ class _Heart3State extends State<Heart3> {
             await context.read<adsList>().updateAd(myAd: widget.comingAd);
             context.read<savedAdsList>().ListOfsavedAds.remove(
                 savedAds(email: emailAddress, doc_ID: widget.comingAd.docID));
-            widget.remove(widget.comingAd);
           }
           setState(() {
             widget.comingAd.favAd = _value;
