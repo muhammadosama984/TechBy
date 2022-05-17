@@ -14,7 +14,7 @@ class verifiedEmailsList extends ChangeNotifier {
       querySnapshot.docs.forEach((doc) {
         verifiedEmails temp =
             verifiedEmails.fromJson(doc.data() as Map<String, dynamic>);
-        print(temp.email);
+        //print(temp.email);
         ListOfVerifiedEmails.add(temp);
       });
     });
