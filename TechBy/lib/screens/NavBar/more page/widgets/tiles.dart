@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
+import 'package:techby/database/adsList.dart';
 import 'package:techby/screens/NavBar/more%20page/Screens/Contact_Us/ContactUs_Page.dart';
 import 'package:techby/screens/signIn%20pages/signInScreens/OpeningPage.dart';
 
@@ -23,7 +24,9 @@ class myFavTile extends StatelessWidget {
         tileColor: Colors.white,
         leading: Icon(Icons.favorite, color: Colors.red),
         title: Text("My Favorite"),
-        onTap: () {
+        onTap: ()async{
+          await context.read<adsList>().getAds();
+
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (context) => MyFav()));
         },

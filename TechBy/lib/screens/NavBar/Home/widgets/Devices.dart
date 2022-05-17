@@ -17,6 +17,8 @@ class desktop extends StatelessWidget {
       child: Center(
         child: GestureDetector(
           onTap: () async {
+            await context.read<adsList>().getAds();
+
             List<ads> passingAd = await context.read<adsList>().categoryAds(
                 context.read<adsList>().ListOfAds,
                 "Desktop",
@@ -69,6 +71,8 @@ class _mobileState extends State<mobile> {
       color: Colors.white70,
       child: GestureDetector(
         onTap: () async {
+          await context.read<adsList>().getAds();
+
           List<ads> passingAd = await context.read<adsList>().categoryAds(
               context.read<adsList>().ListOfAds,
               "Mobile",
@@ -147,6 +151,8 @@ class camera extends StatelessWidget {
       color: Colors.white70,
       child: GestureDetector(
         onTap: () async {
+          await context.read<adsList>().getAds();
+
           List<ads> passingAd = await context.read<adsList>().categoryAds(
               context.read<adsList>().ListOfAds,
               "Camera",
@@ -185,6 +191,8 @@ class monitor extends StatelessWidget {
       color: Colors.white70,
       child: GestureDetector(
         onTap: () async {
+          await context.read<adsList>().getAds();
+
           List<ads> passingAd = await context.read<adsList>().categoryAds(
               context.read<adsList>().ListOfAds,
               "Monitor",
@@ -223,6 +231,8 @@ class speaker extends StatelessWidget {
       color: Colors.white70,
       child: GestureDetector(
         onTap: () async {
+          await context.read<adsList>().getAds();
+
           List<ads> passingAd = await context.read<adsList>().categoryAds(
               context.read<adsList>().ListOfAds,
               "Speaker",
