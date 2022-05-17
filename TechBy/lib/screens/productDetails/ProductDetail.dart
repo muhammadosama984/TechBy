@@ -17,26 +17,31 @@ class ProductDetail extends StatefulWidget {
 }
 
 class _ProductDetailState extends State<ProductDetail> {
-
-  void userEntryToDatabase() async{
-    String email = await Provider.of<GoogleSingInProvider>(context, listen: false).emailAddress();
+  void userEntryToDatabase() async {
+    String email =
+        await Provider.of<GoogleSingInProvider>(context, listen: false)
+            .emailAddress();
     bool userexists = false;
     String docid = "";
 
-    await FirebaseFirestore.instance.collection('Userrooms').where('buyerid', isEqualTo: email).where('sellerid', isEqualTo: widget.Ads.emailAddressUser).get().
-    then((QuerySnapshot querySnapshot) {
-      querySnapshot.docs.forEach((doc)
-      {
+    await FirebaseFirestore.instance
+        .collection('Userrooms')
+        .where('buyerid', isEqualTo: email)
+        .where('sellerid', isEqualTo: widget.Ads.emailAddressUser)
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
         userexists = true;
         docid = doc.id;
       });
     });
 
-    if(!userexists) {
-      await FirebaseFirestore.instance.collection(
-          'Userrooms').where('sellerid', isEqualTo: email)
-          .where('buyerid',
-          isEqualTo: widget.Ads.emailAddressUser).get()
+    if (!userexists) {
+      await FirebaseFirestore.instance
+          .collection('Userrooms')
+          .where('sellerid', isEqualTo: email)
+          .where('buyerid', isEqualTo: widget.Ads.emailAddressUser)
+          .get()
           .then((QuerySnapshot querySnapshot) {
         querySnapshot.docs.forEach((doc) {
           userexists = true;
@@ -45,7 +50,7 @@ class _ProductDetailState extends State<ProductDetail> {
       });
     }
 
-    if(!userexists){
+    if (!userexists) {
       final Map<String, dynamic> data = {};
       data['buyerid'] = email;
       data['sellerid'] = widget.Ads.emailAddressUser;
@@ -53,24 +58,30 @@ class _ProductDetailState extends State<ProductDetail> {
       data['Image'] = widget.Ads.downloadURLS[0];
       data['Product'] = widget.Ads.title;
 
-      await FirebaseFirestore.instance.collection('Userrooms').add(data)
+      await FirebaseFirestore.instance
+          .collection('Userrooms')
+          .add(data)
           .then((value) async {
         docid = value.id;
 
         String buyerdoc = "";
         String sellerdoc = "";
 
-        await FirebaseFirestore.instance.collection('Users').where('email', isEqualTo: email)
+        await FirebaseFirestore.instance
+            .collection('Users')
+            .where('email', isEqualTo: email)
             .get()
             .then((QuerySnapshot querySnapshot) {
-            querySnapshot.docs.forEach((doc) {
-              buyerdoc = doc.id;
+          querySnapshot.docs.forEach((doc) {
+            buyerdoc = doc.id;
           });
         });
 
         // print(buyerdoc);
 
-        await FirebaseFirestore.instance.collection('Users').where('email', isEqualTo: widget.Ads.emailAddressUser)
+        await FirebaseFirestore.instance
+            .collection('Users')
+            .where('email', isEqualTo: widget.Ads.emailAddressUser)
             .get()
             .then((QuerySnapshot querySnapshot) {
           querySnapshot.docs.forEach((doc) {
@@ -80,21 +91,25 @@ class _ProductDetailState extends State<ProductDetail> {
 
         // print(sellerdoc);
 
-
-        await FirebaseFirestore.instance.collection("Users").doc(buyerdoc).update({
+        await FirebaseFirestore.instance
+            .collection("Users")
+            .doc(buyerdoc)
+            .update({
           "rooms": FieldValue.arrayUnion([docid]),
         });
 
-        await FirebaseFirestore.instance.collection("Users").doc(sellerdoc).update({
+        await FirebaseFirestore.instance
+            .collection("Users")
+            .doc(sellerdoc)
+            .update({
           "rooms": FieldValue.arrayUnion([docid]),
         });
       });
     }
 
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => Chat_screen(docid: docid)));
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => Chat_screen(docid: docid)));
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -130,13 +145,13 @@ class _ProductDetailState extends State<ProductDetail> {
                         SizedBox(
                           height: 6,
                         ),
-                        Text("PKR Price: " + widget.Ads.price,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15)),
-                        SizedBox(
-                          height: 6,
-                        ),
-                        Text("Location: " + widget.Ads.location),
+                        // Text("PKR Price: " + widget.Ads.price,
+                        //     style: TextStyle(
+                        //         fontWeight: FontWeight.bold, fontSize: 15)),
+                        // SizedBox(
+                        //   height: 6,
+                        // ),
+                        // Text("Location: " + widget.Ads.location),
                       ],
                     ),
                   ),
@@ -149,11 +164,14 @@ class _ProductDetailState extends State<ProductDetail> {
                       Column(
                         children: [
                           Icon(
-                            Icons.calendar_today,
+                            Icons.location_city_rounded,
                             size: 35,
                             color: Colors.blue,
                           ),
-                          Text(widget.Ads.uploadDate.year.toString()),
+                          Text(
+                            widget.Ads.location,
+                            style: TextStyle(fontSize: 20),
+                          ),
                         ],
                       ),
                       // SizedBox(
@@ -162,29 +180,32 @@ class _ProductDetailState extends State<ProductDetail> {
                       Column(
                         children: [
                           Icon(
-                            Icons.battery_charging_full,
+                            Icons.price_check_rounded,
                             size: 35,
                             color: Colors.blue,
                           ),
-                          Text("100%"),
+                          Text(
+                            widget.Ads.price,
+                            style: TextStyle(fontSize: 20),
+                          ),
                         ],
                       ),
                       // SizedBox(
                       //   width: 20,
                       // ),
-                      Column(
-                        children: [
-                          Icon(
-                            Icons.check_circle_outline_rounded,
-                            size: 35,
-                            color: Colors.blue,
-                          ),
-                          Text(widget.Ads.uploadDate.year + 1 ==
-                                  DateTime.now().year
-                              ? ("0 year")
-                              : ("1 year"))
-                        ],
-                      )
+                      // Column(
+                      //   children: [
+                      //     Icon(
+                      //       Icons.check_circle_outline_rounded,
+                      //       size: 35,
+                      //       color: Colors.blue,
+                      //     ),
+                      //     Text(widget.Ads.uploadDate.year + 1 ==
+                      //             DateTime.now().year
+                      //         ? ("0 year")
+                      //         : ("1 year"))
+                      //   ],
+                      // )
                     ],
                   ),
                   SizedBox(
