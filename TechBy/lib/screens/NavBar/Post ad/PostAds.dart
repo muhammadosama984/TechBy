@@ -336,12 +336,12 @@ class _postButtonState extends State<_postButton> {
       child: RaisedButton(
         color: Color.fromRGBO(30, 159, 217, 1),
         onPressed: () async {
-          if (widget.titleController.text.length == 0 &&
-              widget.descriptionController.text.length == 0 &&
-              widget.CategoryController.text.length == 0 &&
-              widget.priceController.text.length == 0 &&
-              widget.locationController.text.length == 0 &&
-              widget.multiImages.length == 0) {
+          if (widget.titleController.text.length != 0 &&
+              widget.descriptionController.text.length != 0 &&
+              widget.CategoryController.text.length != 0 &&
+              widget.priceController.text.length != 0 &&
+              widget.locationController.text.length != 0 &&
+              widget.multiImages.length != 0) {
             setState(() {
               isPosted = true;
             });
