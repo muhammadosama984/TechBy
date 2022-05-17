@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:techby/Models/currentIndex.dart';
 import 'package:techby/database/adsList.dart';
 import 'package:techby/general%20widgets/bottomBar.dart';
 import 'package:techby/screens/NavBar/Home/mainPage.dart';
@@ -370,8 +371,14 @@ class _postButtonState extends State<_postButton> {
                     actions: [
                       TextButton(
                           onPressed: () {
+                            // Navigator.of(context).push(MaterialPageRoute(
+                            //     builder: (context) => MyHomePage()));
+                            context.read<indexChange>().currentIndex=0;
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => MyHomePage()));
+                                builder: (context) =>navBarNavigation()));
+                            setState(() {
+
+                            });
 
                           },
                           child: Text('OK')),
