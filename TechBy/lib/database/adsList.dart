@@ -41,13 +41,13 @@ class adsList extends ChangeNotifier {
     await adsList();
 
     for (int i = 0; i < listOfSaved.length; i++) {
-      int x=-1;
-       x = ListOfAds.indexWhere(
-          (element) => element.docID.toString() == listOfSaved[i].doc_ID.toString());
+      int x = -1;
+      x = ListOfAds.indexWhere((element) =>
+          element.docID.toString() == listOfSaved[i].doc_ID.toString());
       print("");
       print(x);
       print("");
-      if(x!=-1) {
+      if (x != -1) {
         ListOfAds[x].favAd = true;
         ListOfMyFav.add(ListOfAds[x]);
       }
@@ -65,8 +65,8 @@ class adsList extends ChangeNotifier {
     return ListOfMyAds;
   }
 
-  Future<List<ads>> categoryAds(List<ads> Ads, String category,List<savedAds> listOfSaved) async {
-
+  Future<List<ads>> categoryAds(
+      List<ads> Ads, String category, List<savedAds> listOfSaved) async {
     await get_savedAds_ads(listOfSaved);
 
     List<ads> categoryList = [];
@@ -88,7 +88,7 @@ class adsList extends ChangeNotifier {
     return locationList;
   }
 
-  List<ads> priceSort(List<ads> Ads, {int min = 0, int max = 4294967296}) {
+  List<ads> priceSort(List<ads> Ads, int min, int max) {
     List<ads> priceList = [];
     for (int i = 0; i < Ads.length; i++) {
       if (int.parse(Ads[i].price) >= min && int.parse(Ads[i].price) <= max) {

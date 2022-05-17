@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
 import 'package:techby/database/adsList.dart';
+import 'package:techby/database/savedAds.dart';
 import 'package:techby/database/savedAdsList.dart';
 import 'package:techby/screens/ProductDetail.dart';
 
@@ -42,6 +43,7 @@ class _ListState extends State<Lists> {
           itemCount: widget.comingList.length,
           itemBuilder: ((context, index) {
             return Card(
+              elevation: 3,
               child: GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -50,24 +52,83 @@ class _ListState extends State<Lists> {
                           )));
                 },
                 child: Container(
-                  height: 130,
+                  //height: 100,
+
                   child: ListTile(
-                      leading: Image.network(
+                    leading: Container(
+                      width: 60,
+                      child: Image.network(
                         widget.comingList[index].downloadURLS[0],
                         fit: BoxFit.fill,
                       ),
-                      title: Text(
-                        widget.comingList[index].title,
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(
-                        "Price: " +
-                            widget.comingList[index].price +
-                            "\nLocation: " +
-                            widget.comingList[index].location,
-                      ),
-                      trailing: Heart(comingAd: widget.comingList[index])),
+                    ),
+                    title: Row(
+                      children: [
+                        Flexible(
+                          child: Container(
+                            width: 130,
+                            child: Text(
+                              widget.comingList[index].title,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              softWrap: false,
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: Icon(
+                            Icons.verified,
+                            color: Color.fromRGBO(30, 159, 217, 1),
+                            size: 18,
+                          ),
+                        ),
+                      ],
+                    ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Text("Price: Rs "),
+                            SizedBox(
+                              width: 105,
+                              child: Text(
+                                widget.comingList[index].price,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                softWrap: false,
+                              ),
+                            )
+                          ],
+                        ),
+
+                        // Text(
+                        // "Price: Rs " + widget.comingList[index].price,
+                        //   maxLines: 1,
+                        //   overflow: TextOverflow.ellipsis,
+                        //   softWrap: false,
+                        //   // "\nLocation: " +
+                        //     // widget.comingList[index].location,
+                        // ),
+                        Text(
+                          "Location: " + widget.comingList[index].location,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: false,
+                        ),
+                      ],
+                    ),
+                    trailing: Heart3(
+                      comingAd: widget.comingList[index],
+                      remove: (value) {
+                        widget.comingList.remove(value);
+                        setState(() {});
+                      },
+                    ),
+                  ),
                 ),
               ),
             );
@@ -94,6 +155,7 @@ class _HeartState extends State<Heart> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    isFav = widget.comingAd.favAd;
     _controller =
         AnimationController(duration: Duration(milliseconds: 400), vsync: this);
 
@@ -164,9 +226,134 @@ class _HeartState extends State<Heart> with SingleTickerProviderStateMixin {
               size: _sizeAnimation.value,
             ),
             onPressed: () {
-              isFav ? _controller.reverse() : _controller.forward();
+              widget.comingAd.favAd
+                  ? _controller.reverse()
+                  : _controller.forward();
             },
           );
+        });
+  }
+}
+
+class Heart2 extends StatefulWidget {
+  final ads comingAd;
+  const Heart2({Key? key, required this.comingAd}) : super(key: key);
+
+  @override
+  State<Heart2> createState() => _Heart2State();
+}
+
+class _Heart2State extends State<Heart2> with SingleTickerProviderStateMixin {
+  late Animation<double> _sizeAnimation;
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _controller =
+        AnimationController(duration: Duration(milliseconds: 400), vsync: this);
+
+    _sizeAnimation = TweenSequence(<TweenSequenceItem<double>>[
+      TweenSequenceItem<double>(
+        tween: Tween<double>(begin: 30, end: 50),
+        weight: 50,
+      ),
+      TweenSequenceItem<double>(
+        tween: Tween<double>(begin: 50, end: 30),
+        weight: 50,
+      ),
+    ]).animate(_controller);
+
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(
+        Icons.favorite,
+        color: widget.comingAd.favAd ? Colors.red : Colors.grey[400],
+        size: _sizeAnimation.value,
+      ),
+      onPressed: () async {
+        if (widget.comingAd.favAd) {
+          await context
+              .read<savedAdsList>()
+              .deleteSavedAd(dataBase_doc_ID: widget.comingAd.docID);
+
+          await context.read<adsList>().updateAd(myAd: widget.comingAd);
+        } else {
+          String emailAddress =
+              Provider.of<GoogleSingInProvider>(context, listen: false)
+                  .userDetails
+                  .email
+                  .toString();
+          print(emailAddress);
+          await context
+              .read<savedAdsList>()
+              .addSavedAd(email: emailAddress, doc_ID: widget.comingAd.docID);
+          await context.read<adsList>().updateAd(myAd: widget.comingAd);
+        }
+        setState(() {
+          widget.comingAd.favAd = !widget.comingAd.favAd;
+        });
+      },
+    );
+  }
+}
+
+typedef MyIntCallback(List);
+
+class Heart3 extends StatefulWidget {
+  final MyIntCallback remove;
+  final ads comingAd;
+  const Heart3({Key? key, required this.comingAd, required this.remove})
+      : super(key: key);
+
+  @override
+  State<Heart3> createState() => _Heart3State();
+}
+
+class _Heart3State extends State<Heart3> {
+  @override
+  Widget build(BuildContext context) {
+    return FavoriteButton(
+        iconSize: 40,
+        isFavorite: widget.comingAd.favAd,
+        valueChanged: (_value) async {
+          String emailAddress =
+              Provider.of<GoogleSingInProvider>(context, listen: false)
+                  .userDetails
+                  .email
+                  .toString();
+          if (_value) {
+            // String emailAddress =
+            //     Provider.of<GoogleSingInProvider>(context, listen: false)
+            //         .userDetails
+            //         .email
+            //         .toString();
+            print(emailAddress);
+
+            await context
+                .read<savedAdsList>()
+                .addSavedAd(email: emailAddress, doc_ID: widget.comingAd.docID);
+            await context.read<adsList>().updateAd(myAd: widget.comingAd);
+            context.read<savedAdsList>().ListOfsavedAds.add(
+                savedAds(email: emailAddress, doc_ID: widget.comingAd.docID));
+          } else {
+            await context
+                .read<savedAdsList>()
+                .deleteSavedAd(dataBase_doc_ID: widget.comingAd.docID);
+
+            await context.read<adsList>().updateAd(myAd: widget.comingAd);
+            context.read<savedAdsList>().ListOfsavedAds.remove(
+                savedAds(email: emailAddress, doc_ID: widget.comingAd.docID));
+            widget.remove(widget.comingAd);
+          }
+          setState(() {
+            widget.comingAd.favAd = _value;
+          });
         });
   }
 }

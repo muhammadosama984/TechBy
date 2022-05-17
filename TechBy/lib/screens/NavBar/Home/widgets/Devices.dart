@@ -1,10 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:techby/database/ads.dart';
 import 'package:techby/database/adsList.dart';
 import 'package:techby/database/savedAdsList.dart';
 import 'package:techby/screens/SearchResult.dart';
+
+import '../../../signIn pages/signInScreens/notification_api.dart';
 
 class desktop extends StatelessWidget {
   const desktop({Key? key}) : super(key: key);
@@ -16,9 +17,9 @@ class desktop extends StatelessWidget {
       child: Center(
         child: GestureDetector(
           onTap: () async {
-            List<ads> passingAd = await context
-                .read<adsList>()
-                .categoryAds(context.read<adsList>().ListOfAds, "Desktop",
+            List<ads> passingAd = await context.read<adsList>().categoryAds(
+                context.read<adsList>().ListOfAds,
+                "Desktop",
                 context.read<savedAdsList>().ListOfsavedAds);
             Navigator.of(context).push(
               MaterialPageRoute(
@@ -48,8 +49,19 @@ class desktop extends StatelessWidget {
   }
 }
 
-class mobile extends StatelessWidget {
+class mobile extends StatefulWidget {
   const mobile({Key? key}) : super(key: key);
+
+  @override
+  State<mobile> createState() => _mobileState();
+}
+
+class _mobileState extends State<mobile> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +80,8 @@ class mobile extends StatelessWidget {
               ),
             ),
           );
+          NotificationApi.showNotification(
+              title: 'DISCOUNT OFFER', body: 'Save upto 25%', payload: '');
         },
         child: Container(
           margin: EdgeInsets.fromLTRB(05, 10, 05, 10),
@@ -95,9 +109,9 @@ class laptop extends StatelessWidget {
       color: Colors.white70,
       child: GestureDetector(
           onTap: () async {
-            List<ads> passingAd = await context
-                .read<adsList>()
-                .categoryAds(context.read<adsList>().ListOfAds, "Laptop",
+            List<ads> passingAd = await context.read<adsList>().categoryAds(
+                context.read<adsList>().ListOfAds,
+                "Laptop",
                 context.read<savedAdsList>().ListOfsavedAds);
             Navigator.of(context).push(
               MaterialPageRoute(

@@ -6,16 +6,17 @@ import 'package:techby/screens/SearchResult.dart';
 
 import '../database/ads.dart';
 
-class filter extends StatefulWidget {
-  final List<ads> filterList;
-  const filter({Key? key, required this.filterList}) : super(key: key);
+class Price extends StatefulWidget {
+  final List<ads> priceList;
+  const Price({Key? key, required this.priceList}) : super(key: key);
 
   @override
-  State<filter> createState() => _filterState();
+  State<Price> createState() => _PriceState();
 }
 
-class _filterState extends State<filter> {
-  TextEditingController location = TextEditingController();
+class _PriceState extends State<Price> {
+  TextEditingController min = TextEditingController();
+  TextEditingController max = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,46 +28,50 @@ class _filterState extends State<filter> {
           margin: EdgeInsets.only(bottom: 50, top: 30),
           child: Column(
             children: [
-              Container(
-                margin: EdgeInsets.only(left: 70, right: 70),
-                child: TextFormField(
-                  controller: location,
-                  decoration: InputDecoration(hintText: "City"),
-                ),
-              ),
+              // Container(
+              //   margin: EdgeInsets.only(left: 70, right: 70),
+              //   child: TextFormField(
+              //     controller: location,
+              //     decoration: InputDecoration(hintText: "Location"),
+              //   ),
+              // ),
               // SizedBox(
               //   height: 100,
               // ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     Icon(
-              //       Icons.price_change,
-              //       size: 35,
-              //     ),
-              //     Text("Price Range"),
-              //   ],
-              // ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //   children: [
-              //     Container(
-              //       width: 100,
-              //       height: 30,
-              //       child: TextField(
-              //         decoration: InputDecoration(hintText: "Min Price"),
-              //       ),
-              //     ),
-              //     Text("to"),
-              //     Container(
-              //       width: 100,
-              //       height: 30,
-              //       child: TextField(
-              //         decoration: InputDecoration(hintText: "Max Price"),
-              //       ),
-              //     ),
-              //   ],
-              // ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.price_change,
+                    size: 35,
+                  ),
+                  Text("Price Range"),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    width: 100,
+                    height: 30,
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                      controller: min,
+                      decoration: InputDecoration(hintText: "Min Price"),
+                    ),
+                  ),
+                  Text("to"),
+                  Container(
+                    width: 100,
+                    height: 30,
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                      controller: max,
+                      decoration: InputDecoration(hintText: "Max Price"),
+                    ),
+                  ),
+                ],
+              ),
               // SizedBox(
               //   height: 100,
               // ),
@@ -115,10 +120,10 @@ class _filterState extends State<filter> {
                   onPressed: (() {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => ParticularProduct(
-                              categoryList: context
-                                  .read<adsList>()
-                                  .locationSort(
-                                      widget.filterList, location.text),
+                              categoryList: context.read<adsList>().priceSort(
+                                  widget.priceList,
+                                  int.parse(min.text),
+                                  int.parse(max.text)),
                             )));
                   }),
                   child: Text(
