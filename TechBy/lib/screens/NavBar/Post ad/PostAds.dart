@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:techby/Models/currentIndex.dart';
 import 'package:techby/database/adsList.dart';
+import 'package:techby/database/verrifiedEmailsList.dart';
 import 'package:techby/general%20widgets/bottomBar.dart';
 import 'package:techby/screens/NavBar/Home/mainPage.dart';
 import 'package:techby/screens/NavBar/navBarNavigation.dart';
@@ -38,6 +39,7 @@ class _PostAdsState extends State<PostAds> {
   final _formKey = GlobalKey<FormState>();
   final _picker = ImagePicker();
   List<XFile> multipleImages = [];
+
   void clearfield() {
     locationMain.clear();
     categoryMain.clear();
@@ -302,6 +304,7 @@ class _postButton extends StatefulWidget {
   TextEditingController locationController = TextEditingController();
   TextEditingController CategoryController = TextEditingController();
   TextEditingController priceController = TextEditingController();
+
   //String? val;
   //File? img;
   List<XFile> multiImages;
@@ -324,6 +327,7 @@ class _postButton extends StatefulWidget {
 
 class _postButtonState extends State<_postButton> {
   bool isPosted = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -363,7 +367,12 @@ class _postButtonState extends State<_postButton> {
                 emailAddressUser_f: (await Provider.of<GoogleSingInProvider>(
                         context,
                         listen: false)
-                    .emailAddress()));
+                    .emailAddress()),
+                verified: context.read<verifiedEmailsList>().checkverified(
+                    userEmail: await Provider.of<GoogleSingInProvider>(context,
+                            listen: false)
+                        .emailAddress()
+                        .toString()));
 
             setState(() {
               isPosted = false;

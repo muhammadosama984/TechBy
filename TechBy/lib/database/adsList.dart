@@ -103,7 +103,7 @@ class adsList extends ChangeNotifier {
     required String category_f,
     required List<String> downloadURLS_f,
     required String emailAddressUser_f,
-  }) async {
+  required bool verified}) async {
     CollectionReference adReference =
         FirebaseFirestore.instance.collection('PostedAds');
     final ad_Obj = ads(
@@ -116,7 +116,7 @@ class adsList extends ChangeNotifier {
         downloadURLS: downloadURLS_f,
         emailAddressUser: emailAddressUser_f,
         favAd: false,
-        verifiedAd: false);
+        verifiedAd: verified);
     adReference
         .add(ad_Obj.toJson())
         .then((value) => print("Ad Posted"))
