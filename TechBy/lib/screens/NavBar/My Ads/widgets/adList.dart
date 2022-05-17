@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
 import 'package:techby/database/adsList.dart';
-import 'package:techby/screens/ProductDetail.dart';
+import 'package:techby/screens/productDetails/ProductDetail.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 class myAds extends StatefulWidget {
   const myAds({Key? key}) : super(key: key);

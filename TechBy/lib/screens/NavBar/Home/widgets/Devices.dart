@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:techby/database/ads.dart';
 import 'package:techby/database/adsList.dart';
 import 'package:techby/database/savedAdsList.dart';
-import 'package:techby/screens/SearchResult.dart';
+import 'package:techby/screens/productDetails/SearchResult.dart';
 
 import '../../../signIn pages/signInScreens/notification_api.dart';
 

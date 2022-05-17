@@ -4,8 +4,8 @@ import 'package:techby/general%20widgets/Search.dart';
 import 'package:techby/general%20widgets/Filter.dart';
 import 'package:techby/general%20widgets/Price.dart';
 
-import '../database/ads.dart';
-import '../general widgets/Listview.dart';
+import '../../database/ads.dart';
+import '../../general widgets/Listview.dart';
 
 class ParticularProduct extends StatefulWidget {
   final List<ads> categoryList;

@@ -5,7 +5,7 @@ import 'package:techby/Sign%20_In/google_sign_in.dart';
 import 'package:techby/database/adsList.dart';
 import 'package:techby/database/savedAds.dart';
 import 'package:techby/database/savedAdsList.dart';
-import 'package:techby/screens/ProductDetail.dart';
+import 'package:techby/screens/productDetails/ProductDetail.dart';
 
 import '../database/ads.dart';
 

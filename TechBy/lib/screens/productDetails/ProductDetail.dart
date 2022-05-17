@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:techby/database/ads.dart';
 
-import '../Sign _In/google_sign_in.dart';
-import 'NavBar/Chat system/Chat_Page.dart';
+import '../../Sign _In/google_sign_in.dart';
+import '../NavBar/Chat system/Chat_Page.dart';
 
 class ProductDetail extends StatefulWidget {
   final ads Ads;

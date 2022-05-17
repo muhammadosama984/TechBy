@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:techby/database/adsList.dart';
-import 'package:techby/screens/SearchResult.dart';
+import 'package:techby/screens/productDetails/SearchResult.dart';
 
 import '../database/ads.dart';
 
