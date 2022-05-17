@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:techby/Sign%20_In/googleUser.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
+import 'package:techby/database/verrifiedEmailsList.dart';
 import 'package:techby/screens/signIn%20pages/signInScreens/OpeningPage.dart';
 import '../../NavBar/navBarNavigation.dart';
 
@@ -22,6 +23,8 @@ class _SplashState extends State<Splash> {
     await Future.delayed(Duration(milliseconds: 2000), () {});
     FirebaseAuth auth = FirebaseAuth.instance;
     final signin = await auth.currentUser;
+    await context.read<verifiedEmailsList>().getEmails();
+
     if (signin != null) {
 
       print(await signin.photoURL!.toString());
