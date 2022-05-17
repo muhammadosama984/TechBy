@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
 import 'package:techby/database/savedAdsList.dart';
 import '../../../database/adsList.dart';
+import '../../../general widgets/Search.dart';
 import '../../signIn pages/signInScreens/notification_api.dart';
 import 'widgets/browseProduct.dart';
 import 'widgets/categories.dart';
@@ -63,6 +64,12 @@ class _MyHomePageState extends State<MyHomePage> {
             },
             icon: Icon(Icons.notifications),
           ),
+          IconButton(
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => SearchPage(
+                        searchList: context.read<adsList>().ListOfAds,
+                      ))),
+              icon: Icon(Icons.search))
         ],
       ),
       body: Padding(
