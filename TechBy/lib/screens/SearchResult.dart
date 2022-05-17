@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:techby/general%20widgets/Search.dart';
 
-import 'package:techby/screens/Filter.dart';
-import 'package:techby/screens/Price.dart';
+import 'package:techby/general%20widgets/Filter.dart';
+import 'package:techby/general%20widgets/Price.dart';
 
 import '../database/ads.dart';
 import '../general widgets/Listview.dart';

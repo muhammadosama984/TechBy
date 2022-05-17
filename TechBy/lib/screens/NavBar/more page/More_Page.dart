@@ -2,16 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:techby/Sign%20_In/googleUser.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
-
-import 'package:techby/screens/signIn%20pages/signInScreens/OpeningPage.dart';
-import 'package:techby/screens/Profile_Page.dart';
-
 import 'widgets/lowerpart.dart';
 import 'widgets/topPart.dart';
-
-
-
-
 
 class More_screen extends StatefulWidget {
   const More_screen({Key? key}) : super(key: key);

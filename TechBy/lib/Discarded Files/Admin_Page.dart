@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:techby/screens/Complaint_Page.dart';
+import 'package:techby/Discarded%20Files/Complaint_Page.dart';
 import 'package:techby/screens/signIn%20pages/signInScreens/OpeningPage.dart';
-import '../screens/ApproveAds_Page.dart';
+import 'ApproveAds_Page.dart';
 
 class Admin_screen extends StatefulWidget {
   const Admin_screen({Key? key}) : super(key: key);

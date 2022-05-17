@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:techby/OTP.dart';
+import 'package:techby/Discarded%20Files/OTP.dart';
 
 class ForgetPassword_screen extends StatefulWidget {
   const ForgetPassword_screen({Key? key}) : super(key: key);
