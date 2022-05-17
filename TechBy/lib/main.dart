@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:techby/Models/ListOfProducts.dart';
 import 'package:techby/Models/ListofUsers.dart';
+import 'package:techby/Models/currentIndex.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
 import 'package:techby/database/adsList.dart';
 import 'package:techby/database/savedAdsList.dart';
@@ -18,6 +19,9 @@ Future main() async {
       providers: [
         ChangeNotifierProvider(
           create: (_) => ListofProduct(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => indexChange(),
         ),
         ChangeNotifierProvider(
           create: (_) => adsList(),
