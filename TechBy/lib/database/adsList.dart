@@ -4,13 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:techby/database/ads.dart';
 import 'package:techby/database/savedAds.dart';
-import 'package:techby/database/savedAdsList.dart';
-
-import '../Sign _In/google_sign_in.dart';
 
 class adsList extends ChangeNotifier {
   List<ads> ListOfAds = [];
