@@ -373,6 +373,8 @@ class _postButtonState extends State<_postButton> {
                           onPressed: () {
                             // Navigator.of(context).push(MaterialPageRoute(
                             //     builder: (context) => MyHomePage()));
+
+                            
                             context.read<indexChange>().currentIndex=0;
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) =>navBarNavigation()));
