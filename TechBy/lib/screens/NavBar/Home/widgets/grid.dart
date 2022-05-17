@@ -55,27 +55,31 @@ class _GridState extends State<Grid> {
                         //Spacer(),
                         Align(
                           alignment: Alignment.topRight,
-                          child: Icon(
-                            Icons.verified,
-                            color: Color.fromRGBO(30, 159, 217, 1),
-                            size: 18,
-                          ),
+                          child: context
+                                  .read<adsList>()
+                                  .ListOfAds[index]
+                                  .verifiedAd
+                              ? Icon(
+                                  Icons.verified,
+                                  color: Color.fromRGBO(30, 159, 217, 1),
+                                  size: 18,
+                                )
+                              : null,
                         ),
                       ],
                     ),
                     subtitle: Row(
                       children: [
                         Text("Rs "),
-
                         SizedBox(
                           width: 88,
                           child: Text(
-                      '${context.read<adsList>().ListOfAds[index].price}',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      softWrap: false,
-                         ),
-                  ),
+                            '${context.read<adsList>().ListOfAds[index].price}',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
+                          ),
+                        ),
                       ],
                     ),
                   ),
