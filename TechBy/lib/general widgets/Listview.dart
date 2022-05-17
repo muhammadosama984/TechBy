@@ -145,6 +145,7 @@ class _HeartState extends State<Heart> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    isFav = widget.comingAd.favAd;
     _controller =
         AnimationController(duration: Duration(milliseconds: 400), vsync: this);
 
@@ -215,7 +216,7 @@ class _HeartState extends State<Heart> with SingleTickerProviderStateMixin {
               size: _sizeAnimation.value,
             ),
             onPressed: () {
-              isFav ? _controller.reverse() : _controller.forward();
+              widget.comingAd.favAd ? _controller.reverse() : _controller.forward();
             },
           );
         });
