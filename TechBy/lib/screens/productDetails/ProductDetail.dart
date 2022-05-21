@@ -203,22 +203,22 @@ class _ProductDetailState extends State<ProductDetail> {
                         // SizedBox(
                         //   width: 20,
                         // ),
-                        Column(
-                          children: [
-                            const Icon(
-                              Icons.verified,
-                              size: 35,
-                              color: Colors.green,
-                            ),
-                            Text(
-                              widget.Ads.uploadDate.year + 1 ==
-                                      DateTime.now().year
-                                  ? ("Not verified")
-                                  : ("Verified"),
-                              style: TextStyle(fontSize: 12),
-                            )
-                          ],
-                        )
+                        // Column(
+                        //   children: [
+                        //     const Icon(
+                        //       Icons.verified,
+                        //       size: 35,
+                        //       color: Colors.green,
+                        //     ),
+                        //     Text(
+                        //       widget.Ads.uploadDate.year + 1 ==
+                        //               DateTime.now().year
+                        //           ? ("Not verified")
+                        //           : ("Verified"),
+                        //       style: TextStyle(fontSize: 12),
+                        //     )
+                        //   ],
+                        // )
                       ],
                     ),
                     //const SizedBox(height: 20),
