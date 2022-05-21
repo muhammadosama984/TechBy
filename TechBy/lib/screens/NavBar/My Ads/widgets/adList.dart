@@ -64,9 +64,9 @@ class _myAdsState extends State<myAds> {
                   barrierDismissible: false,
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: const Text('Do you want remove task'),
+                    title: const Text('Do you want remove ad'),
                     content:
-                    const Text('This will remove task from list'),
+                    const Text('This will remove ad'),
                     actions: [
                       TextButton(
                           onPressed: () {

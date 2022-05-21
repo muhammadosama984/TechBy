@@ -381,7 +381,7 @@ class _postButtonState extends State<_postButton> {
                 barrierDismissible: false,
                 context: context,
                 builder: (context) => AlertDialog(
-                      title: const Text('Task Added'),
+                      title: const Text('Ad Added'),
                       actions: [
                         TextButton(
                             onPressed: () {
