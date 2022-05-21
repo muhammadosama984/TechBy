@@ -14,7 +14,8 @@ class _FAQs_screenState extends State<FAQs_screen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("FAQs"),
+        backgroundColor: const Color.fromRGBO(30, 159, 217, 1),
+        title: const Text("FAQs"),
       ),
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
@@ -28,14 +29,15 @@ class _FAQs_screenState extends State<FAQs_screen> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => FAQ_Detail(),
+                          builder: (context) => const FAQ_Detail(),
                         ),
                       );
                     },
-                    child: Card(
+                    child: const Card(
                       child: ListTile(
                         leading: Icon(Icons.question_answer_outlined),
-                        title: Text("What are the methods of payment?"),
+                        title:
+                            Text("What are the preferred methods of payment?"),
                       ),
                     ),
                   ),
@@ -43,11 +45,11 @@ class _FAQs_screenState extends State<FAQs_screen> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => FAQ_Detail(),
+                          builder: (context) => const FAQ_Detail(),
                         ),
                       );
                     },
-                    child: Card(
+                    child: const Card(
                       child: ListTile(
                         leading: Icon(Icons.question_answer_outlined),
                         title: Text("Why my account is banned?"),
@@ -58,11 +60,11 @@ class _FAQs_screenState extends State<FAQs_screen> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => FAQ_Detail(),
+                          builder: (context) => const FAQ_Detail(),
                         ),
                       );
                     },
-                    child: Card(
+                    child: const Card(
                         child: ListTile(
                       leading: Icon(Icons.question_answer_outlined),
                       title: Text(
@@ -72,17 +74,17 @@ class _FAQs_screenState extends State<FAQs_screen> {
                   GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => FAQ_Detail()));
+                          builder: (context) => const FAQ_Detail()));
                     },
-                    child: Card(
+                    child: const Card(
                       child: ListTile(
                         leading: Icon(Icons.question_answer_outlined),
-                        title: Text("MWhy am I not seeing my ads?"),
+                        title: Text("Should I share my personal info?"),
                       ),
                     ),
                   ),
                 ],
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
               ),
             ),
           ],
