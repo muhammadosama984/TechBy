@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
@@ -10,6 +11,8 @@ class topPart extends StatefulWidget {
 }
 
 class _topPartState extends State<topPart> {
+  late final signin;
+
   void printThings() async {
     print(await Provider.of<GoogleSingInProvider>(context, listen: false)
         .emailAddress());
@@ -19,11 +22,17 @@ class _topPartState extends State<topPart> {
         .photoUrl());
   }
 
+  void getDetails() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    signin = await auth.currentUser;
+  }
+
   @override
   void initState() {
     // TODO: implement initState
 
     super.initState();
+    getDetails();
   }
 
   @override
@@ -35,10 +44,17 @@ class _topPartState extends State<topPart> {
         CircleAvatar(
           radius: 30,
           backgroundImage: NetworkImage(
-            Provider.of<GoogleSingInProvider>(context, listen: false)
-                .userDetails
-                .profilePic
-                .toString(),
+            // Provider.of<GoogleSingInProvider>(context, listen: false)
+            //     .userDetails
+            //     .profilePic
+            //     .toString(),
+              Provider
+                  .of<GoogleSingInProvider>(context,
+                  listen: false)
+                  .auth
+                  .currentUser!
+                  .photoURL
+                  .toString()
           ),
         ),
         SizedBox(
@@ -50,9 +66,16 @@ class _topPartState extends State<topPart> {
             Container(
               margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: Text(
-                  Provider.of<GoogleSingInProvider>(context, listen: false)
-                      .userDetails
-                      .userName
+                // Provider.of<GoogleSingInProvider>(context, listen: false)
+                //     .userDetails
+                //     .userName
+                //     .toString(),
+                  Provider
+                      .of<GoogleSingInProvider>(context,
+                      listen: false)
+                      .auth
+                      .currentUser!
+                      .displayName
                       .toString(),
                   style: TextStyle(
                     fontSize: 24,

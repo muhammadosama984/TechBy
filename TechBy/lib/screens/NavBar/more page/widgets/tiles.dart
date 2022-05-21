@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:techby/Models/currentIndex.dart';
 import 'package:techby/Sign%20_In/google_sign_in.dart';
 import 'package:techby/database/adsList.dart';
 import 'package:techby/screens/NavBar/more%20page/Screens/Contact_Us/ContactUs_Page.dart';
@@ -122,6 +123,7 @@ class LogoutTile extends StatelessWidget {
                             Provider.of<GoogleSingInProvider>(context,
                                     listen: false)
                                 .googleSignOut();
+                            context.read<indexChange>().setIndex(0);
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => OpeningPage()));
                           },
