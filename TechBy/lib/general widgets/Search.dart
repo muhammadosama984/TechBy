@@ -28,6 +28,9 @@ class _SearchPageState extends State<SearchPage> {
     // TODO: implement initState
     super.initState();
     newList = widget.searchList;
+    // for(int i=0;i<widget.searchList.length;i++){
+    //   print(widget.searchList[i].favAd);
+    // }
   }
 
   @override

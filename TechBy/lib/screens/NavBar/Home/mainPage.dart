@@ -62,10 +62,12 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(Icons.notifications),
           ),
           IconButton(
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
                   builder: (_) => SearchPage(
                         searchList: context.read<adsList>().ListOfAds,
-                      ))),
+                      )));},
               icon: Icon(Icons.search))
         ],
       ),
